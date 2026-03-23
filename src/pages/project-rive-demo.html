@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interactive Animation — PJ Rodriguez</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/styles/main.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <a href="/" class="nav-logo">PJ Rodriguez</a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/projects.html">Work</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="mailto:pjrodriguezdesign@gmail.com" class="btn btn-outline" style="padding:0.5em 1.2em;">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- SHOWCASE -->
+  <section class="section" style="padding-top: 6rem;">
+    <div class="container">
+
+      <p class="label reveal">Interactive · Rive</p>
+      <h1 class="reveal" style="margin-bottom: var(--space-md);">Interactive Animation</h1>
+
+      <!-- === RIVE EMBED AREA ===
+           HOW TO USE:
+           1. Export your .riv file from Rive
+           2. Put it in /public/assets/rive/your-animation.riv
+           3. Change data-rive-src below to match your filename
+           4. Change data-rive-state to your state machine name (default: "State Machine 1")
+
+           The main.js file auto-detects any <canvas> with data-rive-src and loads it.
+      -->
+      <div class="showcase-embed reveal">
+        <canvas
+          data-rive-src="/assets/rive/demo.riv"
+          data-rive-state="State Machine 1"
+          style="width:100%; height:100%;"
+        ></canvas>
+      </div>
+
+      <!--
+        IF YOU DON'T HAVE A .riv FILE YET:
+        Replace the showcase-embed div above with a video instead:
+
+        <div class="showcase-embed reveal">
+          <video autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover;">
+            <source src="/assets/videos/your-animation.mp4" type="video/mp4" />
+          </video>
+        </div>
+      -->
+
+      <!-- PROJECT INFO -->
+      <div class="project-meta reveal">
+        <div class="project-meta-item">
+          <span class="label">Type</span>
+          <p>Interactive Animation</p>
+        </div>
+        <div class="project-meta-item">
+          <span class="label">Tools</span>
+          <p>Rive, JavaScript</p>
+        </div>
+        <div class="project-meta-item">
+          <span class="label">Interaction</span>
+          <p>Hover and click to trigger states</p>
+        </div>
+      </div>
+
+      <div class="project-section reveal">
+        <h2>About This Piece</h2>
+        <p>
+          <!--
+            REPLACE THIS with your actual description.
+            What is this animation? What interactions does it support?
+            Why did you make it? What does it demonstrate about your skills?
+          -->
+          This interactive animation was built in Rive using state machines to respond to user input in real time. Hovering triggers a transition between idle and active states, while clicking advances through a sequence of motion states. The piece demonstrates interactive motion design — moving beyond passive animation into responsive, user-driven experiences.
+        </p>
+        <p>
+          This kind of work sits at the intersection of motion graphics and interaction design — exactly the space I want to operate in as a creative technologist.
+        </p>
+      </div>
+
+      <!-- BACK LINK -->
+      <div style="padding-top: var(--space-lg); border-top: 1px solid rgba(26,27,47,0.08);">
+        <a href="/projects.html" class="btn btn-outline">← Back to All Projects</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2026 PJ Rodriguez</p>
+      <ul class="footer-links">
+        <li><a href="https://linkedin.com/in/pjrdesign" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="mailto:pjrodriguezdesign@gmail.com">Email</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/js/main.js"></script>
+</body>
+</html>

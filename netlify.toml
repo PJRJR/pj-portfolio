@@ -1,0 +1,23 @@
+# This file tells Netlify how to handle your site.
+# It goes in the root of your project folder.
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# Make all project page URLs work without .html extensions
+[[redirects]]
+  from = "/projects/*"
+  to = "/src/pages/:splat.html"
+  status = 200
+
+# Redirect /about to about.html etc
+[[redirects]]
+  from = "/about"
+  to = "/about.html"
+  status = 200
+
+[[redirects]]
+  from = "/projects"
+  to = "/projects.html"
+  status = 200
