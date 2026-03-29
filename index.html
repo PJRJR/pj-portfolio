@@ -1,117 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PJ Rodriguez — Designer & Creative Technologist</title>
-  <meta name="description" content="Portfolio of PJ Rodriguez — interaction designer, motion graphics artist, and creative technologist based in the San Francisco Bay Area." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/src/styles/main.css" />
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PJ Rodriguez — Designer & Creative Technologist</title>
+    <meta
+      name="description"
+      content="Portfolio of PJ Rodriguez — interaction designer, motion graphics artist, and creative technologist based in the San Francisco Bay Area."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/styles/main.css" />
+  </head>
+  <body>
+    <!-- ===== NAVIGATION ===== -->
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+      <div class="container">
+        <a href="/" class="nav-logo">PJ Rodriguez</a>
+        <button
+          class="nav-toggle"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+        >
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links">
+          <li><a href="/" class="active">Home</a></li>
+          <li><a href="/projects.html">Work</a></li>
+          <li><a href="/about.html">About</a></li>
+          <li>
+            <a
+              href="mailto:pjrodriguezdesign@gmail.com"
+              class="btn btn-outline"
+              style="padding: 0.5em 1.2em"
+              >Contact</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
 
-  <!-- ===== NAVIGATION ===== -->
-  <nav class="nav" role="navigation" aria-label="Main navigation">
-    <div class="container">
-      <a href="/" class="nav-logo">PJ Rodriguez</a>
-      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-      <ul class="nav-links">
-        <li><a href="/" class="active">Home</a></li>
-        <li><a href="/projects.html">Work</a></li>
-        <li><a href="/about.html">About</a></li>
-        <li><a href="mailto:pjrodriguezdesign@gmail.com" class="btn btn-outline" style="padding:0.5em 1.2em;">Contact</a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <!-- ===== HERO ===== -->
-  <section class="hero section">
-    <div class="container">
-      <div class="hero-content">
-        <p class="hero-tagline">Interaction Design · Motion · Creative Technology</p>
-        <h1>Design that moves,<br /><span class="accent">interactions that matter.</span></h1>
-        <p class="hero-bio">
-          I'm PJ — an experience designer with a background in interaction design, graphic design, and motion graphics. I build dynamic, interactive experiences that make complex ideas intuitive and accessible.
-        </p>
-        <div class="hero-cta">
-          <a href="/projects.html" class="btn btn-primary">View My Work →</a>
-          <a href="/about.html" class="btn btn-outline">About Me</a>
+    <!-- ===== HERO ===== -->
+    <section class="hero section">
+      <div class="container">
+        <div class="hero-content">
+          <p class="hero-tagline">
+            Interaction Design · Motion · Creative Technology
+          </p>
+          <h1>
+            Design that moves,<br /><span class="accent"
+              >interactions that matter.</span
+            >
+          </h1>
+          <p class="hero-bio">
+            I'm PJ — an experience designer with a background in interaction
+            design, graphic design, and motion graphics. I build dynamic,
+            interactive experiences that make complex ideas intuitive and
+            accessible.
+          </p>
+          <div class="hero-cta">
+            <a href="/projects.html" class="btn btn-primary">View My Work →</a>
+            <a href="/about.html" class="btn btn-outline">About Me</a>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ===== FEATURED PROJECTS ===== -->
-  <section class="section" id="featured">
-    <div class="container">
-      <p class="label reveal">Selected Work</p>
-      <h2 class="reveal" style="margin-bottom:var(--space-lg)">Featured Projects</h2>
+    <!-- ===== FEATURED PROJECTS ===== -->
+    <section class="section" id="featured">
+      <div class="container">
+        <p class="label reveal">Selected Work</p>
+        <h2 class="reveal" style="margin-bottom: var(--space-lg)">
+          Featured Projects
+        </h2>
 
-      <div class="projects-grid">
+        <div class="projects-grid">
+          <!-- Card 1: IDEO AI Tool -->
+          <article class="project-card">
+            <a
+              href="/src/pages/project-ideo-ai.html"
+              class="project-card-link"
+              aria-label="View IDEO AI Diagnosis Tool project"
+            >
+              <span class="sr-only">View project</span>
+            </a>
+            <!-- REPLACE: swap placeholder-ideo-ai.jpg with your actual image -->
+            <img
+              src="https://placehold.co/800x600/1A1B2F/8BA793?text=IDEO+AI+Tool"
+              alt="IDEO conversational AI appliance repair tool interface"
+              class="project-card-image"
+              loading="lazy"
+            />
+            <div class="project-card-body">
+              <p class="label">Interaction Design · AI</p>
+              <h3>AI Diagnosis Tool</h3>
+              <p>
+                Designed a conversational AI appliance repair tool — chatbot
+                persona, UI, wireframes, and prototypes at IDEO.
+              </p>
+            </div>
+          </article>
 
-        <!-- Card 1: IDEO AI Tool -->
-        <article class="project-card">
-          <a href="/src/pages/project-ideo-ai.html" class="project-card-link" aria-label="View IDEO AI Diagnosis Tool project">
-            <span class="sr-only">View project</span>
-          </a>
-          <!-- REPLACE: swap placeholder-ideo-ai.jpg with your actual image -->
-          <img src="https://placehold.co/800x600/1A1B2F/8BA793?text=IDEO+AI+Tool" alt="IDEO conversational AI appliance repair tool interface" class="project-card-image" loading="lazy" />
-          <div class="project-card-body">
-            <p class="label">Interaction Design · AI</p>
-            <h3>AI Diagnosis Tool</h3>
-            <p>Designed a conversational AI appliance repair tool — chatbot persona, UI, wireframes, and prototypes at IDEO.</p>
-          </div>
-        </article>
+          <!-- Card 2: COP28 AR -->
+          <article class="project-card">
+            <a
+              href="/src/pages/project-cop28.html"
+              class="project-card-link"
+              aria-label="View COP28 AR Experience project"
+            >
+              <span class="sr-only">View project</span>
+            </a>
+            <img
+              src="https://placehold.co/800x600/8BA793/1A1B2F?text=COP28+AR"
+              alt="COP28 augmented reality experience promoting climate awareness"
+              class="project-card-image"
+              loading="lazy"
+            />
+            <div class="project-card-body">
+              <p class="label">AR · Visual Design</p>
+              <h3>COP28 AR Experience</h3>
+              <p>
+                Created an immersive AR experience for COP28 promoting reusable
+                products and climate awareness.
+              </p>
+            </div>
+          </article>
 
-        <!-- Card 2: COP28 AR -->
-        <article class="project-card">
-          <a href="/src/pages/project-cop28.html" class="project-card-link" aria-label="View COP28 AR Experience project">
-            <span class="sr-only">View project</span>
-          </a>
-          <img src="https://placehold.co/800x600/8BA793/1A1B2F?text=COP28+AR" alt="COP28 augmented reality experience promoting climate awareness" class="project-card-image" loading="lazy" />
-          <div class="project-card-body">
-            <p class="label">AR · Visual Design</p>
-            <h3>COP28 AR Experience</h3>
-            <p>Created an immersive AR experience for COP28 promoting reusable products and climate awareness.</p>
-          </div>
-        </article>
+          <!-- Card 3: Grand Games -->
+          <article class="project-card">
+            <a
+              href="/src/pages/project-grand-games.html"
+              class="project-card-link"
+              aria-label="View Grand Games project"
+            >
+              <span class="sr-only">View project</span>
+            </a>
+            <img
+              src="https://placehold.co/800x600/FF6B6B/FAFAFA?text=Grand+Games"
+              alt="Grand Games multicultural gaming experience signage designs"
+              class="project-card-image"
+              loading="lazy"
+            />
+            <div class="project-card-body">
+              <p class="label">Graphic Design · Multilingual</p>
+              <h3>Grand Games</h3>
+              <p>
+                Designed a multicultural gaming experience with bilingual
+                signage for Grand Park, Los Angeles.
+              </p>
+            </div>
+          </article>
+        </div>
 
-        <!-- Card 3: Grand Games -->
-        <article class="project-card">
-          <a href="/src/pages/project-grand-games.html" class="project-card-link" aria-label="View Grand Games project">
-            <span class="sr-only">View project</span>
-          </a>
-          <img src="https://placehold.co/800x600/FF6B6B/FAFAFA?text=Grand+Games" alt="Grand Games multicultural gaming experience signage designs" class="project-card-image" loading="lazy" />
-          <div class="project-card-body">
-            <p class="label">Graphic Design · Multilingual</p>
-            <h3>Grand Games</h3>
-            <p>Designed a multicultural gaming experience with bilingual signage for Grand Park, Los Angeles.</p>
-          </div>
-        </article>
-
+        <div style="text-align: center; margin-top: var(--space-lg)">
+          <a href="/projects.html" class="btn btn-outline reveal"
+            >See All Projects →</a
+          >
+        </div>
       </div>
+    </section>
 
-      <div style="text-align:center; margin-top:var(--space-lg)">
-        <a href="/projects.html" class="btn btn-outline reveal">See All Projects →</a>
+    <!-- ===== FOOTER ===== -->
+    <!-- Footer bounce SVG -->
+    <div class="footer-bounce" aria-hidden="true">
+      <svg
+        viewBox="0 0 2278 50"
+        preserveAspectRatio="none"
+        style="display: block; width: 100%; height: 50px"
+      >
+        <path
+          id="bouncy-path"
+          d="M0-0.3C0-0.3,464,0,1139,0s1139-0.3,1139-0.3V50H0V-0.3z"
+          fill="#1A1B2F"
+        />
+      </svg>
+    </div>
+    <footer class="footer">
+      <div class="container">
+        <p>© 2026 PJ Rodriguez</p>
+        <ul class="footer-links">
+          <li>
+            <a
+              href="https://linkedin.com/in/pjrdesign"
+              target="_blank"
+              rel="noopener"
+              >LinkedIn</a
+            >
+          </li>
+          <li><a href="mailto:pjrodriguezdesign@gmail.com">Email</a></li>
+        </ul>
       </div>
-    </div>
-  </section>
+    </footer>
 
-  <!-- ===== FOOTER ===== -->
-  <footer class="footer">
-    <div class="container">
-      <p>© 2026 PJ Rodriguez</p>
-      <ul class="footer-links">
-        <li><a href="https://linkedin.com/in/pjrdesign" target="_blank" rel="noopener">LinkedIn</a></li>
-        <li><a href="mailto:pjrodriguezdesign@gmail.com">Email</a></li>
-      </ul>
-    </div>
-  </footer>
-
-  <script type="module" src="/src/js/main.js"></script>
-</body>
+    <script type="module" src="/src/js/main.js"></script>
+  </body>
 </html>

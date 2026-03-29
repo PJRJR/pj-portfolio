@@ -8,25 +8,25 @@
 
 :root {
   /* Palette */
-  --navy:       #1A1B2F;
+  --navy: #1a1b2f;
   --navy-light: #262840;
-  --sage:       #8BA793;
-  --sage-light: #A7C4B2;
-  --coral:      #FF6B6B;
-  --cream:      #F5F0EB;
-  --white:      #FAFAFA;
-  --text:       #2C2C2C;
-  --text-light: #6B6B6B;
+  --sage: #8ba793;
+  --sage-light: #a7c4b2;
+  --coral: #ff6b6b;
+  --cream: #f5f0eb;
+  --white: #fafafa;
+  --text: #2c2c2c;
+  --text-light: #6b6b6b;
 
   /* Type scale */
-  --font-display: 'Instrument Serif', Georgia, serif;
-  --font-body:    'DM Sans', system-ui, sans-serif;
+  --font-display: "Instrument Serif", Georgia, serif;
+  --font-body: "DM Sans", system-ui, sans-serif;
 
-  --step-0:  clamp(1rem,    0.95rem + 0.25vw, 1.125rem);
-  --step-1:  clamp(1.25rem, 1.1rem  + 0.75vw, 1.5rem);
-  --step-2:  clamp(1.5rem,  1.2rem  + 1.5vw,  2.25rem);
-  --step-3:  clamp(2rem,    1.5rem  + 2.5vw,  3.5rem);
-  --step-4:  clamp(2.5rem,  1.75rem + 3.75vw, 5rem);
+  --step-0: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --step-1: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
+  --step-2: clamp(1.5rem, 1.2rem + 1.5vw, 2.25rem);
+  --step-3: clamp(2rem, 1.5rem + 2.5vw, 3.5rem);
+  --step-4: clamp(2.5rem, 1.75rem + 3.75vw, 5rem);
 
   /* Spacing */
   --space-xs: 0.5rem;
@@ -42,7 +42,9 @@
 }
 
 /* --- Reset --- */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -62,7 +64,9 @@ body {
   background-color: var(--cream);
 }
 
-img, video, canvas {
+img,
+video,
+canvas {
   display: block;
   max-width: 100%;
   height: auto;
@@ -74,18 +78,28 @@ a {
 }
 
 /* --- Typography --- */
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   font-family: var(--font-display);
   font-weight: 400;
   line-height: 1.15;
   color: var(--navy);
 }
 
-h1 { font-size: var(--step-4); }
-h2 { font-size: var(--step-3); }
-h3 { font-size: var(--step-2); }
+h1 {
+  font-size: var(--step-4);
+}
+h2 {
+  font-size: var(--step-3);
+}
+h3 {
+  font-size: var(--step-2);
+}
 
-p + p { margin-top: 1em; }
+p + p {
+  margin-top: 1em;
+}
 
 .label {
   font-family: var(--font-body);
@@ -151,7 +165,7 @@ p + p { margin-top: 1em; }
 }
 
 .nav-links a::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -4px;
   left: 0;
@@ -192,12 +206,20 @@ p + p { margin-top: 1em; }
   transition: all 0.3s ease;
 }
 
-.nav-toggle span:nth-child(1) { top: 0; }
-.nav-toggle span:nth-child(2) { top: 9px; }
-.nav-toggle span:nth-child(3) { top: 18px; }
+.nav-toggle span:nth-child(1) {
+  top: 0;
+}
+.nav-toggle span:nth-child(2) {
+  top: 9px;
+}
+.nav-toggle span:nth-child(3) {
+  top: 18px;
+}
 
 @media (max-width: 768px) {
-  .nav-toggle { display: block; }
+  .nav-toggle {
+    display: block;
+  }
 
   .nav-links {
     position: fixed;
@@ -210,7 +232,7 @@ p + p { margin-top: 1em; }
     padding: var(--space-2xl) var(--space-lg);
     gap: var(--space-lg);
     transition: right 0.4s ease;
-    box-shadow: -4px 0 24px rgba(0,0,0,0.08);
+    box-shadow: -4px 0 24px rgba(0, 0, 0, 0.08);
   }
 
   .nav-links.open {
@@ -373,7 +395,7 @@ p + p { margin-top: 1em; }
 }
 
 .project-hero::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   background: linear-gradient(
