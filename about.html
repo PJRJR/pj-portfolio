@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -6,21 +6,71 @@
     <title>About — PJ Rodriguez</title>
     <meta
       name="description"
-      content="About PJ Rodriguez — interaction designer, IDEO fellow, and creative technologist."
+      content="PJ Rodriguez — illustrator and graphic designer based in the San Francisco Bay Area. IDEO Fellow. B.S. Interaction Design, Santa Monica College."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Instrument+Serif:ital@0;1&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/src/styles/main.css" />
   </head>
   <body>
+    <div class="project-card-cursor-label" id="cursor-label">View &#8594;</div>
+
+    <!-- SVG Defs — wavy image clips + scute pattern -->
+    <svg
+      width="0"
+      height="0"
+      style="position: absolute; overflow: hidden"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <defs>
+        <clipPath id="wave-gentle" clipPathUnits="objectBoundingBox">
+          <path
+            d="M0,0.04 C0.1,0 0.2,0.02 0.3,0.04 C0.4,0.06 0.5,0.02 0.6,0.04 C0.7,0.06 0.8,0.02 0.9,0.04 C0.95,0.05 1,0.04 1,0.04 L1,0.96 C0.9,1 0.8,0.98 0.7,0.96 C0.6,0.94 0.5,0.98 0.4,0.96 C0.3,0.94 0.2,0.98 0.1,0.96 C0.05,0.95 0,0.96 0,0.96 Z"
+          />
+        </clipPath>
+        <clipPath id="wave-torn" clipPathUnits="objectBoundingBox">
+          <path
+            d="M0.02,0.06 C0.08,0.01 0.15,0.05 0.22,0.03 C0.30,0.01 0.38,0.06 0.45,0.03 C0.52,0 0.60,0.05 0.68,0.02 C0.76,0 0.84,0.04 0.92,0.02 C0.97,0.01 1,0.03 1,0.03 L0.99,0.96 C0.93,1 0.86,0.97 0.78,0.99 C0.70,1 0.62,0.96 0.54,0.99 C0.46,1 0.38,0.97 0.30,0.99 C0.22,1 0.14,0.97 0.06,0.99 C0.02,1 0,0.98 0,0.98 Z"
+          />
+        </clipPath>
+        <!-- Sturgeon scute tile — 20×16px repeating unit -->
+        <pattern
+          id="scute-tile"
+          x="0"
+          y="0"
+          width="20"
+          height="16"
+          patternUnits="userSpaceOnUse"
+        >
+          <polygon
+            points="3,8 10,2 17,8"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1"
+            stroke-linejoin="round"
+          />
+          <polygon
+            points="3,8 10,14 17,8"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1"
+            stroke-linejoin="round"
+          />
+        </pattern>
+      </defs>
+    </svg>
+
     <!-- NAV -->
     <nav class="nav" role="navigation" aria-label="Main navigation">
       <div class="container">
-        <a href="/" class="nav-logo">PJ Rodriguez</a>
+        <a href="/" class="nav-logo-zone" aria-label="PJ Rodriguez — home">
+          <span class="nav-logo-text">P.J.</span>
+        </a>
         <button
           class="nav-toggle"
           aria-label="Toggle menu"
@@ -29,102 +79,335 @@
           <span></span><span></span><span></span>
         </button>
         <ul class="nav-links">
-          <li><a href="/">Home</a></li>
-          <li><a href="/projects.html">Work</a></li>
-          <li><a href="/about.html" class="active">About</a></li>
+          <li><a href="/" data-i18n="nav.home">Home</a></li>
+          <li><a href="/projects.html" data-i18n="nav.work">Work</a></li>
           <li>
-            <a
-              href="mailto:pjrodriguezdesign@gmail.com"
-              class="btn btn-outline"
-              style="padding: 0.5em 1.2em"
-              >Contact</a
+            <a href="/illustration.html" data-i18n="nav.illustration"
+              >Illustration</a
             >
           </li>
+          <li>
+            <a href="/about.html" class="active" data-i18n="nav.about">About</a>
+          </li>
         </ul>
+        <div class="lang-toggle" role="group" aria-label="Language">
+          <button
+            class="lang-btn active"
+            data-lang="en"
+            aria-pressed="true"
+            lang="en"
+          >
+            EN
+          </button>
+          <button
+            class="lang-btn"
+            data-lang="pt"
+            aria-pressed="false"
+            lang="pt-BR"
+          >
+            PT
+          </button>
+          <button
+            class="lang-btn"
+            data-lang="es"
+            aria-pressed="false"
+            lang="es"
+          >
+            ES
+          </button>
+        </div>
+        <div class="nav-icon-links">
+          <a
+            href="https://linkedin.com/in/pjrdesign"
+            class="nav-icon-link"
+            target="_blank"
+            rel="noopener"
+            aria-label="LinkedIn"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+              />
+            </svg>
+          </a>
+          <a
+            href="/assets/PJ-Rodriguez-Resume-2026.pdf"
+            class="nav-icon-link"
+            target="_blank"
+            rel="noopener"
+            aria-label="Resume PDF"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"
+              />
+            </svg>
+          </a>
+        </div>
       </div>
     </nav>
 
-    <!-- ABOUT -->
-    <section class="section" style="padding-top: 8rem">
+    <!-- ── PAGE HEADER ── -->
+    <section class="section about-page-header">
+      <div class="container">
+        <p class="label reveal">About</p>
+        <h1 class="reveal">
+          Illustrator and designer<br />
+          <em>from the Bay Area.</em>
+        </h1>
+      </div>
+    </section>
+
+    <!-- Scute divider -->
+    <svg
+      class="scute-divider"
+      width="100%"
+      height="16"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <rect width="100%" height="16" fill="url(#scute-tile)" />
+    </svg>
+
+    <!-- ── BIO GRID ── -->
+    <section class="section">
       <div class="container">
         <div class="about-grid">
-          <!-- REPLACE: swap with your actual headshot photo -->
-          <img
-            src="https://placehold.co/600x800/1A1B2F/8BA793?text=PJ"
-            alt="Photo of PJ Rodriguez"
-            class="about-photo reveal"
-          />
+          <!-- Photo column -->
+          <div>
+            <img
+              src="https://placehold.co/600x800/2A4A36/B8E8CB?text=Photo"
+              alt="PJ Rodriguez, designer and illustrator"
+              class="about-photo img-wavy-gentle reveal-wrap"
+              loading="eager"
+              width="600"
+              height="800"
+            />
+          </div>
 
+          <!-- Content column -->
           <div class="about-content">
-            <p class="label reveal">About Me</p>
-            <h2 class="reveal">PJ Rodriguez</h2>
-
-            <p class="reveal">
-              I'm an experience designer and creative technologist based in the
-              San Francisco Bay Area. With a B.S. in Interaction Design from
-              Santa Monica College and an A.A. in Graphic Design from College of
-              San Mateo, I bring a rare combination of visual communication
-              skills and interactive design thinking to every project.
+            <p class="p-display reveal">
+              I'm a graphic designer and illustrator with roots in the Bay Area
+              — working across print, motion, and interaction design since 2014.
+              I design things that live in the real world: public signage,
+              wayfinding, illustrated campaigns, and interactive experiences.
             </p>
 
-            <p class="reveal">
-              As an Interaction Design Fellow at IDEO, I designed AI-powered
-              tools, created immersive AR experiences for COP28, and
-              co-facilitated bilingual workshops teaching Generative AI to
-              international teams. Before that, I spent over three years at Uber
-              supporting driver-partners across the Bay Area in English,
-              Portuguese, and Spanish.
+            <p
+              class="reveal"
+              style="color: var(--text-mid); margin-top: var(--space-md)"
+            >
+              IDEO Color by Design Fellow. Stanford d.school University
+              Innovation Fellow. B.S. Interaction Design from Santa Monica
+              College (3.93 GPA). I speak English natively, Portuguese&#8209;BR
+              at an advanced level, and Spanish&#8209;LATAM at an
+              advanced-intermediate level — which shapes how I approach
+              multilingual design and cultural translation in public work.
             </p>
 
-            <p class="reveal">
-              I'm passionate about building interactive experiences that bridge
-              technology and culture — drawing on my Yurok heritage, my love of
-              motion graphics and animation, and my growing skills in
-              JavaScript, GSAP, and Rive to create work that moves people,
-              literally and figuratively.
-            </p>
-
-            <p class="reveal">
-              Currently, I'm working in Rider Operations at Zoox while preparing
-              to pursue my M.A. in Interaction Design & Interactive Arts at CSU
-              East Bay.
-            </p>
-
-            <!-- Key details grid -->
             <div class="about-details reveal">
-              <div>
-                <p class="label">Education</p>
-                <p>B.S. Interaction Design</p>
-                <p>A.A. Graphic Design</p>
+              <div class="project-meta-item">
+                <span class="label">Currently</span>
+                <p>Open to full-time roles</p>
               </div>
-              <div>
-                <p class="label">Experience</p>
-                <p>IDEO — IxD Fellow</p>
-                <p>Uber — Community Ops</p>
-                <p>Zoox — Rider Ops</p>
+              <div class="project-meta-item">
+                <span class="label">Based in</span>
+                <p>San Francisco Bay Area</p>
               </div>
-              <div>
-                <p class="label">Languages</p>
-                <p>English (Native)</p>
-                <p>Portuguese (Advanced)</p>
-                <p>Spanish (Advanced-Int.)</p>
+              <div class="project-meta-item">
+                <span class="label">Education</span>
+                <p>B.S. Interaction Design<br />Santa Monica College</p>
               </div>
-              <div>
-                <p class="label">Tools</p>
-                <p>Figma, Adobe Suite, Rive</p>
-                <p>GSAP, HTML/CSS/JS</p>
-                <p>After Effects, Moho</p>
+              <div class="project-meta-item">
+                <span class="label">Fellowship</span>
+                <p>IDEO Color by Design<br />Stanford d.school UIFellow</p>
               </div>
+            </div>
+
+            <div class="hero-cta" style="margin-top: var(--space-lg)">
+              <a
+                href="/assets/PJ-Rodriguez-Resume-2026.pdf"
+                class="btn btn-primary"
+                target="_blank"
+                rel="noopener"
+              >
+                Download Resume &#8594;
+              </a>
+              <a href="/projects.html" class="btn btn-outline--dark">
+                View Work &#8594;
+              </a>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- FOOTER -->
+    <!-- Scute divider -->
+    <svg
+      class="scute-divider"
+      width="100%"
+      height="16"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <rect width="100%" height="16" fill="url(#scute-tile)" />
+    </svg>
+
+    <!-- ── SKILLS ── -->
+    <section class="section section--mist">
+      <div class="container">
+        <p class="label reveal">Skills &amp; Tools</p>
+        <h2 class="reveal" style="margin-bottom: var(--space-lg)">
+          What I bring
+        </h2>
+
+        <div class="skills-grid reveal">
+          <div class="skill-group">
+            <p class="label" style="margin-bottom: var(--space-sm)">Design</p>
+            <ul class="skill-list">
+              <li>Graphic Design</li>
+              <li>Illustration</li>
+              <li>Interaction Design</li>
+              <li>Motion Graphics</li>
+              <li>Print Production</li>
+              <li>Wayfinding &amp; Signage</li>
+            </ul>
+          </div>
+
+          <div class="skill-group">
+            <p class="label" style="margin-bottom: var(--space-sm)">Tools</p>
+            <ul class="skill-list">
+              <li>Adobe Illustrator</li>
+              <li>Adobe InDesign</li>
+              <li>Adobe After Effects</li>
+              <li>Photoshop</li>
+              <li>Figma</li>
+              <li>Procreate</li>
+            </ul>
+          </div>
+
+          <div class="skill-group">
+            <p class="label" style="margin-bottom: var(--space-sm)">Build</p>
+            <ul class="skill-list">
+              <li>HTML / CSS / JavaScript</li>
+              <li>GSAP &amp; ScrollTrigger</li>
+              <li>Rive</li>
+              <li>Vite</li>
+              <li>React (fundamentals)</li>
+            </ul>
+          </div>
+
+          <div class="skill-group">
+            <p class="label" style="margin-bottom: var(--space-sm)">
+              Languages
+            </p>
+            <ul class="skill-list">
+              <li>English — native</li>
+              <li>Portuguese (PT&#8209;BR) — advanced</li>
+              <li>Spanish (ES&#8209;LATAM) — advanced-intermediate</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scute divider -->
+    <svg
+      class="scute-divider"
+      width="100%"
+      height="16"
+      aria-hidden="true"
+      focusable="false"
+      style="background: var(--mist)"
+    >
+      <rect width="100%" height="16" fill="url(#scute-tile)" />
+    </svg>
+
+    <!-- ── SELECTED EXPERIENCE ── -->
+    <section class="section">
+      <div class="container">
+        <p class="label reveal">Experience</p>
+        <h2 class="reveal" style="margin-bottom: var(--space-lg)">
+          Selected work &amp; roles
+        </h2>
+
+        <div class="experience-list">
+          <div class="experience-item reveal">
+            <div class="experience-meta">
+              <span class="label">2023 – 2024</span>
+            </div>
+            <div class="experience-body">
+              <h4>IDEO Color by Design Fellowship</h4>
+              <p>
+                Designed a conversational AI appliance repair tool, an AR
+                experience for COP28, and bilingual Gen-AI workshop curriculum
+                for educators. Recognized for creative leadership and
+                multilingual design thinking.
+              </p>
+            </div>
+          </div>
+
+          <div class="experience-item reveal">
+            <div class="experience-meta">
+              <span class="label">2022</span>
+            </div>
+            <div class="experience-body">
+              <h4>Grand Games — Grand Park, Los Angeles</h4>
+              <p>
+                Led graphic design for a multilingual public signage system
+                installed across Grand Park for the 2022 World Cup viewing
+                events. Designed, printed, and physically installed. Campaign
+                reached thousands of visitors; Instagram content drove strong
+                organic engagement on Grand Park&#39;s official account.
+              </p>
+            </div>
+          </div>
+
+          <div class="experience-item reveal">
+            <div class="experience-meta">
+              <span class="label">2021 – Present</span>
+            </div>
+            <div class="experience-body">
+              <h4>Independent Design &amp; Illustration</h4>
+              <p>
+                Illustration practice since 2014. Client and personal work
+                spanning editorial illustration, motion graphics, brand
+                identity, and interactive experiences.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER BOUNCE + FOOTER -->
+    <div class="footer-bounce" aria-hidden="true">
+      <svg
+        viewBox="0 0 2278 120"
+        preserveAspectRatio="none"
+        style="display: block; width: 100%; height: 120px"
+      >
+        <path
+          id="bouncy-path"
+          d="M0,0C0,0,464,0,1139,0s1139,0,1139,0V120H0V0z"
+          fill="#1e3025"
+        />
+      </svg>
+    </div>
+
     <footer class="footer">
       <div class="container">
-        <p>© 2026 PJ Rodriguez</p>
+        <div class="footer-brand">
+          <p class="footer-name">PJ Rodriguez</p>
+          <p class="footer-tagline" data-i18n="footer.tagline">
+            Illustration &middot; Design &middot; Bay Area
+          </p>
+          <p class="footer-location">
+            San Francisco, CA &nbsp;&middot;&nbsp;
+            <span id="footer-time"></span>
+          </p>
+        </div>
         <ul class="footer-links">
           <li>
             <a
@@ -134,8 +417,19 @@
               >LinkedIn</a
             >
           </li>
-          <li><a href="mailto:pjrodriguezdesign@gmail.com">Email</a></li>
+          <li><a href="mailto:hello@pjrodriguez.design">Email</a></li>
+          <li>
+            <a
+              href="/assets/PJ-Rodriguez-Resume-2026.pdf"
+              target="_blank"
+              rel="noopener"
+              >Resume</a
+            >
+          </li>
         </ul>
+        <p class="footer-copy" data-i18n="footer.copy">
+          &copy; 2026 Patrick Rodriguez
+        </p>
       </div>
     </footer>
 

@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PJ Rodriguez — Designer &amp; Illustrator</title>
+    <title>Work — PJ Rodriguez</title>
     <meta
       name="description"
-      content="Portfolio of PJ Rodriguez — illustrator, graphic designer, motion artist, and creative technologist based in the San Francisco Bay Area."
+      content="Selected projects by PJ Rodriguez — graphic design, illustration, interaction design, motion, and AR."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -17,13 +17,7 @@
     <link rel="stylesheet" href="/src/styles/main.css" />
   </head>
   <body>
-    <!-- "View →" label — must be direct child of body to escape GSAP stacking context -->
     <div class="project-card-cursor-label" id="cursor-label">View &#8594;</div>
-
-    <!-- ============================================================
-         SVG DEFS — invisible, reusable clip paths for wavy images.
-         Copy this block verbatim into every page.
-         ============================================================ -->
     <svg
       width="0"
       height="0"
@@ -37,17 +31,6 @@
             d="M0,0.04 C0.1,0 0.2,0.02 0.3,0.04 C0.4,0.06 0.5,0.02 0.6,0.04 C0.7,0.06 0.8,0.02 0.9,0.04 C0.95,0.05 1,0.04 1,0.04 L1,0.96 C0.9,1 0.8,0.98 0.7,0.96 C0.6,0.94 0.5,0.98 0.4,0.96 C0.3,0.94 0.2,0.98 0.1,0.96 C0.05,0.95 0,0.96 0,0.96 Z"
           />
         </clipPath>
-        <clipPath id="wave-torn" clipPathUnits="objectBoundingBox">
-          <path
-            d="M0.02,0.06 C0.08,0.01 0.15,0.05 0.22,0.03 C0.30,0.01 0.38,0.06 0.45,0.03 C0.52,0 0.60,0.05 0.68,0.02 C0.76,0 0.84,0.04 0.92,0.02 C0.97,0.01 1,0.03 1,0.03 L0.99,0.96 C0.93,1 0.86,0.97 0.78,0.99 C0.70,1 0.62,0.96 0.54,0.99 C0.46,1 0.38,0.97 0.30,0.99 C0.22,1 0.14,0.97 0.06,0.99 C0.02,1 0,0.98 0,0.98 Z"
-          />
-        </clipPath>
-        <clipPath id="wave-all" clipPathUnits="objectBoundingBox">
-          <path
-            d="M0.05,0.05 C0.15,0 0.30,0.03 0.50,0.02 C0.70,0.01 0.85,0.04 0.95,0.05 C1,0.05 1,0.15 0.98,0.30 C0.96,0.50 1,0.70 0.98,0.85 C0.97,0.95 0.95,1 0.85,0.98 C0.70,0.96 0.50,1 0.30,0.98 C0.15,0.96 0.05,1 0.05,0.98 C0,0.98 0.02,0.85 0.02,0.70 C0.02,0.50 0,0.30 0.02,0.15 C0.03,0.08 0.02,0.07 0.05,0.05 Z"
-          />
-        </clipPath>
-        <!-- Sturgeon scute tile — 20×16px repeating unit -->
         <pattern
           id="scute-tile"
           x="0"
@@ -74,17 +57,11 @@
       </defs>
     </svg>
 
-    <!-- ============================================================
-         NAVIGATION
-         ============================================================ -->
     <nav class="nav" role="navigation" aria-label="Main navigation">
       <div class="container">
         <a href="/" class="nav-logo-zone" aria-label="PJ Rodriguez — home">
           <span class="nav-logo-text">P.J.</span>
-          <!-- Swap for animation asset once ready:
-               <img class="nav-logo-img" src="/assets/images/pj-logo.svg" alt="" aria-hidden="true" /> -->
         </a>
-
         <button
           class="nav-toggle"
           aria-label="Toggle menu"
@@ -92,10 +69,13 @@
         >
           <span></span><span></span><span></span>
         </button>
-
         <ul class="nav-links">
-          <li><a href="/" class="active" data-i18n="nav.home">Home</a></li>
-          <li><a href="/projects.html" data-i18n="nav.work">Work</a></li>
+          <li><a href="/" data-i18n="nav.home">Home</a></li>
+          <li>
+            <a href="/projects.html" class="active" data-i18n="nav.work"
+              >Work</a
+            >
+          </li>
           <li>
             <a href="/illustration.html" data-i18n="nav.illustration"
               >Illustration</a
@@ -103,7 +83,6 @@
           </li>
           <li><a href="/about.html" data-i18n="nav.about">About</a></li>
         </ul>
-
         <div class="lang-toggle" role="group" aria-label="Language">
           <button
             class="lang-btn active"
@@ -130,8 +109,6 @@
             ES
           </button>
         </div>
-
-        <!-- LinkedIn + Resume icons — top-right like Dave Lee -->
         <div class="nav-icon-links">
           <a
             href="https://linkedin.com/in/pjrdesign"
@@ -163,175 +140,25 @@
       </div>
     </nav>
 
-    <!-- ============================================================
-         HERO — dark forest, cursor-tracked radial glow
-         IA inspired by leedave.com: availability · location · live time
-         ============================================================ -->
-    <section class="hero" aria-label="Introduction">
+    <section class="section projects-page-header">
       <div class="container">
-        <div class="hero-content">
-          <!-- Top bar: location + time (left) · availability (right) · HR below
-               Direct translation of Dave Lee's structural header row -->
-          <div class="hero-topbar">
-            <div class="hero-topbar-left">
-              <span>San Francisco, CA</span>
-              <span class="hero-topbar-arrow" aria-hidden="true">&#8594;</span>
-              <span
-                class="hero-topbar-time"
-                id="hero-time"
-                aria-label="Current San Francisco time"
-              ></span>
-            </div>
-            <div class="hero-topbar-right">
-              <span class="hero-topbar-dot" aria-hidden="true"></span>
-              <span class="hero-topbar-status" data-i18n="hero.status"
-                >Available for work</span
-              >
-            </div>
-          </div>
-
-          <!-- Topbar rule — SVG so JS can do partial blob inversion like Klamath -->
-          <svg
-            class="hero-topbar-rule"
-            viewBox="0 0 600 2"
-            width="600"
-            height="2"
-            preserveAspectRatio="none"
-            aria-hidden="true"
-            focusable="false"
-            style="display: block; width: 100%; margin-bottom: var(--space-lg)"
-          >
-            <defs>
-              <linearGradient
-                id="topbar-grad"
-                x1="0"
-                y1="0"
-                x2="1"
-                y2="0"
-                gradientUnits="objectBoundingBox"
-              >
-                <stop offset="0%" stop-color="#1e3025" />
-                <stop offset="100%" stop-color="#1e3025" />
-              </linearGradient>
-            </defs>
-            <line
-              x1="0"
-              y1="1"
-              x2="600"
-              y2="1"
-              stroke="url(#topbar-grad)"
-              stroke-width="1.5"
-            />
-          </svg>
-          <h1 class="hero-name" aria-label="PJ Rodriguez">PJ Rodriguez</h1>
-
-          <!-- Klamath river wave underline — perpetually animated by GSAP -->
-          <svg
-            class="hero-klamath"
-            viewBox="0 0 600 14"
-            width="600"
-            height="14"
-            aria-hidden="true"
-            focusable="false"
-          >
-            <defs>
-              <linearGradient
-                id="klamath-grad"
-                x1="0"
-                y1="0"
-                x2="1"
-                y2="0"
-                gradientUnits="objectBoundingBox"
-              >
-                <stop offset="0%" stop-color="#4a90d9" />
-                <stop offset="100%" stop-color="#4a90d9" />
-              </linearGradient>
-            </defs>
-            <path
-              d="M0 7 Q50 1,100 7 Q150 13,200 7 Q250 1,300 7 Q350 13,400 7 Q450 1,500 7 Q550 13,600 7"
-              fill="none"
-              stroke="url(#klamath-grad)"
-              stroke-width="3"
-              stroke-linecap="round"
-            />
-          </svg>
-
-          <!-- Disciplines -->
-          <p class="hero-disciplines" data-i18n="hero.tagline">
-            Interaction Design &nbsp;&middot;&nbsp; Motion &nbsp;&middot;&nbsp;
-            Illustration
-          </p>
-
-          <!-- Label → bold value info block — body-size text, bold values -->
-          <div class="hero-info-block">
-            <div class="hero-info-row">
-              <span class="hero-info-label" data-i18n="hero.label.currently"
-                >Currently</span
-              >
-              <span class="hero-info-sep">&#8594;</span>
-              <span class="hero-info-val" data-i18n="hero.val.currently"
-                >Open to design roles</span
-              >
-            </div>
-            <div class="hero-info-row">
-              <span class="hero-info-label" data-i18n="hero.label.previously"
-                >Previously</span
-              >
-              <span class="hero-info-sep">&#8594;</span>
-              <span class="hero-info-val" data-i18n="hero.val.previously"
-                >IDEO &nbsp;&middot;&nbsp; Zoox &nbsp;&middot;&nbsp; Grand Park
-                LA</span
-              >
-            </div>
-            <div class="hero-info-row">
-              <span class="hero-info-label" data-i18n="hero.label.building"
-                >Building</span
-              >
-              <span class="hero-info-sep">&#8594;</span>
-              <span class="hero-info-val" data-i18n="hero.val.building"
-                >Illustration &nbsp;&middot;&nbsp; Motion &nbsp;&middot;&nbsp;
-                IxD</span
-              >
-            </div>
-          </div>
-
-          <div class="hero-cta">
-            <a
-              href="/projects.html"
-              class="btn btn-primary"
-              data-i18n="hero.cta.work"
-            >
-              View My Work &#8594;
-            </a>
-            <a
-              href="/about.html"
-              class="btn btn-outline"
-              data-i18n="hero.cta.about"
-            >
-              About Me
-            </a>
-          </div>
-        </div>
+        <p class="label reveal" data-i18n="home.work.label">Selected Work</p>
+        <h1 class="reveal">All Projects</h1>
       </div>
     </section>
 
-    <hr class="section-rule" aria-hidden="true" />
+    <svg
+      class="scute-divider"
+      width="100%"
+      height="16"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <rect width="100%" height="16" fill="url(#scute-tile)" />
+    </svg>
 
-    <!-- ============================================================
-         FEATURED PROJECTS
-         ============================================================ -->
-    <section class="section" id="featured">
+    <section class="section" style="padding-top: var(--space-md)">
       <div class="container">
-        <p class="label reveal" data-i18n="home.work.label">Selected Work</p>
-        <h2
-          class="reveal"
-          style="margin-bottom: 0"
-          data-i18n="home.work.heading"
-        >
-          Selected Projects
-        </h2>
-
-        <!-- Dave Lee–style work list: rows + lines + thumbnail right -->
         <div class="work-list">
           <a
             href="/src/pages/project-grand-games.html"
@@ -352,9 +179,10 @@
             <div class="work-item-right">
               <span class="work-item-arrow" aria-hidden="true">&#8594;</span>
               <div class="work-item-thumb">
+                <!-- Swap src for an animated GIF when ready -->
                 <img
                   src="https://placehold.co/320x180/1E3025/7FBF9B?text=Grand+Games"
-                  alt="Grand Games signage at Grand Park LA"
+                  alt="Grand Games multilingual signage"
                   loading="lazy"
                   width="320"
                   height="180"
@@ -440,56 +268,61 @@
               </div>
             </div>
           </a>
-        </div>
 
-        <div style="margin-top: var(--space-lg)">
-          <a
-            href="/projects.html"
-            class="btn btn-outline--dark reveal"
-            data-i18n="home.seeall"
-          >
-            All Projects &#8594;
+          <a href="#" class="work-item reveal">
+            <span class="work-item-num">05</span>
+            <div class="work-item-body">
+              <h3 class="work-item-title">Gen-AI Workshop Curriculum</h3>
+              <p class="work-item-desc">
+                Bilingual EN/ES curriculum helping educators explore generative
+                AI tools
+              </p>
+              <p class="work-item-tags">
+                Education &middot; Bilingual &middot; IDEO &middot; 2023
+              </p>
+            </div>
+            <div class="work-item-right">
+              <span class="work-item-arrow" aria-hidden="true">&#8594;</span>
+              <div class="work-item-thumb">
+                <img
+                  src="https://placehold.co/320x180/1E3025/B8E8CB?text=Workshop"
+                  alt="Gen-AI workshop curriculum"
+                  loading="lazy"
+                  width="320"
+                  height="180"
+                />
+              </div>
+            </div>
+          </a>
+
+          <a href="#" class="work-item reveal">
+            <span class="work-item-num">06</span>
+            <div class="work-item-body">
+              <h3 class="work-item-title">SamTrans Timetable Redesign</h3>
+              <p class="work-item-desc">
+                Grid-forward transit timetable spec — multilingual, print-ready
+              </p>
+              <p class="work-item-tags">
+                Transit Design &middot; Print &middot; Spec &middot; 2026
+              </p>
+            </div>
+            <div class="work-item-right">
+              <span class="work-item-arrow" aria-hidden="true">&#8594;</span>
+              <div class="work-item-thumb">
+                <img
+                  src="https://placehold.co/320x180/C4783A/FAFAF7?text=SamTrans"
+                  alt="SamTrans timetable redesign"
+                  loading="lazy"
+                  width="320"
+                  height="180"
+                />
+              </div>
+            </div>
           </a>
         </div>
       </div>
     </section>
 
-    <hr class="section-rule" aria-hidden="true" />
-
-    <!-- ============================================================
-         ABOUT STRIP
-         ============================================================ -->
-    <section class="section section--mist">
-      <div class="container" style="position: relative">
-        <div style="max-width: 680px">
-          <p class="label reveal">About</p>
-          <h2 class="reveal" style="margin-bottom: var(--space-md)">
-            Illustrator and designer<br />
-            <em>from the Bay Area.</em>
-          </h2>
-
-          <p class="p-display reveal">
-            Designer and illustrator from the Bay Area — with a background in
-            motion, interaction design, and cultural storytelling. IDEO Fellow.
-            B.S. Interaction Design, Santa Monica College.
-          </p>
-
-          <div style="margin-top: var(--space-lg)">
-            <a
-              href="/about.html"
-              class="btn btn-outline--dark reveal"
-              data-i18n="hero.cta.about"
-            >
-              About Me
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================================
-         FOOTER BOUNCE + FOOTER
-         ============================================================ -->
     <div class="footer-bounce" aria-hidden="true">
       <svg
         viewBox="0 0 2278 120"
@@ -503,7 +336,6 @@
         />
       </svg>
     </div>
-
     <footer class="footer">
       <div class="container">
         <div class="footer-brand">
@@ -516,7 +348,6 @@
             <span id="footer-time"></span>
           </p>
         </div>
-
         <ul class="footer-links">
           <li>
             <a
@@ -526,12 +357,7 @@
               >LinkedIn</a
             >
           </li>
-          <li>
-            <a
-              href="/cdn-cgi/l/email-protection#69010c0505062919031b060d1b000e1c0c13470d0c1a000e07"
-              >Email</a
-            >
-          </li>
+          <li><a href="mailto:hello@pjrodriguez.design">Email</a></li>
           <li>
             <a
               href="/assets/PJ-Rodriguez-Resume-2026.pdf"
@@ -541,13 +367,11 @@
             >
           </li>
         </ul>
-
         <p class="footer-copy" data-i18n="footer.copy">
           &copy; 2026 Patrick Rodriguez
         </p>
       </div>
     </footer>
-
     <script type="module" src="/src/js/main.js"></script>
   </body>
 </html>
