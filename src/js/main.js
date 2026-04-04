@@ -347,7 +347,7 @@ function initHeroCursorGlow() {
     });
 
     // Buttons — class toggle with extra radius padding for sensitivity
-    const BTN_PAD = 30;
+    const BTN_PAD = 40;
     heroBtns.forEach((btn) => {
       const rect = btn.getBoundingClientRect();
       const bx = rect.left - heroRect.left + rect.width * 0.5;
@@ -718,7 +718,7 @@ const TRANSLATIONS = {
     "hero.label.currently": "Currently",
     "hero.val.currently": "Open to design roles",
     "hero.label.previously": "Previously",
-    "hero.val.previously": "IDEO \u00B7 Zoox \u00B7 Uber",
+    "hero.val.previously": "IDEO \u00B7 Zoox \u00B7 Grand Park LA",
     "hero.label.building": "Building",
     "hero.val.building": "Illustration \u00B7 Motion \u00B7 IxD",
     "home.work.label": "Selected Work",
@@ -756,22 +756,45 @@ const TRANSLATIONS = {
     "illus.label": "Illustration",
     "about.heading": "Illustrator and designer\nfrom the Bay Area.",
     "about.bio":
-      "I'm a graphic designer and illustrator with roots in the Bay Area — working across print, motion, and interaction design since 2014. I design things that live in the real world: public signage, wayfinding, illustrated campaigns, and interactive experiences.",
+      "Graphic designer and illustrator with a love for motion and interactive work — using tools like After Effects, Rive, and GSAP to make visuals that people actually engage with. Based in the Bay Area, working across print, digital, and whatever's in between since 2014.",
     "about.bio2":
-      "IDEO Color by Design Fellow and Stanford d.school University Innovation Fellow. B.S. Interaction Design, Santa Monica College (3.93 GPA). English native, Portuguese\u2011BR advanced, Spanish\u2011LATAM advanced-intermediate — which shapes how I approach multilingual design and cultural translation in public work.",
+      "IDEO Color by Design Fellow. Stanford d.school University Innovation Fellow. B.S. Interaction Design, Santa Monica College (3.93 GPA). English native, Portuguese\u2011BR advanced, Spanish\u2011LATAM advanced-intermediate.",
     "about.meta.currently.label": "Currently",
     "about.meta.currently.val": "Open to full-time roles",
     "about.meta.based.label": "Based in",
     "about.meta.based.val": "San Francisco Bay Area",
     "about.meta.edu.label": "Education",
     "about.meta.edu.val": "B.S. Interaction Design, Santa Monica College",
-    "about.meta.awards.label": "Fellowships",
-    "about.meta.awards.val":
-      "IDEO Color by Design \u00B7 Stanford d.school UIFellow",
+    "about.meta.awards.label": "Languages",
+    "about.meta.awards.val": "English<br />Portuguese<br />Spanish",
     "about.skills.label": "Skills & Tools",
     "about.skills.heading": "What I bring",
+    "about.skills.design": "Design",
+    "about.skills.tools": "Tools",
+    "about.skills.build": "Build",
     "about.exp.label": "Experience",
     "about.exp.heading": "Selected work & roles",
+    "about.exp.ideo.title": "IDEO Color by Design Fellowship",
+    "about.exp.ideo.desc":
+      "Designed a conversational AI appliance repair tool, an AR experience for COP28, and bilingual Gen-AI workshop curriculum for educators. Recognized for creative leadership and multilingual design thinking.",
+    "about.exp.gg.title": "Grand Games \u2014 Grand Park, Los Angeles",
+    "about.exp.gg.desc":
+      "Led graphic design for a multilingual public signage system installed across Grand Park for the 2022 World Cup viewing events. Designed, printed, and physically installed. Campaign reached thousands of visitors.",
+    "about.exp.indie.date": "2014 \u2013 Present",
+    "about.exp.indie.title": "Independent Design & Illustration",
+    "about.exp.indie.desc":
+      "Illustration practice since 2014. Client and personal work spanning editorial illustration, motion graphics, brand identity, and interactive experiences.",
+    "about.btn.resume": "Download Resume \u2192",
+    "about.btn.work": "View Work \u2192",
+    "work.eyebrow": "Selected Work",
+    "work.heading": "Case studies upon request.",
+    "work.body":
+      "Selected case studies are available upon request. Leave your name and email and I'll send them your way.",
+    "work.placeholder.name": "Your name",
+    "work.placeholder.email": "Your email",
+    "work.submit": "Request access \u2192",
+    "work.success": "Got it \u2014 I'll be in touch shortly.",
+    "work.or": "Or reach me directly at",
   },
   pt: {
     "nav.home": "In\u00EDcio",
@@ -789,7 +812,7 @@ const TRANSLATIONS = {
     "hero.label.currently": "Atualmente",
     "hero.val.currently": "Aberto a projetos de design",
     "hero.label.previously": "Anteriormente",
-    "hero.val.previously": "IDEO \u00B7 Zoox \u00B7 Uber",
+    "hero.val.previously": "IDEO \u00B7 Zoox \u00B7 Grand Park LA",
     "hero.label.building": "Desenvolvendo",
     "hero.val.building": "Ilustra\u00E7\u00E3o \u00B7 Motion \u00B7 IxD",
     "home.work.label": "Trabalhos Selecionados",
@@ -830,22 +853,45 @@ const TRANSLATIONS = {
     "illus.label": "Ilustra\u00E7\u00E3o",
     "about.heading": "Ilustrador e designer\ndo Bay Area.",
     "about.bio":
-      "Sou designer gr\u00E1fico e ilustrador com ra\u00EDzes no Bay Area — atuando em design gr\u00E1fico, motion e intera\u00E7\u00E3o desde 2014. Crio coisas que existem no mundo real: sinaliza\u00E7\u00E3o p\u00FAblica, wayfinding, campanhas ilustradas e experi\u00EAncias interativas.",
+      "Designer gr\u00E1fico e ilustrador com paix\u00E3o por motion e trabalho interativo — usando ferramentas como After Effects, Rive e GSAP para criar visuais que as pessoas realmente curtem. Baseado no Bay Area, trabalhando em print, digital e o que vier desde 2014.",
     "about.bio2":
-      "Fellow IDEO Color by Design e Stanford d.school University Innovation Fellow. Bacharelado em Interaction Design pela Santa Monica College (GPA 3,93). Ingl\u00EAs nativo, portugu\u00EAs avan\u00E7ado, espanhol intermedi\u00E1rio avan\u00E7ado — o que molda minha abordagem ao design multil\u00EDngue e \u00E0 tradu\u00E7\u00E3o cultural.",
+      "Fellow IDEO Color by Design e Stanford d.school University Innovation Fellow. Bacharelado em Interaction Design, Santa Monica College (GPA 3,93). Ingl\u00EAs nativo, portugu\u00EAs avan\u00E7ado, espanhol intermedi\u00E1rio avan\u00E7ado.",
     "about.meta.currently.label": "Atualmente",
     "about.meta.currently.val": "Aberto a vagas de tempo integral",
     "about.meta.based.label": "Localiza\u00E7\u00E3o",
     "about.meta.based.val": "Bay Area, Calif\u00F3rnia",
     "about.meta.edu.label": "Forma\u00E7\u00E3o",
     "about.meta.edu.val": "B.S. Interaction Design, Santa Monica College",
-    "about.meta.awards.label": "Fellowships",
-    "about.meta.awards.val":
-      "IDEO Color by Design \u00B7 Stanford d.school UIFellow",
+    "about.meta.awards.label": "Idiomas",
+    "about.meta.awards.val": "Ingl\u00EAs<br />Portugu\u00EAs<br />Espanhol",
     "about.skills.label": "Habilidades e Ferramentas",
     "about.skills.heading": "O que eu ofere\u00E7o",
+    "about.skills.design": "Design",
+    "about.skills.tools": "Ferramentas",
+    "about.skills.build": "Desenvolvimento",
     "about.exp.label": "Experi\u00EAncia",
     "about.exp.heading": "Trabalhos e fun\u00E7\u00F5es selecionados",
+    "about.exp.ideo.title": "Fellowship IDEO Color by Design",
+    "about.exp.ideo.desc":
+      "Projetei uma ferramenta de reparo de eletrodom\u00E9sticos com IA conversacional, uma experi\u00EAncia AR para a COP28 e curr\u00EDculo biling\u00FCe de workshop sobre IA generativa para educadores.",
+    "about.exp.gg.title": "Grand Games \u2014 Grand Park, Los Angeles",
+    "about.exp.gg.desc":
+      "Liderei o design gr\u00E1fico de um sistema de sinaliza\u00E7\u00E3o p\u00FAblica multil\u00EDngue instalado no Grand Park para os eventos de transmiss\u00E3o da Copa do Mundo 2022. Projetado, impresso e instalado fisicamente.",
+    "about.exp.indie.date": "2014 \u2013 Presente",
+    "about.exp.indie.title": "Design e Ilustra\u00E7\u00E3o Independente",
+    "about.exp.indie.desc":
+      "Pr\u00E1tica de ilustra\u00E7\u00E3o desde 2014. Trabalhos de clientes e pessoais abrangendo ilustra\u00E7\u00E3o editorial, motion graphics, identidade de marca e experi\u00EAncias interativas.",
+    "about.btn.resume": "Baixar curr\u00EDculo \u2192",
+    "about.btn.work": "Ver trabalhos \u2192",
+    "work.eyebrow": "Trabalhos Selecionados",
+    "work.heading": "Cases dispon\u00EDveis mediante solicita\u00E7\u00E3o.",
+    "work.body":
+      "Cases selecionados dispon\u00EDveis mediante solicita\u00E7\u00E3o. Deixe seu nome e e-mail e eu envio direto pra voc\u00EA.",
+    "work.placeholder.name": "Seu nome",
+    "work.placeholder.email": "Seu e-mail",
+    "work.submit": "Solicitar acesso \u2192",
+    "work.success": "Recebido \u2014 entro em contato em breve.",
+    "work.or": "Ou fale comigo diretamente em",
   },
   es: {
     "nav.home": "Inicio",
@@ -863,7 +909,7 @@ const TRANSLATIONS = {
     "hero.label.currently": "Actualmente",
     "hero.val.currently": "Abierto a roles de dise\u00F1o",
     "hero.label.previously": "Antes",
-    "hero.val.previously": "IDEO \u00B7 Zoox \u00B7 Uber",
+    "hero.val.previously": "IDEO \u00B7 Zoox \u00B7 Grand Park LA",
     "hero.label.building": "Desarrollando",
     "hero.val.building": "Ilustraci\u00F3n \u00B7 Motion \u00B7 IxD",
     "home.work.label": "Trabajo Seleccionado",
@@ -905,22 +951,46 @@ const TRANSLATIONS = {
     "illus.label": "Ilustraci\u00F3n",
     "about.heading": "Ilustrador y dise\u00F1ador\ndel Bay Area.",
     "about.bio":
-      "Soy dise\u00F1ador gr\u00E1fico e ilustrador con ra\u00EDces en el Bay Area — trabajando en dise\u00F1o gr\u00E1fico, motion e interacci\u00F3n desde 2014. Creo cosas que existen en el mundo real: se\u00F1alizaci\u00F3n p\u00FAblica, wayfinding, campa\u00F1as ilustradas y experiencias interactivas.",
+      "Dise\u00F1ador gr\u00E1fico e ilustrador con pasi\u00F3n por el motion y el trabajo interactivo — usando herramientas como After Effects, Rive y GSAP para crear visuales con los que la gente realmente conecta. Basado en el Bay Area, trabajando en print, digital y lo que surja desde 2014.",
     "about.bio2":
-      "Fellow IDEO Color by Design y Stanford d.school University Innovation Fellow. Licenciatura en Interaction Design, Santa Monica College (promedio 3.93). Ingl\u00E9s nativo, portugu\u00E9s avanzado, espa\u00F1ol intermedio avanzado — lo que define mi enfoque al dise\u00F1o multiling\u00FCe y la traducci\u00F3n cultural.",
+      "Fellow IDEO Color by Design y Stanford d.school University Innovation Fellow. Licenciatura en Interaction Design, Santa Monica College (promedio 3.93). Ingl\u00E9s nativo, portugu\u00E9s avanzado, espa\u00F1ol intermedio avanzado.",
     "about.meta.currently.label": "Actualmente",
     "about.meta.currently.val": "Abierto a roles de tiempo completo",
     "about.meta.based.label": "Ubicaci\u00F3n",
     "about.meta.based.val": "Bay Area, California",
     "about.meta.edu.label": "Educaci\u00F3n",
     "about.meta.edu.val": "B.S. Interaction Design, Santa Monica College",
-    "about.meta.awards.label": "Fellowships",
+    "about.meta.awards.label": "Idiomas",
     "about.meta.awards.val":
-      "IDEO Color by Design \u00B7 Stanford d.school UIFellow",
+      "Ingl\u00E9s<br />Portugu\u00E9s<br />Espa\u00F1ol",
     "about.skills.label": "Habilidades y Herramientas",
     "about.skills.heading": "Lo que ofrezco",
+    "about.skills.design": "Dise\u00F1o",
+    "about.skills.tools": "Herramientas",
+    "about.skills.build": "Desarrollo",
     "about.exp.label": "Experiencia",
     "about.exp.heading": "Trabajos y roles seleccionados",
+    "about.exp.ideo.title": "Fellowship IDEO Color by Design",
+    "about.exp.ideo.desc":
+      "Dise\u00F1\u00E9 una herramienta de reparaci\u00F3n de electrodom\u00E9sticos con IA conversacional, una experiencia AR para la COP28 y curr\u00EDculo biling\u00FCe de taller sobre IA generativa para educadores.",
+    "about.exp.gg.title": "Grand Games \u2014 Grand Park, Los Angeles",
+    "about.exp.gg.desc":
+      "Lider\u00E9 el dise\u00F1o gr\u00E1fico de un sistema de se\u00F1alizaci\u00F3n p\u00FAblica multiling\u00FCe instalado en Grand Park para los eventos de transmisi\u00F3n del Mundial 2022. Dise\u00F1ado, impreso e instalado f\u00EDsicamente.",
+    "about.exp.indie.date": "2014 \u2013 Presente",
+    "about.exp.indie.title": "Dise\u00F1o e Ilustraci\u00F3n Independiente",
+    "about.exp.indie.desc":
+      "Pr\u00E1ctica de ilustraci\u00F3n desde 2014. Trabajo de clientes y personal abarcando ilustraci\u00F3n editorial, motion graphics, identidad de marca y experiencias interactivas.",
+    "about.btn.resume": "Descargar curr\u00EDculum \u2192",
+    "about.btn.work": "Ver trabajo \u2192",
+    "work.eyebrow": "Trabajo Seleccionado",
+    "work.heading": "Cases disponibles bajo solicitud.",
+    "work.body":
+      "Cases seleccionados disponibles bajo solicitud. Deja tu nombre y correo y te los env\u00EDo.",
+    "work.placeholder.name": "Tu nombre",
+    "work.placeholder.email": "Tu correo",
+    "work.submit": "Solicitar acceso \u2192",
+    "work.success": "Listo \u2014 me pongo en contacto pronto.",
+    "work.or": "O escr\u00EDbeme directamente a",
   },
 };
 
@@ -939,6 +1009,24 @@ function applyLang(lang) {
       el.style.opacity = "";
       if (el.dataset.split) delete el.dataset.split;
     }, 180);
+  });
+
+  // Placeholder translations
+  document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+    const key = el.dataset.i18nPlaceholder;
+    if (strings[key] !== undefined) el.placeholder = strings[key];
+  });
+
+  // innerHTML translations (for content with HTML tags like <br>)
+  document.querySelectorAll("[data-i18n-html]").forEach((el) => {
+    const key = el.dataset.i18nHtml;
+    if (strings[key] !== undefined) el.innerHTML = strings[key];
+  });
+
+  // Lang-specific spans — show only the matching language
+  const htmlLangVal = HTML_LANG[lang];
+  document.querySelectorAll("p span[lang]").forEach((el) => {
+    el.style.display = el.getAttribute("lang") === htmlLangVal ? "" : "none";
   });
 
   document.documentElement.lang = HTML_LANG[lang];

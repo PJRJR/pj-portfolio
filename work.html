@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Work — PJ Rodriguez</title>
+    <meta
+      name="description"
+      content="Case studies and project work by PJ Rodriguez — available upon request."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/styles/main.css" />
+    <style>
+      .work-gate {
+        min-height: 80vh;
+        display: flex;
+        align-items: center;
+        padding-top: 6rem;
+      }
+      .work-gate-inner {
+        max-width: 560px;
+      }
+      .work-gate-eyebrow {
+        font-family: var(--font-body);
+        font-size: 0.8rem;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--text-light);
+        margin-bottom: var(--space-md);
+      }
+      .work-gate h1 {
+        font-family: var(--font-display);
+        font-size: var(--step-3);
+        font-weight: 700;
+        color: var(--forest);
+        letter-spacing: -0.03em;
+        line-height: 1.05;
+        margin-bottom: var(--space-md);
+      }
+      .work-gate h1 em {
+        font-style: italic;
+        color: var(--sage-teal);
+      }
+      .work-gate-body {
+        font-family: var(--font-body);
+        font-size: var(--step-0);
+        color: var(--text-mid);
+        line-height: 1.65;
+        margin-bottom: var(--space-lg);
+        max-width: 440px;
+      }
+      .work-gate-form {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-sm);
+        max-width: 400px;
+      }
+      .work-gate-form input[type="text"],
+      .work-gate-form input[type="email"] {
+        font-family: var(--font-body);
+        font-size: var(--step-0);
+        padding: 0.75em 1em;
+        border: 1.5px solid rgba(30, 48, 37, 0.2);
+        border-radius: 4px;
+        background: rgba(255, 255, 255, 0.5);
+        color: var(--text);
+        outline: none;
+        transition: border-color 0.18s;
+        width: 100%;
+      }
+      .work-gate-form input:focus {
+        border-color: var(--sage-teal);
+      }
+      .work-gate-form input::placeholder {
+        color: var(--text-light);
+      }
+      .work-gate-form button {
+        font-family: var(--font-body);
+        font-size: 0.875rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        padding: 0.85em 1.75em;
+        background: var(--forest);
+        color: var(--white);
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition:
+          background 0.18s,
+          transform 0.18s;
+        align-self: flex-start;
+      }
+      .work-gate-form button:hover {
+        background: var(--grove);
+        transform: translateY(-2px);
+      }
+      .work-gate-success {
+        display: none;
+        font-family: var(--font-body);
+        font-size: var(--step-0);
+        color: var(--sage-teal);
+        font-weight: 500;
+        padding: var(--space-sm) 0;
+      }
+      .work-gate-divider {
+        width: 40px;
+        height: 1.5px;
+        background: var(--ochre);
+        margin-bottom: var(--space-lg);
+      }
+      /* On the gate page neither Work nor Illustration is a real section — suppress active underline */
+      .nav-links a.active::after {
+        transform: scaleX(0) !important;
+      }
+      .nav-links a.active {
+        color: var(--text-mid) !important;
+        font-weight: 500 !important;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+      <div class="container">
+        <a href="/" class="nav-logo-zone" aria-label="PJ Rodriguez — home">
+          <span class="nav-logo-text">P.J.</span>
+        </a>
+        <button
+          class="nav-toggle"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+        >
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links">
+          <li><a href="/" data-i18n="nav.home">Home</a></li>
+          <li><a href="/work.html" data-i18n="nav.work">Work</a></li>
+          <li>
+            <a href="/work.html" data-i18n="nav.illustration">Illustration</a>
+          </li>
+          <li><a href="/about.html" data-i18n="nav.about">About</a></li>
+        </ul>
+        <div class="lang-toggle" role="group" aria-label="Language">
+          <button
+            class="lang-btn active"
+            data-lang="en"
+            aria-pressed="true"
+            lang="en"
+          >
+            EN
+          </button>
+          <button
+            class="lang-btn"
+            data-lang="pt"
+            aria-pressed="false"
+            lang="pt-BR"
+          >
+            PT
+          </button>
+          <button
+            class="lang-btn"
+            data-lang="es"
+            aria-pressed="false"
+            lang="es"
+          >
+            ES
+          </button>
+        </div>
+        <div class="nav-icon-links">
+          <a
+            href="https://linkedin.com/in/pjrdesign"
+            class="nav-icon-link"
+            target="_blank"
+            rel="noopener"
+            aria-label="LinkedIn"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+              />
+            </svg>
+          </a>
+          <a
+            href="/assets/PJ-Rodriguez-Resume-2026.pdf"
+            class="nav-icon-link"
+            target="_blank"
+            rel="noopener"
+            aria-label="Resume PDF"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- GATE -->
+    <section class="work-gate">
+      <div class="container">
+        <div class="work-gate-inner">
+          <p class="work-gate-eyebrow" data-i18n="work.eyebrow">
+            Selected Work
+          </p>
+          <div class="work-gate-divider"></div>
+          <h1 data-i18n="work.heading">
+            Case studies<br /><em>upon request.</em>
+          </h1>
+          <p class="work-gate-body" data-i18n="work.body">
+            Selected case studies are available upon request. Leave your name
+            and email and I'll send them your way.
+          </p>
+
+          <!-- Netlify form -->
+          <form
+            class="work-gate-form"
+            name="work-request"
+            method="POST"
+            data-netlify="true"
+            netlify-honeypot="bot-field"
+          >
+            <input type="hidden" name="form-name" value="work-request" />
+            <p style="display: none">
+              <label><input name="bot-field" /></label>
+            </p>
+            <input
+              type="text"
+              name="name"
+              data-i18n-placeholder="work.placeholder.name"
+              placeholder="Your name"
+              required
+              autocomplete="name"
+            />
+            <input
+              type="email"
+              name="email"
+              data-i18n-placeholder="work.placeholder.email"
+              placeholder="Your email"
+              required
+              autocomplete="email"
+            />
+            <button type="submit" data-i18n="work.submit">
+              Request access &#8594;
+            </button>
+          </form>
+
+          <p
+            class="work-gate-success"
+            id="gate-success"
+            data-i18n="work.success"
+          >
+            Got it — I'll be in touch shortly.
+          </p>
+
+          <p
+            style="
+              margin-top: var(--space-lg);
+              font-family: var(--font-body);
+              font-size: 0.875rem;
+              color: var(--text-light);
+            "
+          >
+            <span data-i18n="work.or">Or reach me directly at</span>
+            <a
+              href="mailto:pjrodriguezdesign@gmail.com"
+              style="
+                color: var(--text-mid);
+                text-decoration: underline;
+                text-underline-offset: 3px;
+              "
+              >pjrodriguezdesign@gmail.com</a
+            >
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER BOUNCE + FOOTER -->
+    <div class="footer-bounce" aria-hidden="true">
+      <svg
+        viewBox="0 0 2278 120"
+        preserveAspectRatio="none"
+        style="display: block; width: 100%; height: 120px"
+      >
+        <path
+          id="bouncy-path"
+          d="M0,0C0,0,464,0,1139,0s1139,0,1139,0V120H0V0z"
+          fill="#1e3025"
+        />
+      </svg>
+    </div>
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-brand">
+          <p class="footer-name">PJ Rodriguez</p>
+          <p class="footer-tagline" data-i18n="footer.tagline">
+            Illustration &middot; Design &middot; Bay Area
+          </p>
+          <p class="footer-location">
+            San Francisco, CA &nbsp;&middot;&nbsp;
+            <span id="footer-time"></span>
+          </p>
+        </div>
+        <ul class="footer-links">
+          <li>
+            <a
+              href="https://linkedin.com/in/pjrdesign"
+              target="_blank"
+              rel="noopener"
+              >LinkedIn</a
+            >
+          </li>
+          <li><a href="mailto:pjrodriguezdesign@gmail.com">Email</a></li>
+          <li>
+            <a
+              href="/assets/PJ-Rodriguez-Resume-2026.pdf"
+              target="_blank"
+              rel="noopener"
+              >Resume</a
+            >
+          </li>
+        </ul>
+        <p class="footer-copy" data-i18n="footer.copy">
+          &copy; 2026 Patrick Rodriguez
+        </p>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/js/main.js"></script>
+    <script>
+      // Handle Netlify form success redirect
+      const params = new URLSearchParams(window.location.search);
+      if (params.get("success") === "true") {
+        document.querySelector(".work-gate-form").style.display = "none";
+        document.getElementById("gate-success").style.display = "block";
+      }
+    </script>
+  </body>
+</html>

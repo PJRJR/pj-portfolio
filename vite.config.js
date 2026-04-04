@@ -9,6 +9,7 @@ export default defineConfig({
         about: resolve(__dirname, "about.html"),
         projects: resolve(__dirname, "projects.html"),
         illustration: resolve(__dirname, "illustration.html"),
+        work: resolve(__dirname, "work.html"),
         "project-ideo-ai": resolve(__dirname, "src/pages/project-ideo-ai.html"),
         "project-cop28": resolve(__dirname, "src/pages/project-cop28.html"),
         "project-grand-games": resolve(

@@ -80,11 +80,9 @@
         </button>
         <ul class="nav-links">
           <li><a href="/" data-i18n="nav.home">Home</a></li>
-          <li><a href="/projects.html" data-i18n="nav.work">Work</a></li>
+          <li><a href="/work.html" data-i18n="nav.work">Work</a></li>
           <li>
-            <a href="/illustration.html" data-i18n="nav.illustration"
-              >Illustration</a
-            >
+            <a href="/work.html" data-i18n="nav.illustration">Illustration</a>
           </li>
           <li>
             <a href="/about.html" class="active" data-i18n="nav.about">About</a>
@@ -174,11 +172,11 @@
       <div class="container">
         <div class="about-grid">
           <!-- Photo column -->
-          <div>
+          <div class="about-photo-wrap">
             <img
-              src="https://placehold.co/600x800/2A4A36/B8E8CB?text=Photo"
+              src="/assets/images/pj-headshot.jpg"
               alt="PJ Rodriguez, designer and illustrator"
-              class="about-photo img-wavy-gentle reveal-wrap"
+              class="about-photo"
               loading="eager"
               width="600"
               height="800"
@@ -187,41 +185,50 @@
 
           <!-- Content column -->
           <div class="about-content">
-            <p class="p-display reveal">
-              I'm a graphic designer and illustrator with roots in the Bay Area
-              — working across print, motion, and interaction design since 2014.
-              I design things that live in the real world: public signage,
-              wayfinding, illustrated campaigns, and interactive experiences.
-            </p>
-
-            <p
-              class="reveal"
-              style="color: var(--text-mid); margin-top: var(--space-md)"
-            >
-              IDEO Color by Design Fellow. Stanford d.school University
-              Innovation Fellow. B.S. Interaction Design from Santa Monica
-              College (3.93 GPA). I speak English natively, Portuguese&#8209;BR
-              at an advanced level, and Spanish&#8209;LATAM at an
-              advanced-intermediate level — which shapes how I approach
-              multilingual design and cultural translation in public work.
+            <p class="p-display reveal" data-i18n="about.bio">
+              Graphic designer and illustrator with a love for motion and
+              interactive work — using tools like After Effects, Rive, and GSAP
+              to make visuals that people actually engage with. Based in the Bay
+              Area, working across print, digital, and whatever's in between
+              since 2014.
             </p>
 
             <div class="about-details reveal">
               <div class="project-meta-item">
-                <span class="label">Currently</span>
-                <p>Open to full-time roles</p>
+                <span class="label" data-i18n="about.meta.currently.label"
+                  >Currently</span
+                >
+                <p data-i18n="about.meta.currently.val">
+                  Open to full-time roles
+                </p>
               </div>
               <div class="project-meta-item">
-                <span class="label">Based in</span>
-                <p>San Francisco Bay Area</p>
+                <span class="label" data-i18n="about.meta.based.label"
+                  >Based in</span
+                >
+                <p data-i18n="about.meta.based.val">San Francisco Bay Area</p>
               </div>
               <div class="project-meta-item">
-                <span class="label">Education</span>
-                <p>B.S. Interaction Design<br />Santa Monica College</p>
+                <span class="label" data-i18n="about.meta.edu.label"
+                  >Education</span
+                >
+                <p data-i18n="about.meta.edu.val">
+                  B.S. Interaction Design, Santa Monica College
+                </p>
               </div>
               <div class="project-meta-item">
-                <span class="label">Fellowship</span>
-                <p>IDEO Color by Design<br />Stanford d.school UIFellow</p>
+                <span class="label" data-i18n="about.meta.awards.label"
+                  >Languages</span
+                >
+                <p>
+                  <span lang="en">English<br />Portuguese<br />Spanish</span>
+                  <span lang="pt-BR" style="display: none"
+                    >Inglês<br />Português<br />Espanhol</span
+                  >
+                  <span lang="es-419" style="display: none"
+                    >Inglés<br />Portugués<br />Español</span
+                  >
+                </p>
               </div>
             </div>
 
@@ -231,10 +238,15 @@
                 class="btn btn-primary"
                 target="_blank"
                 rel="noopener"
+                data-i18n="about.btn.resume"
               >
                 Download Resume &#8594;
               </a>
-              <a href="/projects.html" class="btn btn-outline--dark">
+              <a
+                href="/work.html"
+                class="btn btn-outline--dark"
+                data-i18n="about.btn.work"
+              >
                 View Work &#8594;
               </a>
             </div>
@@ -257,14 +269,26 @@
     <!-- ── SKILLS ── -->
     <section class="section section--mist">
       <div class="container">
-        <p class="label reveal">Skills &amp; Tools</p>
-        <h2 class="reveal" style="margin-bottom: var(--space-lg)">
+        <p class="label reveal" data-i18n="about.skills.label">
+          Skills &amp; Tools
+        </p>
+        <h2
+          class="reveal"
+          style="margin-bottom: var(--space-lg)"
+          data-i18n="about.skills.heading"
+        >
           What I bring
         </h2>
 
         <div class="skills-grid reveal">
           <div class="skill-group">
-            <p class="label" style="margin-bottom: var(--space-sm)">Design</p>
+            <p
+              class="label"
+              style="margin-bottom: var(--space-sm)"
+              data-i18n="about.skills.design"
+            >
+              Design
+            </p>
             <ul class="skill-list">
               <li>Graphic Design</li>
               <li>Illustration</li>
@@ -276,7 +300,13 @@
           </div>
 
           <div class="skill-group">
-            <p class="label" style="margin-bottom: var(--space-sm)">Tools</p>
+            <p
+              class="label"
+              style="margin-bottom: var(--space-sm)"
+              data-i18n="about.skills.tools"
+            >
+              Tools
+            </p>
             <ul class="skill-list">
               <li>Adobe Illustrator</li>
               <li>Adobe InDesign</li>
@@ -288,24 +318,19 @@
           </div>
 
           <div class="skill-group">
-            <p class="label" style="margin-bottom: var(--space-sm)">Build</p>
+            <p
+              class="label"
+              style="margin-bottom: var(--space-sm)"
+              data-i18n="about.skills.build"
+            >
+              Build
+            </p>
             <ul class="skill-list">
               <li>HTML / CSS / JavaScript</li>
               <li>GSAP &amp; ScrollTrigger</li>
               <li>Rive</li>
               <li>Vite</li>
               <li>React (fundamentals)</li>
-            </ul>
-          </div>
-
-          <div class="skill-group">
-            <p class="label" style="margin-bottom: var(--space-sm)">
-              Languages
-            </p>
-            <ul class="skill-list">
-              <li>English — native</li>
-              <li>Portuguese (PT&#8209;BR) — advanced</li>
-              <li>Spanish (ES&#8209;LATAM) — advanced-intermediate</li>
             </ul>
           </div>
         </div>
@@ -327,8 +352,12 @@
     <!-- ── SELECTED EXPERIENCE ── -->
     <section class="section">
       <div class="container">
-        <p class="label reveal">Experience</p>
-        <h2 class="reveal" style="margin-bottom: var(--space-lg)">
+        <p class="label reveal" data-i18n="about.exp.label">Experience</p>
+        <h2
+          class="reveal"
+          style="margin-bottom: var(--space-lg)"
+          data-i18n="about.exp.heading"
+        >
           Selected work &amp; roles
         </h2>
 
@@ -338,8 +367,10 @@
               <span class="label">2023 – 2024</span>
             </div>
             <div class="experience-body">
-              <h4>IDEO Color by Design Fellowship</h4>
-              <p>
+              <h4 data-i18n="about.exp.ideo.title">
+                IDEO Color by Design Fellowship
+              </h4>
+              <p data-i18n="about.exp.ideo.desc">
                 Designed a conversational AI appliance repair tool, an AR
                 experience for COP28, and bilingual Gen-AI workshop curriculum
                 for educators. Recognized for creative leadership and
@@ -353,24 +384,30 @@
               <span class="label">2022</span>
             </div>
             <div class="experience-body">
-              <h4>Grand Games — Grand Park, Los Angeles</h4>
-              <p>
+              <h4 data-i18n="about.exp.gg.title">
+                Grand Games — Grand Park, Los Angeles
+              </h4>
+              <p data-i18n="about.exp.gg.desc">
                 Led graphic design for a multilingual public signage system
                 installed across Grand Park for the 2022 World Cup viewing
                 events. Designed, printed, and physically installed. Campaign
                 reached thousands of visitors; Instagram content drove strong
-                organic engagement on Grand Park&#39;s official account.
+                organic engagement on Grand Park's official account.
               </p>
             </div>
           </div>
 
           <div class="experience-item reveal">
             <div class="experience-meta">
-              <span class="label">2021 – Present</span>
+              <span class="label" data-i18n="about.exp.indie.date"
+                >2014 – Present</span
+              >
             </div>
             <div class="experience-body">
-              <h4>Independent Design &amp; Illustration</h4>
-              <p>
+              <h4 data-i18n="about.exp.indie.title">
+                Independent Design &amp; Illustration
+              </h4>
+              <p data-i18n="about.exp.indie.desc">
                 Illustration practice since 2014. Client and personal work
                 spanning editorial illustration, motion graphics, brand
                 identity, and interactive experiences.
@@ -417,7 +454,12 @@
               >LinkedIn</a
             >
           </li>
-          <li><a href="mailto:hello@pjrodriguez.design">Email</a></li>
+          <li>
+            <a
+              href="/cdn-cgi/l/email-protection#85ede0e9e9eac5f5eff7eae1f7ece2f0e0ffabe1e0f6ece2eb"
+              >Email</a
+            >
+          </li>
           <li>
             <a
               href="/assets/PJ-Rodriguez-Resume-2026.pdf"
@@ -432,7 +474,6 @@
         </p>
       </div>
     </footer>
-
     <script type="module" src="/src/js/main.js"></script>
   </body>
 </html>
