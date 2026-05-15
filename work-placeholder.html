@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Work — PJ Rodriguez</title>
+    <meta
+      name="description"
+      content="Case studies and project work by PJ Rodriguez — available upon request."
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Sono:wght,MONO@200..800,1&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/src/styles/main.css" />
+    <style>
+      .work-gate {
+        min-height: 80vh;
+        display: flex;
+        align-items: center;
+        padding-top: 6rem;
+      }
+      .work-gate-inner {
+        max-width: 560px;
+      }
+      .work-gate-eyebrow {
+        font-family: var(--font-body);
+        font-size: 0.8rem;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--text-light);
+        margin-bottom: var(--space-md);
+      }
+      .work-gate h1 {
+        font-family: var(--font-display);
+        font-size: var(--step-3);
+        font-weight: 700;
+        color: var(--forest);
+        letter-spacing: -0.03em;
+        line-height: 1.05;
+        margin-bottom: var(--space-md);
+      }
+      .work-gate h1 em {
+        font-style: italic;
+        color: var(--sage-teal);
+      }
+      .work-gate-body {
+        font-family: var(--font-body);
+        font-size: var(--step-0);
+        color: var(--text-mid);
+        line-height: 1.65;
+        margin-bottom: var(--space-lg);
+        max-width: 440px;
+      }
+      .work-gate-form {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-sm);
+        max-width: 400px;
+      }
+      .work-gate-form input[type="text"],
+      .work-gate-form input[type="email"] {
+        font-family: var(--font-body);
+        font-size: var(--step-0);
+        padding: 0.75em 1em;
+        border: 1.5px solid rgba(30, 48, 37, 0.2);
+        border-radius: 4px;
+        background: rgba(255, 255, 255, 0.5);
+        color: var(--text);
+        outline: none;
+        transition: border-color 0.18s;
+        width: 100%;
+      }
+      .work-gate-form input:focus {
+        border-color: var(--sage-teal);
+      }
+      .work-gate-form input::placeholder {
+        color: var(--text-light);
+      }
+      .work-gate-form button {
+        font-family: var(--font-body);
+        font-size: 0.875rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        padding: 0.85em 1.75em;
+        background: var(--forest);
+        color: var(--white);
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition:
+          background 0.18s,
+          transform 0.18s;
+        align-self: flex-start;
+      }
+      .work-gate-form button:hover {
+        background: var(--grove);
+        transform: translateY(-2px);
+      }
+      .work-gate-success {
+        display: none;
+        font-family: var(--font-body);
+        font-size: var(--step-0);
+        color: var(--sage-teal);
+        font-weight: 500;
+        padding: var(--space-sm) 0;
+      }
+      .work-gate-divider {
+        width: 40px;
+        height: 1.5px;
+        background: var(--ochre);
+        margin-bottom: var(--space-lg);
+      }
+      /* On the gate page neither Work nor Illustration is a real section — suppress active underline */
+      .nav-links a.active::after {
+        transform: scaleX(0) !important;
+      }
+      .nav-links a.active {
+        color: var(--text-mid) !important;
+        font-weight: 500 !important;
+      }
+    </style>
+  </head>
+  <body>
+
+    <button class="sidebar-toggle" aria-label="Toggle navigation">☰</button>
+    <aside class="sidebar">
+      <a href="/index.html?nav=1" class="sidebar-logo" aria-label="Home">
+        <img
+          src="/assets/images/logo-chasing_dragons-color.svg"
+          alt="Chasing Dragons — PJ Rodriguez"
+          width="80"
+          height="70"
+        />
+      </a>
+      <span class="sidebar-identity">
+        <span class="pj-initials">
+          <span class="pj-p">P</span><span class="pj-dot1">.</span><span class="pj-j">J</span><span class="pj-dot2">.</span><span class="pj-smile">(</span>
+        </span>
+        <span class="surname-block">
+          <span class="surname-row"><span>R</span><span>O</span><span>D</span></span>
+          <span class="surname-row"><span>R</span><span>I</span><span>G</span></span>
+          <span class="surname-row"><span>U</span><span>E</span><span>Z</span></span>
+        </span>
+      </span>
+      <nav class="sidebar-nav">
+        <a href="/index.html?nav=1" data-i18n="nav.work">Work</a>
+        <span class="sidebar-nav-soon">Craft <em>soon</em></span>
+        <a href="/about.html" data-i18n="nav.about">About</a>
+      </nav>
+      <div class="sidebar-footer">
+
+        <div class="sidebar-lang">
+
+          <button class="lang-btn active" data-lang="en" aria-pressed="true" lang="en">EN</button>
+
+          <button class="lang-btn" data-lang="pt" aria-pressed="false" lang="pt-BR">PT</button>
+
+          <button class="lang-btn" data-lang="es" aria-pressed="false" lang="es">ES</button>
+
+        </div>
+
+      </div>
+    </aside>
+
+    <main class="main-content">
+
+    <!-- GATE -->
+    <section class="work-gate">
+      <div class="container">
+        <div class="work-gate-inner">
+          <p class="work-gate-eyebrow" data-i18n="work.eyebrow">
+            Selected Work
+          </p>
+          <div class="work-gate-divider"></div>
+          <h1 data-i18n="work.heading">
+            Case studies<br /><em>upon request.</em>
+          </h1>
+          <p class="work-gate-body" data-i18n="work.body">
+            Selected case studies are available upon request. Leave your name
+            and email and I'll send them your way.
+          </p>
+
+          <!-- Netlify form -->
+          <form
+            class="work-gate-form"
+            name="work-request"
+            method="POST"
+            action="/work.html?success=true"
+            data-netlify="true"
+            netlify-honeypot="bot-field"
+          >
+            <input type="hidden" name="form-name" value="work-request" />
+            <p style="display: none">
+              <label><input name="bot-field" /></label>
+            </p>
+            <input
+              type="text"
+              name="name"
+              data-i18n-placeholder="work.placeholder.name"
+              placeholder="Your name"
+              required
+              autocomplete="name"
+            />
+            <input
+              type="email"
+              name="email"
+              data-i18n-placeholder="work.placeholder.email"
+              placeholder="Your email"
+              required
+              autocomplete="email"
+            />
+            <button type="submit" data-i18n="work.submit">
+              Request access &#8594;
+            </button>
+          </form>
+
+          <p
+            class="work-gate-success"
+            id="gate-success"
+            data-i18n="work.success"
+          >
+            Got it — I'll be in touch shortly.
+          </p>
+
+          <p
+            style="
+              margin-top: var(--space-lg);
+              font-family: var(--font-body);
+              font-size: 0.875rem;
+              color: var(--text-light);
+            "
+          >
+            <span data-i18n="work.or">Or reach me directly at</span>
+            <a
+              href="mailto:pjrodriguezdesign@gmail.com"
+              style="
+                color: var(--text-mid);
+                text-decoration: underline;
+                text-underline-offset: 3px;
+              "
+              >pjrodriguezdesign@gmail.com</a
+            >
+          </p>
+        </div>
+      </div>
+    </section>    <footer class="footer">
+      <div class="container">
+        <div class="footer-brand">
+          <p class="footer-name">PJ Rodriguez</p>
+          <p class="footer-tagline" data-i18n="footer.tagline">
+            Illustration &middot; Design &middot; Bay Area
+          </p>
+          <p class="footer-location">
+            San Francisco, CA &nbsp;&middot;&nbsp;
+            <span id="footer-time"></span>
+          </p>
+        </div>
+        <ul class="footer-links">
+          <li>
+            <a
+              href="https://linkedin.com/in/pjrdesign"
+              target="_blank"
+              rel="noopener"
+              >LinkedIn</a
+            >
+          </li>
+          <li><a href="mailto:pjrodriguezdesign@gmail.com">Email</a></li>
+          <li>
+            <a
+              href="/assets/PJ-Rodriguez-Resume-2026.pdf"
+              target="_blank"
+              rel="noopener"
+              >Resume</a
+            >
+          </li>
+        </ul>
+        <p class="footer-copy" data-i18n="footer.copy">
+          &copy; 2026 Patrick Rodriguez
+        </p>
+      </div>
+    </footer>
+
+    </main>
+    <script type="module" src="/src/js/main.js"></script>
+    <script>
+      // Handle Netlify form success redirect
+      const params = new URLSearchParams(window.location.search);
+      if (params.get("success") === "true") {
+        document.querySelector(".work-gate-form").style.display = "none";
+        document.getElementById("gate-success").style.display = "block";
+      }
+    </script>
+  </body>
+</html>

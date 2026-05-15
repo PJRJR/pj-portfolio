@@ -1,0 +1,719 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SPEX — PJ Rodriguez</title>
+    <meta
+      name="description"
+      content="SPEX: A mixed-reality wearable learning tool designed to help knowledge workers acquire new skills without leaving their workflow. UX research, physical prototyping, and visual design by PJ Rodriguez."
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Sono:wght,MONO@200..800,1&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/src/styles/main.css" />
+    <style>
+      .case-hero {
+        width: 100%;
+        height: 70vh;
+        margin-top: 4.75rem;
+        overflow: hidden;
+        position: relative;
+        display: flex;
+        align-items: flex-end;
+        box-shadow: inset 0 0 0 2px var(--forest);
+      }
+      .case-hero video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .case-caption {
+        font-family: var(--font-body);
+        font-size: 0.72rem;
+        color: var(--text-light);
+        margin-top: 0.5em;
+        letter-spacing: 0.02em;
+        line-height: 1.4;
+      }
+      .media-figure {
+        display: flex;
+        flex-direction: column;
+      }
+      .media-figure img,
+      .media-figure video {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      .media-full {
+        margin-top: var(--space-md);
+        width: 100%;
+      }
+      .media-full img,
+      .media-full video {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      .video-mid {
+        max-width: 640px;
+        margin-inline: auto;
+        margin-top: var(--space-md);
+      }
+      .video-mid video {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      .project-section .media-grid {
+        margin-top: var(--space-lg);
+      }
+      .project-section .media-frame {
+        margin-top: var(--space-lg);
+      }
+      .project-section p { text-indent: 1.5em; }
+    </style>
+  </head>
+  <body>
+    <div class="project-card-cursor-label" id="cursor-label">View &#8594;</div>
+
+    <svg
+      width="0"
+      height="0"
+      style="position: absolute; overflow: hidden"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <defs>
+        <clipPath id="wave-gentle" clipPathUnits="objectBoundingBox">
+          <path
+            d="M0,0.04 C0.1,0 0.2,0.02 0.3,0.04 C0.4,0.06 0.5,0.02 0.6,0.04 C0.7,0.06 0.8,0.02 0.9,0.04 C0.95,0.05 1,0.04 1,0.04 L1,0.96 C0.9,1 0.8,0.98 0.7,0.96 C0.6,0.94 0.5,0.98 0.4,0.96 C0.3,0.94 0.2,0.98 0.1,0.96 C0.05,0.95 0,0.96 0,0.96 Z"
+          />
+        </clipPath>
+        <pattern
+          id="scute-tile"
+          x="0"
+          y="0"
+          width="20"
+          height="16"
+          patternUnits="userSpaceOnUse"
+        >
+          <polygon
+            points="3,8 10,2 17,8"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1"
+            stroke-linejoin="round"
+          />
+          <polygon
+            points="3,8 10,14 17,8"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1"
+            stroke-linejoin="round"
+          />
+        </pattern>
+      </defs>
+    </svg>
+
+    <button class="sidebar-toggle" aria-label="Toggle navigation">☰</button>
+    <aside class="sidebar">
+      <a href="/index.html?nav=1" class="sidebar-logo" aria-label="Home">
+        <img
+          src="/assets/images/logo-chasing_dragons-color.svg"
+          alt="Chasing Dragons — PJ Rodriguez"
+        />
+      </a>
+      <span class="sidebar-identity">
+        <span class="pj-initials">
+          <span class="pj-p">P</span><span class="pj-dot1">.</span
+          ><span class="pj-j">J</span><span class="pj-dot2">.</span
+          ><span class="pj-smile">(</span>
+        </span>
+        <span class="surname-block">
+          <span class="surname-row"
+            ><span>R</span><span>O</span><span>D</span></span
+          >
+          <span class="surname-row"
+            ><span>R</span><span>I</span><span>G</span></span
+          >
+          <span class="surname-row"
+            ><span>U</span><span>E</span><span>Z</span></span
+          >
+        </span>
+      </span>
+      <nav class="sidebar-nav">
+        <a href="/index.html?nav=1" data-i18n="nav.work">Work</a>
+        <span class="sidebar-nav-soon"
+          ><span data-i18n="nav.craft">Craft</span>
+          <em data-i18n="nav.soon">soon</em></span
+        >
+        <a href="/about.html" data-i18n="nav.about">About</a>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="sidebar-lang">
+          <button
+            class="lang-btn active"
+            data-lang="en"
+            aria-pressed="true"
+            lang="en"
+          >
+            EN
+          </button>
+          <button
+            class="lang-btn"
+            data-lang="pt"
+            aria-pressed="false"
+            lang="pt-BR"
+          >
+            PT
+          </button>
+          <button
+            class="lang-btn"
+            data-lang="es"
+            aria-pressed="false"
+            lang="es"
+          >
+            ES
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+
+    <!-- HERO VIDEO -->
+    <div class="case-hero">
+      <video
+        autoplay
+        muted
+        loop
+        playsinline
+        poster="/assets/images/spex-hero-poster.jpg"
+      >
+        <source src="/assets/videos/spex-hero.mp4" type="video/mp4" />
+      </video>
+    </div>
+
+    <!-- ALL CONTENT -->
+    <section class="section" style="padding-top: var(--space-lg)">
+      <div class="container">
+
+        <h1 style="font-family:var(--font-display);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;color:var(--forest);margin-bottom:var(--space-sm);">SPEX</h1>
+        <!-- METADATA STRIP -->
+        <p class="project-meta-pills">
+          <span class="about-pill" style="--pill-color: var(--sage-teal);">UX Research · Physical Prototyping · Visual Design</span>
+          <span class="about-pill" style="--pill-color: #7a5fa0;">Figma · Fusion360 · Illustrator</span>
+          <span class="about-pill" style="--pill-color: var(--forest);">Team of 3</span>
+          <span class="about-pill" style="--pill-color: var(--ochre);">Spring 2021</span>
+        </p>
+
+        <div class="section-wave" aria-hidden="true">
+          <svg viewBox="0 0 2278 30" preserveAspectRatio="none" style="display: block; width: 100%; height: 20px; overflow: visible;" aria-hidden="true">
+            <path id="section-wave-path" d="M0,4 Q1139,4 2278,4" fill="none" stroke="var(--forest)" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+
+        <!-- THE PROBLEM -->
+        <div class="project-section reveal">
+          <h2>The Problem</h2>
+          <p>
+            Knowledge workers face constant pressure to learn new tools without
+            slowing down. When they hit a wall, the usual solution is to leave
+            their workflow, search forums and tutorials that rarely address their
+            exact situation, and piece together an answer from fragments.
+            Research backed what we were already experiencing as remote students:
+            <span class="stat-num" data-target="48" style="display: inline-block; min-width: 2ch;">48</span>% reported the pandemic had worsened their ability to focus, while
+            immersive learning correlated with a <span class="stat-num" data-target="35" style="display: inline-block; min-width: 2ch;">35</span>% engagement increase and <span class="stat-num" data-target="90" style="display: inline-block; min-width: 2ch;">90</span>%
+            better retention through direct experience.
+          </p>
+          <p>
+            The question we formed: how might we help people learn new skills
+            efficiently, without pulling them out of the work they are trying to
+            do?
+          </p>
+        </div>
+
+        <!-- RESEARCH -->
+        <div class="project-section reveal">
+          <h2>Research</h2>
+          <div class="media-grid media-grid--tall" data-cols="2">
+            <div>
+            <div class="media-frame">
+            <figure class="media-figure">
+              <img
+                class="media-img"
+                src="/assets/images/spex-mural-brainstorm.jpg"
+                alt="Team brainstorm session in Mural"
+                loading="lazy"
+                style="height: 480px !important; width: 100%; object-fit: cover;"
+              />
+            </figure>
+            </div>
+            <figcaption class="case-caption">Team brainstorm via Mural</figcaption>
+            </div>
+            <div>
+            <div class="media-frame">
+            <figure class="media-figure">
+              <img
+                class="media-img"
+                src="/assets/images/spex-affinity-matrix.jpg"
+                alt="Affinity matrix mapping assumptions to opportunities"
+                loading="lazy"
+                style="height: 480px !important; width: 100%; object-fit: cover;"
+              />
+            </figure>
+            </div>
+            <figcaption class="case-caption">Affinity matrix mapping assumptions to opportunities</figcaption>
+            </div>
+          </div>
+          <p style="margin-top: var(--space-md)">
+            The team brainstormed across technology, workplace behavior, and
+            social patterns using Mural, then mapped assumptions against an
+            affinity matrix to find where a single solution could address
+            multiple pain points at once. Primary and secondary research pointed
+            to a consistent gap: people want to be shown how to do things, not
+            sent somewhere else to find out.
+          </p>
+        </div>
+
+        <!-- FRAMING -->
+        <div class="project-section reveal">
+          <h2>Framing</h2>
+          <div class="media-frame">
+          <figure class="media-full storyboard-figure">
+            <img
+              class="media-img"
+              src="/assets/images/spex-storyboard-jeremy.jpg"
+              alt="Six-panel storyboard showing Jeremy using Spex to navigate an unfamiliar tool"
+              loading="lazy"
+            />
+          </figure>
+          </div>
+          <figcaption class="case-caption">
+            Future-state storyboard: Jeremy experiences an enhanced workflow with Spex
+          </figcaption>
+          <p style="margin-top: var(--space-md)">
+            I illustrated a six-panel storyboard following Jeremy, a visual
+            designer navigating an unfamiliar tool on deadline. He lowers the
+            Spex visor, the interface overlays his workspace, he asks a question
+            by voice, Spex scans his screen, loads a community skill, and he
+            follows along without leaving his task. The storyboard gave the team
+            a concrete scenario to design toward and became the shared reference
+            point for interaction decisions throughout the project.
+          </p>
+        </div>
+
+        <!-- SYSTEM DESIGN -->
+        <div class="project-section reveal">
+          <h2>System Design</h2>
+          <p>
+            Before any physical form took shape, we mapped the full
+            input/process/output system: accelerometer and gyroscope for
+            positioning, LiDAR and camera for environment scanning, microphone
+            for voice, bone-conduction audio output, and a flexible microLED
+            display. Understanding the components first clarified what the
+            hardware needed to contain.
+          </p>
+          <p>
+            I created the v2 orthographic projections in Adobe Illustrator,
+            translating the team's physical explorations into dimensioned
+            drawings that reflect the shift from the boxier early form to the
+            rounded frame that prototyping produced.
+          </p>
+          <div class="media-grid media-grid--contain" data-cols="2" style="margin-top: var(--space-md); align-items: start; gap: var(--space-xl);">
+  <div>
+  <div class="media-frame">
+    <figure class="media-figure">
+      <img
+        class="media-img"
+        src="/assets/images/spex-component-diagram.jpg"
+        alt="Input/process/output component diagram"
+        loading="lazy"
+        style="height: 420px; object-fit: cover; width: 100%;"
+      />
+    </figure>
+  </div>
+  <figcaption class="case-caption">Input/process/output component diagram</figcaption>
+  </div>
+  <div>
+  <div class="media-frame">
+    <figure class="media-figure">
+      <img
+        class="media-img"
+        src="/assets/images/spex-orthographic-v2.jpg"
+        alt="v2 orthographic projections in Adobe Illustrator"
+        loading="lazy"
+        style="height: 420px; object-fit: contain; width: 100%;"
+      />
+    </figure>
+  </div>
+  <figcaption class="case-caption">v2 orthographic projections, Adobe Illustrator</figcaption>
+  </div>
+</div>
+        </div>
+
+        <!-- PHYSICAL PROTOTYPING -->
+        <div class="project-section reveal">
+          <h2>Physical Prototyping</h2>
+          <p>
+            Each team member built a physical prototype to test form and visor
+            mechanics. My prototype focused on the experience of looking through
+            the visor, arriving at a curved form that felt more resolved to
+            wear. Jennifer's magnetically attached visor revealed that extending
+            the display too far forward required nose support. Eduardo's
+            exploration showed the visor needed to be detachable and raised
+            above the eye-line for clear visibility.
+          </p>
+          <p>
+            The prototypes changed the drawings. The boxier v1 silhouette gave
+            way to the rounded v2 form after testing.
+          </p>
+          <div class="media-grid" data-cols="3" style="--media-grid-height: 320px;">
+            <div>
+            <div class="media-frame">
+            <figure class="media-figure">
+              <img
+                class="media-img"
+                src="/assets/images/spex-physical-prototype-pj.jpg"
+                alt="PJ's physical prototype"
+                loading="lazy"
+              />
+            </figure>
+            </div>
+            <figcaption class="case-caption">PJ's prototype</figcaption>
+            </div>
+            <div>
+            <div class="media-frame">
+            <figure class="media-figure">
+              <img
+                class="media-img"
+                src="/assets/images/spex-physical-prototype-jenn.jpg"
+                alt="Jennifer's physical prototype"
+                loading="lazy"
+              />
+            </figure>
+            </div>
+            <figcaption class="case-caption">Jennifer's prototype</figcaption>
+            </div>
+            <div>
+            <div class="media-frame">
+            <figure class="media-figure">
+              <img
+                class="media-img"
+                src="/assets/images/spex-physical-prototype-seb.jpg"
+                alt="Eduardo's physical prototype"
+                loading="lazy"
+              />
+            </figure>
+            </div>
+            <figcaption class="case-caption">Eduardo's prototype</figcaption>
+            </div>
+          </div>
+        </div>
+
+        <!-- USER INTERFACE -->
+        <div class="project-section reveal">
+          <h2>User Interface</h2>
+          <p>
+  The goal was a minimal interface driven by voice, gesture, and visual feedback.
+  I conducted a heuristic evaluation of the prototype against Nielsen's ten
+  usability heuristics, working through the interface systematically to surface
+  assumptions the team hadn't questioned. Three findings directly reshaped the
+  design: the interface needed three clearly named modes, Help, Community, and
+  Create, rather than a feature-dense single view; audio feedback had to pair
+  explicitly with visual confirmation rather than operate independently; and UI
+  placement needed to be user-controlled through gesture rather than fixed by
+  the system.
+</p>
+<p>
+  The team designed ten gesture commands as a complete voice alternative for
+  noisy or public environments, each mapped to a specific system behavior to
+  keep the interaction model learnable without reference.
+</p>
+          <div style="max-width: 680px; margin-inline: auto;">
+          <div class="media-grid" data-cols="2" style="gap: var(--space-lg);">
+            <div class="media-frame">
+            <figure class="media-figure">
+              <img
+                class="media-img"
+                src="/assets/images/spex-ui-dialogue-1.jpg"
+                alt="Spex UI dialogue screen 1"
+                loading="lazy"
+              />
+            </figure>
+            </div>
+            <div class="media-frame">
+            <figure class="media-figure">
+              <img
+                class="media-img"
+                src="/assets/images/spex-ui-dialogue-2.jpg"
+                alt="Spex UI dialogue screen 2"
+                loading="lazy"
+              />
+            </figure>
+            </div>
+          </div>
+          </div>
+          <div style="max-width: 680px; margin-inline: auto;">
+          <div class="media-frame" style="width: 100%;">
+          <figure class="media-full">
+            <img
+              class="media-img"
+              src="/assets/images/spex-gesture-chart.jpg"
+              alt="Ten gesture commands for voice-free interaction"
+              loading="lazy"
+              style="width: 100%; height: auto; display: block;"
+            />
+          </figure>
+          </div>
+          <figcaption class="case-caption">Ten gesture commands for voice-free interaction</figcaption>
+          </div>
+        </div>
+
+        <!-- FINAL DELIVERABLES -->
+        <div class="project-section reveal">
+          <h2>Final Deliverables</h2>
+          <p>
+            The final deliverables spanned physical and digital: a stylized
+            illustrated render, Fusion360 form studies documenting the visor in
+            closed and open configurations alongside an exploded component view,
+            and UI prototype videos showing the initial screen scan, gesture
+            interactions, and overlay button behaviors.
+          </p>
+
+          <div class="video-mid" style="max-width: 860px;">
+            <div class="media-frame">
+            <figure class="media-figure">
+              <video autoplay muted loop playsinline>
+                <source src="/assets/videos/spex-animation-glasses.mp4" type="video/mp4" />
+              </video>
+            </figure>
+            </div>
+            <figcaption class="case-caption">3D user visualization</figcaption>
+          </div>
+
+          <div class="media-frame" style="width: 100%;"><figure class="media-full">
+            <img
+              class="media-img"
+              src="/assets/images/spex-product-render.png"
+              alt="Stylized product render in Adobe Illustrator"
+              loading="lazy"
+              style="display: block; width: 100%; height: auto; object-fit: initial;"
+            />
+          </figure></div>
+          <figcaption class="case-caption">Stylized product render, Adobe Illustrator</figcaption>
+
+          <div class="media-grid" data-cols="4">
+            <div class="media-frame"><figure class="media-figure">
+              <img
+                class="media-img"
+                src="/assets/images/spex-form-exploded-side.png"
+                alt="Exploded side view of Spex form"
+                loading="lazy"
+                style="object-fit: cover; width: 100%; height: 220px;"
+              />
+            </figure></div>
+            <div class="media-frame"><figure class="media-figure">
+              <img
+                class="media-img"
+                src="/assets/images/spex-form-exploded-side-diag.png"
+                alt="Exploded diagonal side view of Spex form"
+                loading="lazy"
+                style="object-fit: cover; width: 100%; height: 220px;"
+              />
+            </figure></div>
+            <div class="media-frame"><figure class="media-figure">
+              <img
+                class="media-img"
+                src="/assets/images/spex-form-3d-side-closed.png"
+                alt="Spex 3D form, visor closed"
+                loading="lazy"
+                style="object-fit: cover; width: 100%; height: 220px; object-position: top;"
+              />
+            </figure></div>
+            <div class="media-frame"><figure class="media-figure">
+              <img
+                class="media-img"
+                src="/assets/images/spex-form-3d-side-open.png"
+                alt="Spex 3D form, visor open"
+                loading="lazy"
+                style="object-fit: cover; width: 100%; height: 220px;"
+              />
+            </figure></div>
+          </div>
+
+          <div style="max-width: 780px; margin-inline: auto;">
+          <div class="media-frame"><figure class="media-full">
+            <img
+              class="media-img"
+              src="/assets/images/spex-form-exploded-components.jpg"
+              alt="Exploded component view in Fusion360"
+              loading="lazy"
+            />
+          </figure></div>
+          <figcaption class="case-caption">Exploded component view, Fusion360</figcaption>
+          </div>
+
+          <div class="media-grid media-grid--tall" data-cols="3">
+            <div>
+            <div class="media-frame">
+            <figure class="media-figure">
+              <video autoplay muted loop playsinline>
+                <source src="/assets/videos/spex-ui-scan.mp4" type="video/mp4" />
+              </video>
+            </figure>
+            </div>
+            <figcaption class="case-caption">Screen scan on first use</figcaption>
+            </div>
+            <div>
+            <div class="media-frame">
+            <figure class="media-figure">
+              <video autoplay muted loop playsinline>
+                <source src="/assets/videos/spex-ui-gesture-reveal.mp4" type="video/mp4" />
+              </video>
+            </figure>
+            </div>
+            <figcaption class="case-caption">Hide and Reveal gesture</figcaption>
+            </div>
+            <div>
+            <div class="media-frame">
+            <figure class="media-figure">
+              <video autoplay muted loop playsinline>
+                <source src="/assets/videos/spex-ui-gesture-pinch.mp4" type="video/mp4" />
+              </video>
+            </figure>
+            </div>
+            <figcaption class="case-caption">Pinch Resize gesture</figcaption>
+            </div>
+          </div>
+
+          <div class="media-grid media-grid--tall" data-cols="3">
+            <div>
+            <div class="media-frame">
+            <figure class="media-figure">
+              <video autoplay muted loop playsinline>
+                <source src="/assets/videos/spex-ui-ask.mp4" type="video/mp4" />
+              </video>
+            </figure>
+            </div>
+            <figcaption class="case-caption">Ask Spex</figcaption>
+            </div>
+            <div>
+            <div class="media-frame">
+            <figure class="media-figure">
+              <video autoplay muted loop playsinline>
+                <source src="/assets/videos/spex-ui-battery.mp4" type="video/mp4" />
+              </video>
+            </figure>
+            </div>
+            <figcaption class="case-caption">Battery alert</figcaption>
+            </div>
+            <div>
+            <div class="media-frame">
+            <figure class="media-figure">
+              <video autoplay muted loop playsinline>
+                <source src="/assets/videos/spex-ui-dropdown.mp4" type="video/mp4" />
+              </video>
+            </figure>
+            </div>
+            <figcaption class="case-caption">Dropdown menu</figcaption>
+            </div>
+          </div>
+        </div>
+
+        <!-- REFLECTION -->
+        <div class="project-section reveal">
+          <h2>Reflection</h2>
+          <p>
+  Working as remote students during the pandemic, we were designing for a problem
+  we were living in. That proximity kept the research grounded and the constraints
+  honest, but it also meant the physical prototype never had a stranger's hands
+  on it. The UI was never tested outside the team. The heuristic evaluation was
+  the right tool for what we could do, but it can only surface what an evaluator
+  already knows to look for. Real users would have found things we couldn't.
+</p>
+<p>
+  That's the thing I'd change. Not the concept, not the process, but the exposure.
+  Getting a prototype in front of even two or three people outside the classroom
+  would have stress-tested assumptions the heuristic evaluation left intact. It's
+  the gap I think about most when I look at this work now.
+</p>
+<p>
+  What the project did well was stay whole. Most student projects fragment: the
+  research points one direction, the prototype goes another. SPEX held together
+  from the system diagram through the physical form through the UI. The storyboard
+  made that possible. Having a concrete human scenario to design toward kept every
+  decision tethered to the same use case, and that coherence shows in the final
+  deliverables.
+</p>
+        </div>
+
+
+
+      </div>
+    </section>    <!-- FOOTER -->
+    <div class="footer-wave" aria-hidden="true">
+  <svg
+    viewBox="0 0 2278 30"
+    preserveAspectRatio="none"
+    style="display: block; width: 100%; height: 20px; overflow: visible;"
+  >
+    <path
+      id="bouncy-path"
+      d="M0,4 Q1139,4 2278,4"
+      fill="none"
+      stroke="#1e3025"
+      stroke-width="2"
+      stroke-linecap="round"
+    />
+  </svg>
+</div>
+<footer class="footer">
+      <div class="container">
+        <div class="footer-brand">
+          <p class="footer-tagline" data-i18n="footer.tagline">
+            Illustration &middot; Design &middot; Motion
+          </p>
+          <p class="footer-location">
+            San Francisco, CA &nbsp;&middot;&nbsp;
+            <span id="footer-time"></span>
+          </p>
+        </div>
+        <ul class="footer-links">
+          <li>
+            <a
+              href="https://linkedin.com/in/pjrdesign"
+              target="_blank"
+              rel="noopener"
+              >LinkedIn</a
+            >
+          </li>
+          <li>
+            <a
+              href="/cdn-cgi/l/email-protection#a6cec3cacac9e6d6ccd4c9c2d4cfc1d3c3dc88c2c3d5cfc1c8"
+              >Email</a
+            >
+          </li>
+          <li>
+            <a
+              href="/assets/PJ-Rodriguez-Resume-2026.pdf"
+              target="_blank"
+              rel="noopener"
+              ><span data-i18n="footer.resume">Resume</span></a
+            >
+          </li>
+        </ul>
+        <p class="footer-copy" data-i18n="footer.copy">
+          &copy; 2026 Patrick Rodriguez
+        </p>
+        <p class="footer-colophon" data-i18n-html="footer.colophon" style="grid-column:1/-1;font-family:var(--font-body);font-size:0.68rem;color:var(--text-light);letter-spacing:0.02em;margin-top:0.5em;line-height:1.8;"></p>
+      </div>
+    </footer>
+
+    </main>
+    <script type="module" src="/src/js/main.js"></script>
+  </body>
+</html>

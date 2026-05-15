@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IDEO Fellowship — PJ Rodriguez</title>
+    <meta
+      name="description"
+      content="Three interaction design and AR projects completed during PJ Rodriguez's nine-month IDEO Color by Design Fellowship in 2023."
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Sono:wght,MONO@200..800,1&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/src/styles/main.css" />
+    <style>
+      .back-link-wrap { padding-top: var(--space-lg); border-top: 1px solid rgba(30,48,37,.08); margin-top: var(--space-xl); }
+      .back-link { font-family: var(--font-body); font-size: 0.875rem; font-weight: 500; color: var(--sage-teal); transition: color 0.2s; text-decoration: none; }
+      .back-link:hover { color: var(--forest); }
+    </style>
+  </head>
+  <body>
+    <div class="project-card-cursor-label" id="cursor-label">View &#8594;</div>
+    <svg
+      width="0"
+      height="0"
+      style="position: absolute; overflow: hidden"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <defs>
+        <clipPath id="wave-gentle" clipPathUnits="objectBoundingBox">
+          <path
+            d="M0,0.04 C0.1,0 0.2,0.02 0.3,0.04 C0.4,0.06 0.5,0.02 0.6,0.04 C0.7,0.06 0.8,0.02 0.9,0.04 C0.95,0.05 1,0.04 1,0.04 L1,0.96 C0.9,1 0.8,0.98 0.7,0.96 C0.6,0.94 0.5,0.98 0.4,0.96 C0.3,0.94 0.2,0.98 0.1,0.96 C0.05,0.95 0,0.96 0,0.96 Z"
+          />
+        </clipPath>
+        <pattern
+          id="scute-tile"
+          x="0"
+          y="0"
+          width="20"
+          height="16"
+          patternUnits="userSpaceOnUse"
+        >
+          <polygon
+            points="3,8 10,2 17,8"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1"
+            stroke-linejoin="round"
+          />
+          <polygon
+            points="3,8 10,14 17,8"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1"
+            stroke-linejoin="round"
+          />
+        </pattern>
+      </defs>
+    </svg>
+
+    <button class="sidebar-toggle" aria-label="Toggle navigation">☰</button>
+    <aside class="sidebar">
+      <a href="/index.html?nav=1" class="sidebar-logo" aria-label="Home">
+        <img
+          src="/assets/images/logo-chasing_dragons-color.svg"
+          alt="Chasing Dragons — PJ Rodriguez"
+          width="80"
+          height="70"
+        />
+      </a>
+      <span class="sidebar-identity">
+        <span class="pj-initials">
+          <span class="pj-p">P</span><span class="pj-dot1">.</span><span class="pj-j">J</span><span class="pj-dot2">.</span><span class="pj-smile">(</span>
+        </span>
+        <span class="surname-block">
+          <span class="surname-row"><span>R</span><span>O</span><span>D</span></span>
+          <span class="surname-row"><span>R</span><span>I</span><span>G</span></span>
+          <span class="surname-row"><span>U</span><span>E</span><span>Z</span></span>
+        </span>
+      </span>
+      <nav class="sidebar-nav">
+        <a href="/index.html?nav=1" data-i18n="nav.work">Work</a>
+        <span class="sidebar-nav-soon">Craft <em>soon</em></span>
+        <a href="/about.html" data-i18n="nav.about">About</a>
+      </nav>
+      <div class="sidebar-footer">
+
+        <div class="sidebar-lang">
+
+          <button class="lang-btn active" data-lang="en" aria-pressed="true" lang="en">EN</button>
+
+          <button class="lang-btn" data-lang="pt" aria-pressed="false" lang="pt-BR">PT</button>
+
+          <button class="lang-btn" data-lang="es" aria-pressed="false" lang="es">ES</button>
+
+        </div>
+
+      </div>
+    </aside>
+
+    <main class="main-content">
+
+    <section class="section" style="padding-top: var(--space-md)">
+      <div class="container">
+        <p class="label">IDEO Color by Design Fellowship</p>
+        <h1>Fellowship Work</h1>
+        <p>Three projects completed during a nine-month fellowship at IDEO. Each is documented as a standalone case study.</p>
+
+        <div class="work-list">
+          <a href="/project-ideo-ai.html" class="work-item reveal">
+            <span class="work-item-num">01</span>
+            <div class="work-item-body">
+              <h3 class="work-item-title">AI Diagnosis Tool</h3>
+              <p class="work-item-desc">
+                Conversational AI appliance repair experience — persona, UI, and prototypes
+              </p>
+              <p class="work-item-tags">
+                Interaction Design &middot; AI &middot; 2023
+              </p>
+            </div>
+            <div class="work-item-right">
+              <span class="work-item-arrow" aria-hidden="true">&#8594;</span>
+              <div class="work-item-thumb">
+                <img
+                  src="https://placehold.co/320x180/4A8C6F/1E3025?text=IDEO+AI"
+                  alt="IDEO AI Diagnosis Tool"
+                  loading="lazy"
+                  width="320"
+                  height="180"
+                />
+              </div>
+            </div>
+          </a>
+
+          <a href="/project-cop28.html" class="work-item reveal">
+            <span class="work-item-num">02</span>
+            <div class="work-item-body">
+              <h3 class="work-item-title">COP28 AR Experience</h3>
+              <p class="work-item-desc">
+                Immersive AR installation promoting climate action at the UN climate conference
+              </p>
+              <p class="work-item-tags">
+                AR &middot; Visual Design &middot; 2023
+              </p>
+            </div>
+            <div class="work-item-right">
+              <span class="work-item-arrow" aria-hidden="true">&#8594;</span>
+              <div class="work-item-thumb">
+                <img
+                  src="https://placehold.co/320x180/2D7A6B/E8F5EE?text=COP28+AR"
+                  alt="COP28 AR Experience"
+                  loading="lazy"
+                  width="320"
+                  height="180"
+                />
+              </div>
+            </div>
+          </a>
+
+          <a href="/project-playlab.html" class="work-item reveal">
+            <span class="work-item-num">03</span>
+            <div class="work-item-body">
+              <h3 class="work-item-title">Gen-AI Workshop Curriculum</h3>
+              <p class="work-item-desc">
+                Bilingual EN/ES curriculum helping educators explore generative AI tools
+              </p>
+              <p class="work-item-tags">
+                Education &middot; Bilingual &middot; 2023
+              </p>
+            </div>
+            <div class="work-item-right">
+              <span class="work-item-arrow" aria-hidden="true">&#8594;</span>
+              <div class="work-item-thumb">
+                <img
+                  src="https://placehold.co/320x180/1E3025/B8E8CB?text=Workshop"
+                  alt="Gen-AI Workshop Curriculum"
+                  loading="lazy"
+                  width="320"
+                  height="180"
+                />
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="back-link-wrap">
+          <a href="/projects.html" class="back-link">&#8592; Back to Work</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-bounce" aria-hidden="true">
+      <svg
+        viewBox="0 0 2278 120"
+        preserveAspectRatio="none"
+        style="display: block; width: 100%; height: 48px"
+      >
+        <path
+          id="bouncy-path"
+          d="M0,0C0,0,464,0,1139,0s1139,0,1139,0V120H0V0z"
+          fill="#1e3025"
+        />
+      </svg>
+    </div>
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-brand">
+          <p class="footer-name">PJ Rodriguez</p>
+          <p class="footer-tagline" data-i18n="footer.tagline">
+            Illustration &middot; Design &middot; Bay Area
+          </p>
+          <p class="footer-location">
+            San Francisco, CA &nbsp;&middot;&nbsp;
+            <span id="footer-time"></span>
+          </p>
+        </div>
+        <ul class="footer-links">
+          <li>
+            <a
+              href="https://linkedin.com/in/pjrdesign"
+              target="_blank"
+              rel="noopener"
+              >LinkedIn</a
+            >
+          </li>
+          <li>
+            <a
+              href="/cdn-cgi/l/email-protection#a6cec3cacac9e6d6ccd4c9c2d4cfc1d3c3dc88c2c3d5cfc1c8"
+              >Email</a
+            >
+          </li>
+          <li>
+            <a
+              href="/assets/PJ-Rodriguez-Resume-2026.pdf"
+              target="_blank"
+              rel="noopener"
+              >Resume</a
+            >
+          </li>
+        </ul>
+        <p class="footer-copy" data-i18n="footer.copy">
+          &copy; 2026 Patrick Rodriguez
+        </p>
+      </div>
+    </footer>
+    </main>
+    <script type="module" src="/src/js/main.js"></script>
+  </body>
+</html>

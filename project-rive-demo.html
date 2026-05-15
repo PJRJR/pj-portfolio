@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Animation — PJ Rodriguez</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sono:wght,MONO@200..800,1&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/src/styles/main.css" />
+  </head>
+  <body>
+
+    <button class="sidebar-toggle" aria-label="Toggle navigation">☰</button>
+    <aside class="sidebar">
+      <a href="/index.html?nav=1" class="sidebar-logo" aria-label="Home">
+        <img
+          src="/assets/images/logo-chasing_dragons-color.svg"
+          alt="Chasing Dragons — PJ Rodriguez"
+          width="80"
+          height="70"
+        />
+      </a>
+      <span class="sidebar-identity">
+        <span class="pj-initials">
+          <span class="pj-p">P</span><span class="pj-dot1">.</span><span class="pj-j">J</span><span class="pj-dot2">.</span><span class="pj-smile">(</span>
+        </span>
+        <span class="surname-block">
+          <span class="surname-row"><span>R</span><span>O</span><span>D</span></span>
+          <span class="surname-row"><span>R</span><span>I</span><span>G</span></span>
+          <span class="surname-row"><span>U</span><span>E</span><span>Z</span></span>
+        </span>
+      </span>
+      <nav class="sidebar-nav">
+        <a href="/index.html?nav=1" data-i18n="nav.work">Work</a>
+        <span class="sidebar-nav-soon">Craft <em>soon</em></span>
+        <a href="/about.html" data-i18n="nav.about">About</a>
+      </nav>
+      <div class="sidebar-footer">
+
+        <div class="sidebar-lang">
+
+          <button class="lang-btn active" data-lang="en" aria-pressed="true" lang="en">EN</button>
+
+          <button class="lang-btn" data-lang="pt" aria-pressed="false" lang="pt-BR">PT</button>
+
+          <button class="lang-btn" data-lang="es" aria-pressed="false" lang="es">ES</button>
+
+        </div>
+
+      </div>
+    </aside>
+
+    <main class="main-content">
+
+    <!-- SHOWCASE -->
+    <section class="section" style="padding-top: 6rem">
+      <div class="container">
+        <p class="label reveal">Interactive · Rive</p>
+        <h1 class="reveal" style="margin-bottom: var(--space-md)">
+          Interactive Animation
+        </h1>
+
+        <!-- === RIVE EMBED AREA ===
+           HOW TO USE:
+           1. Export your .riv file from Rive
+           2. Put it in /public/assets/rive/your-animation.riv
+           3. Change data-rive-src below to match your filename
+           4. Change data-rive-state to your state machine name (default: "State Machine 1")
+
+           The main.js file auto-detects any <canvas> with data-rive-src and loads it.
+      -->
+        <div class="showcase-embed reveal">
+          <canvas
+            data-rive-src="/assets/rive/demo.riv"
+            data-rive-state="State Machine 1"
+            style="width: 100%; height: 100%"
+          ></canvas>
+        </div>
+
+        <!--
+        IF YOU DON'T HAVE A .riv FILE YET:
+        Replace the showcase-embed div above with a video instead:
+
+        <div class="showcase-embed reveal">
+          <video autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover;">
+            <source src="/assets/videos/your-animation.mp4" type="video/mp4" />
+          </video>
+        </div>
+      -->
+
+        <!-- PROJECT INFO -->
+        <div class="project-meta reveal">
+          <div class="project-meta-item">
+            <span class="label">Type</span>
+            <p>Interactive Animation</p>
+          </div>
+          <div class="project-meta-item">
+            <span class="label">Tools</span>
+            <p>Rive, JavaScript</p>
+          </div>
+          <div class="project-meta-item">
+            <span class="label">Interaction</span>
+            <p>Hover and click to trigger states</p>
+          </div>
+        </div>
+
+        <div class="project-section reveal">
+          <h2>About This Piece</h2>
+          <p>
+            <!--
+            REPLACE THIS with your actual description.
+            What is this animation? What interactions does it support?
+            Why did you make it? What does it demonstrate about your skills?
+          -->
+            This interactive animation was built in Rive using state machines to
+            respond to user input in real time. Hovering triggers a transition
+            between idle and active states, while clicking advances through a
+            sequence of motion states. The piece demonstrates interactive motion
+            design — moving beyond passive animation into responsive,
+            user-driven experiences.
+          </p>
+          <p>
+            This kind of work sits at the intersection of motion graphics and
+            interaction design — exactly the space I want to operate in as a
+            creative technologist.
+          </p>
+        </div>
+
+        <!-- BACK LINK -->
+        <div
+          style="
+            padding-top: var(--space-lg);
+            border-top: 1px solid rgba(26, 27, 47, 0.08);
+          "
+        >
+          <a href="/projects.html" class="btn btn-outline"
+            >← Back to All Projects</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="container">
+        <p>© 2026 PJ Rodriguez</p>
+        <ul class="footer-links">
+          <li>
+            <a
+              href="https://linkedin.com/in/pjrdesign"
+              target="_blank"
+              rel="noopener"
+              >LinkedIn</a
+            >
+          </li>
+          <li><a href="mailto:pjrodriguezdesign@gmail.com">Email</a></li>
+        </ul>
+      </div>
+    </footer>
+
+    </main>
+    <script type="module" src="/src/js/main.js"></script>
+  </body>
+</html>

@@ -8,15 +8,10 @@
       name="description"
       content="PJ Rodriguez — illustrator and graphic designer based in the San Francisco Bay Area. IDEO Fellow. B.S. Interaction Design, Santa Monica College."
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Sono:wght,MONO@200..800,1&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/src/styles/main.css" />
   </head>
-  <body>
+  <body data-lang-toggle>
     <div class="project-card-cursor-label" id="cursor-label">View &#8594;</div>
 
     <!-- SVG Defs — wavy image clips + scute pattern -->
@@ -65,380 +60,176 @@
       </defs>
     </svg>
 
-    <!-- NAV -->
-    <nav class="nav" role="navigation" aria-label="Main navigation">
-      <div class="container">
-        <a href="/" class="nav-logo-zone" aria-label="PJ Rodriguez — home">
-          <span class="nav-logo-text">P.J.</span>
-        </a>
-        <button
-          class="nav-toggle"
-          aria-label="Toggle menu"
-          aria-expanded="false"
-        >
-          <span></span><span></span><span></span>
-        </button>
-        <ul class="nav-links">
-          <li><a href="/" data-i18n="nav.home">Home</a></li>
-          <li><a href="/work.html" data-i18n="nav.work">Work</a></li>
-          <li>
-            <a href="/work.html" data-i18n="nav.illustration">Illustration</a>
-          </li>
-          <li>
-            <a href="/about.html" class="active" data-i18n="nav.about">About</a>
-          </li>
-        </ul>
-        <div class="lang-toggle" role="group" aria-label="Language">
-          <button
-            class="lang-btn active"
-            data-lang="en"
-            aria-pressed="true"
-            lang="en"
-          >
-            EN
-          </button>
-          <button
-            class="lang-btn"
-            data-lang="pt"
-            aria-pressed="false"
-            lang="pt-BR"
-          >
-            PT
-          </button>
-          <button
-            class="lang-btn"
-            data-lang="es"
-            aria-pressed="false"
-            lang="es"
-          >
-            ES
-          </button>
-        </div>
-        <div class="nav-icon-links">
-          <a
-            href="https://linkedin.com/in/pjrdesign"
-            class="nav-icon-link"
-            target="_blank"
-            rel="noopener"
-            aria-label="LinkedIn"
-          >
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path
-                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
-              />
-            </svg>
-          </a>
-          <a
-            href="/assets/PJ-Rodriguez-Resume-2026.pdf"
-            class="nav-icon-link"
-            target="_blank"
-            rel="noopener"
-            aria-label="Resume PDF"
-          >
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path
-                d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"
-              />
-            </svg>
-          </a>
-        </div>
-      </div>
-    </nav>
-
-    <!-- ── PAGE HEADER ── -->
-    <section class="section about-page-header">
-      <div class="container">
-        <p class="label reveal">About</p>
-        <h1 class="reveal">
-          Illustrator and designer<br />
-          <em>from the Bay Area.</em>
-        </h1>
-      </div>
-    </section>
-
-    <!-- Scute divider -->
-    <svg
-      class="scute-divider"
-      width="100%"
-      height="16"
-      aria-hidden="true"
-      focusable="false"
-    >
-      <rect width="100%" height="16" fill="url(#scute-tile)" />
-    </svg>
-
-    <!-- ── BIO GRID ── -->
-    <section class="section">
-      <div class="container">
-        <div class="about-grid">
-          <!-- Photo column -->
-          <div class="about-photo-wrap">
-            <img
-              src="/assets/images/pj-headshot.jpg"
-              alt="PJ Rodriguez, designer and illustrator"
-              class="about-photo"
-              loading="eager"
-              width="600"
-              height="800"
-            />
-          </div>
-
-          <!-- Content column -->
-          <div class="about-content">
-            <p class="p-display reveal" data-i18n="about.bio">
-              Graphic designer and illustrator with a love for motion and
-              interactive work — using tools like After Effects, Rive, and GSAP
-              to make visuals that people actually engage with. Based in the Bay
-              Area, working across print, digital, and whatever's in between
-              since 2014.
-            </p>
-
-            <div class="about-details reveal">
-              <div class="project-meta-item">
-                <span class="label" data-i18n="about.meta.currently.label"
-                  >Currently</span
-                >
-                <p data-i18n="about.meta.currently.val">
-                  Open to full-time roles
-                </p>
-              </div>
-              <div class="project-meta-item">
-                <span class="label" data-i18n="about.meta.based.label"
-                  >Based in</span
-                >
-                <p data-i18n="about.meta.based.val">San Francisco Bay Area</p>
-              </div>
-              <div class="project-meta-item">
-                <span class="label" data-i18n="about.meta.edu.label"
-                  >Education</span
-                >
-                <p data-i18n="about.meta.edu.val">
-                  B.S. Interaction Design, Santa Monica College
-                </p>
-              </div>
-              <div class="project-meta-item">
-                <span class="label" data-i18n="about.meta.awards.label"
-                  >Languages</span
-                >
-                <p>
-                  <span lang="en">English<br />Portuguese<br />Spanish</span>
-                  <span lang="pt-BR" style="display: none"
-                    >Inglês<br />Português<br />Espanhol</span
-                  >
-                  <span lang="es-419" style="display: none"
-                    >Inglés<br />Portugués<br />Español</span
-                  >
-                </p>
-              </div>
-            </div>
-
-            <div class="hero-cta" style="margin-top: var(--space-lg)">
-              <a
-                href="/assets/PJ-Rodriguez-Resume-2026.pdf"
-                class="btn btn-primary"
-                target="_blank"
-                rel="noopener"
-                data-i18n="about.btn.resume"
-              >
-                Download Resume &#8594;
-              </a>
-              <a
-                href="/work.html"
-                class="btn btn-outline--dark"
-                data-i18n="about.btn.work"
-              >
-                View Work &#8594;
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Scute divider -->
-    <svg
-      class="scute-divider"
-      width="100%"
-      height="16"
-      aria-hidden="true"
-      focusable="false"
-    >
-      <rect width="100%" height="16" fill="url(#scute-tile)" />
-    </svg>
-
-    <!-- ── SKILLS ── -->
-    <section class="section section--mist">
-      <div class="container">
-        <p class="label reveal" data-i18n="about.skills.label">
-          Skills &amp; Tools
-        </p>
-        <h2
-          class="reveal"
-          style="margin-bottom: var(--space-lg)"
-          data-i18n="about.skills.heading"
-        >
-          What I bring
-        </h2>
-
-        <div class="skills-grid reveal">
-          <div class="skill-group">
-            <p
-              class="label"
-              style="margin-bottom: var(--space-sm)"
-              data-i18n="about.skills.design"
-            >
-              Design
-            </p>
-            <ul class="skill-list">
-              <li>Graphic Design</li>
-              <li>Illustration</li>
-              <li>Interaction Design</li>
-              <li>Motion Graphics</li>
-              <li>Print Production</li>
-              <li>Wayfinding &amp; Signage</li>
-            </ul>
-          </div>
-
-          <div class="skill-group">
-            <p
-              class="label"
-              style="margin-bottom: var(--space-sm)"
-              data-i18n="about.skills.tools"
-            >
-              Tools
-            </p>
-            <ul class="skill-list">
-              <li>Adobe Illustrator</li>
-              <li>Adobe InDesign</li>
-              <li>Adobe After Effects</li>
-              <li>Photoshop</li>
-              <li>Figma</li>
-              <li>Procreate</li>
-            </ul>
-          </div>
-
-          <div class="skill-group">
-            <p
-              class="label"
-              style="margin-bottom: var(--space-sm)"
-              data-i18n="about.skills.build"
-            >
-              Build
-            </p>
-            <ul class="skill-list">
-              <li>HTML / CSS / JavaScript</li>
-              <li>GSAP &amp; ScrollTrigger</li>
-              <li>Rive</li>
-              <li>Vite</li>
-              <li>React (fundamentals)</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Scute divider -->
-    <svg
-      class="scute-divider"
-      width="100%"
-      height="16"
-      aria-hidden="true"
-      focusable="false"
-      style="background: var(--mist)"
-    >
-      <rect width="100%" height="16" fill="url(#scute-tile)" />
-    </svg>
-
-    <!-- ── SELECTED EXPERIENCE ── -->
-    <section class="section">
-      <div class="container">
-        <p class="label reveal" data-i18n="about.exp.label">Experience</p>
-        <h2
-          class="reveal"
-          style="margin-bottom: var(--space-lg)"
-          data-i18n="about.exp.heading"
-        >
-          Selected work &amp; roles
-        </h2>
-
-        <div class="experience-list">
-          <div class="experience-item reveal">
-            <div class="experience-meta">
-              <span class="label">2023 – 2024</span>
-            </div>
-            <div class="experience-body">
-              <h4 data-i18n="about.exp.ideo.title">
-                IDEO Color by Design Fellowship
-              </h4>
-              <p data-i18n="about.exp.ideo.desc">
-                Designed a conversational AI appliance repair tool, an AR
-                experience for COP28, and bilingual Gen-AI workshop curriculum
-                for educators. Recognized for creative leadership and
-                multilingual design thinking.
-              </p>
-            </div>
-          </div>
-
-          <div class="experience-item reveal">
-            <div class="experience-meta">
-              <span class="label">2022</span>
-            </div>
-            <div class="experience-body">
-              <h4 data-i18n="about.exp.gg.title">
-                Grand Games — Grand Park, Los Angeles
-              </h4>
-              <p data-i18n="about.exp.gg.desc">
-                Led graphic design for a multilingual public signage system
-                installed across Grand Park for the 2022 World Cup viewing
-                events. Designed, printed, and physically installed. Campaign
-                reached thousands of visitors; Instagram content drove strong
-                organic engagement on Grand Park's official account.
-              </p>
-            </div>
-          </div>
-
-          <div class="experience-item reveal">
-            <div class="experience-meta">
-              <span class="label" data-i18n="about.exp.indie.date"
-                >2014 – Present</span
-              >
-            </div>
-            <div class="experience-body">
-              <h4 data-i18n="about.exp.indie.title">
-                Independent Design &amp; Illustration
-              </h4>
-              <p data-i18n="about.exp.indie.desc">
-                Illustration practice since 2014. Client and personal work
-                spanning editorial illustration, motion graphics, brand
-                identity, and interactive experiences.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FOOTER BOUNCE + FOOTER -->
-    <div class="footer-bounce" aria-hidden="true">
-      <svg
-        viewBox="0 0 2278 120"
-        preserveAspectRatio="none"
-        style="display: block; width: 100%; height: 120px"
-      >
-        <path
-          id="bouncy-path"
-          d="M0,0C0,0,464,0,1139,0s1139,0,1139,0V120H0V0z"
-          fill="#1e3025"
+    <button class="sidebar-toggle" aria-label="Toggle navigation">☰</button>
+    <aside class="sidebar">
+      <a href="/index.html?nav=1" class="sidebar-logo" aria-label="Home">
+        <img
+          src="/assets/images/logo-chasing_dragons-color.svg"
+          alt="Chasing Dragons — PJ Rodriguez"
+          width="80"
+          height="70"
         />
-      </svg>
-    </div>
+      </a>
+      <span class="sidebar-identity">
+        <span class="pj-initials">
+          <span class="pj-p">P</span><span class="pj-dot1">.</span><span class="pj-j">J</span><span class="pj-dot2">.</span><span class="pj-smile">(</span>
+        </span>
+        <span class="surname-block">
+          <span class="surname-row"><span>R</span><span>O</span><span>D</span></span>
+          <span class="surname-row"><span>R</span><span>I</span><span>G</span></span>
+          <span class="surname-row"><span>U</span><span>E</span><span>Z</span></span>
+        </span>
+      </span>
+      <nav class="sidebar-nav">
+        <a href="/index.html?nav=1" data-i18n="nav.work">Work</a>
+        <span class="sidebar-nav-soon"><span data-i18n="nav.craft">Craft</span> <em data-i18n="nav.soon">soon</em></span>
+        <a href="/about.html" data-i18n="nav.about">About</a>
+      </nav>
+      <div class="sidebar-footer">
 
-    <footer class="footer">
+        <div class="sidebar-lang">
+
+          <button class="lang-btn active" data-lang="en" aria-pressed="true" lang="en">EN</button>
+
+          <button class="lang-btn" data-lang="pt" aria-pressed="false" lang="pt-BR">PT</button>
+
+          <button class="lang-btn" data-lang="es" aria-pressed="false" lang="es">ES</button>
+
+        </div>
+
+      </div>
+    </aside>
+
+    <main class="main-content">
+
+    <section class="section about-compact">
+      <div class="container">
+        <div class="about-compact-grid">
+
+          <!-- Photo -->
+          <img
+            src="/assets/images/pj-headshot.jpg"
+            alt="PJ Rodriguez"
+            class="about-compact-photo"
+            loading="eager"
+            style="outline: 1.5px solid var(--forest); border-radius: 3px; aspect-ratio: 4 / 5; max-height: 320px;"
+          />
+
+          <!-- Text -->
+          <div>
+            <p class="reveal" data-i18n="about.bio.p1">
+              Born and raised in San Francisco, third generation. I came to
+              design through illustration, moved into graphic design, then
+              interaction design, and found at IDEO that motion brought it all
+              together into a single coherent practice.
+            </p>
+            <p class="reveal" data-i18n="about.bio.p2" style="margin-top: 0.8em;">
+              I've been in the freestyle dance scene since 2008, which has
+              shaped how I think about timing, rhythm, and what makes movement
+              feel right.
+            </p>
+            <p class="reveal" data-i18n="about.bio.p3" style="margin-top: 0.8em;">
+              My family has Yurok roots, from the Klamath River in Northern
+              California, and contributing to the tribe's language and culture
+              revitalization through interactive media is work I intend to do.
+            </p>
+
+            <p class="about-meta-row reveal">
+              <span class="about-pill" data-i18n="about.pill.sf" style="--pill-color: #4a8c6f;">Based in SF</span>
+              <span class="about-pill" data-i18n="about.pill.langs" style="--pill-color: #c4783a;">EN / PT / ES</span>
+              <span class="about-pill" data-i18n="about.pill.ideo" style="--pill-color: #7a5fa0;">IDEO Fellow</span>
+              <span class="about-pill" data-i18n="about.pill.dschool" style="--pill-color: #3a7ab8;">d.school Fellow</span>
+            </p>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <section class="section" style="padding-top: var(--space-md); padding-bottom: var(--space-xl);">
+      <div class="container">
+        <p class="label reveal" data-i18n="about.hobbies.label" style="margin-bottom: var(--space-sm);">When I'm not designing</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-sm);width:100%;align-items:start;">
+
+          <!-- DOING group -->
+          <div style="display:flex;flex-direction:column;gap:0;">
+            <div style="display:flex;flex-direction:row;gap:var(--space-sm);align-items:flex-start;justify-content:center;">
+              <div style="display:flex;flex-direction:column;gap:0.35em;">
+                <span data-i18n="about.hobbies.dancing" style="font-family:var(--font-body);font-size:0.62rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-light);">Dancing</span>
+                <video autoplay muted loop playsinline style="display:block;height:352px;width:auto;outline:2px solid var(--forest);border-radius:4px;flex-shrink:0;object-fit:cover;">
+                  <source src="/assets/videos/typeface-dance-brasil.mp4" type="video/mp4" />
+                </video>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:0.35em;">
+                <span data-i18n="about.hobbies.cubing" style="font-family:var(--font-body);font-size:0.62rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-light);">Speedcubing</span>
+                <video autoplay muted loop playsinline style="display:block;height:352px;width:auto;outline:2px solid var(--forest);border-radius:4px;flex-shrink:0;">
+                  <source src="/assets/videos/speedcubing.mp4" type="video/mp4" />
+                </video>
+              </div>
+            </div>
+          </div>
+
+          <!-- CONSUMING group -->
+          <div style="display:flex;flex-direction:column;gap:0;">
+            <div style="display:flex;flex-direction:row;gap:var(--space-sm);align-items:flex-start;justify-content:flex-start;">
+              <div style="display:flex;flex-direction:column;gap:0.35em;flex-shrink:0;">
+                <span data-i18n="about.hobbies.reading" style="font-family:var(--font-body);font-size:0.62rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-light);">Reading</span>
+                <img id="book-cover" src="" alt="" style="display:block;height:352px;width:auto;outline:2px solid var(--forest);border-radius:4px;flex-shrink:0;" />
+                <button onclick="(function(){var books=[{title:&quot;Solaris&quot;,author:&quot;Stanisław Lem&quot;,src:&quot;/assets/images/book-solaris.jpg&quot;},{title:&quot;S.&quot;,author:&quot;J.J. Abrams &amp; Doug Dorst&quot;,src:&quot;/assets/images/book-s.jpg&quot;},{title:&quot;Nineteen Ways of Looking at Consciousness&quot;,author:&quot;Patrick House&quot;,src:&quot;/assets/images/book-nineteen-ways.jpg&quot;},{title:&quot;El laberinto del fauno&quot;,author:&quot;Guillermo del Toro&quot;,src:&quot;/assets/images/book-laberinto.jpg&quot;},{title:&quot;Seja Foda&quot;,author:&quot;Caio Carneiro&quot;,src:&quot;/assets/images/book-seja-foda.jpg&quot;},{title:&quot;Orgullo Prieto&quot;,author:&quot;Tenoch Huerta&quot;,src:&quot;/assets/images/book-orgullo-prieto.jpg&quot;}];window._bookIdx=(window._bookIdx===undefined?0:(window._bookIdx+1)%books.length);document.getElementById('book-cover').src=books[window._bookIdx].src;})()" style="align-self:flex-end;background:none;border:1.5px solid var(--forest);border-radius:4px;font-family:var(--font-body);font-size:0.7rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--forest);cursor:pointer;padding:3px 10px;white-space:nowrap;"><span data-i18n="about.hobbies.nextbook">Next book</span></button>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:0.35em;flex:1;min-width:0;">
+                <span data-i18n="about.hobbies.listening" style="font-family:var(--font-body);font-size:0.62rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-light);">Listening</span>
+                <div id="podcast-tile" style="border-radius:4px;overflow:hidden;position:relative;height:352px;width:100%;flex:1;min-width:200px;">
+                  <iframe data-podcast-idx="0" src="https://open.spotify.com/embed/show/1mNsuXfG95Lf76YQeVMuo1?utm_source=generator&theme=0" width="100%" height="352" style="border:0;display:block;" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                  <iframe data-podcast-idx="1" src="https://open.spotify.com/embed/show/0J74zdNxUVWHq4gLoq8MqX?utm_source=generator&theme=0" width="100%" height="352" style="border:0;display:none;" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                  <iframe data-podcast-idx="2" src="https://open.spotify.com/embed/show/5FN1BLdgT0R4K8WhXOtcCx?utm_source=generator&theme=0" width="100%" height="352" style="border:0;display:none;" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                </div>
+                <button onclick="(function(){var tile=document.getElementById('podcast-tile');var frames=tile.querySelectorAll('iframe');var cur=Array.from(frames).findIndex(function(f){return f.style.display!=='none'});frames[cur].style.display='none';frames[(cur+1)%frames.length].style.display='block';})()" style="align-self:flex-end;background:none;border:1.5px solid var(--forest);border-radius:4px;font-family:var(--font-body);font-size:0.7rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--forest);cursor:pointer;padding:3px 10px;white-space:nowrap;"><span data-i18n="about.hobbies.podcast">Switch podcast</span></button>
+              </div>
+            </div>
+            <script>
+              (function() {
+                var books = [
+                  { title: "Solaris", author: "Stanisław Lem", src: "/assets/images/book-solaris.jpg" },
+                  { title: "S.", author: "J.J. Abrams & Doug Dorst", src: "/assets/images/book-s.jpg" },
+                  { title: "Nineteen Ways of Looking at Consciousness", author: "Patrick House", src: "/assets/images/book-nineteen-ways.jpg" },
+                  { title: "El laberinto del fauno", author: "Guillermo del Toro", src: "/assets/images/book-laberinto.jpg" },
+                  { title: "Seja Foda", author: "Caio Carneiro", src: "/assets/images/book-seja-foda.jpg" },
+                  { title: "Orgullo Prieto", author: "Tenoch Huerta", src: "/assets/images/book-orgullo-prieto.jpg" }
+                ];
+                window._bookIdx = 0;
+                var coverEl = document.getElementById('book-cover');
+                function show(i) { coverEl.src = books[i].src; }
+                show(0);
+              })();
+            </script>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-wave" aria-hidden="true">
+  <svg
+    viewBox="0 0 2278 30"
+    preserveAspectRatio="none"
+    style="display: block; width: 100%; height: 20px; overflow: visible;"
+  >
+    <path
+      id="bouncy-path"
+      d="M0,4 Q1139,4 2278,4"
+      fill="none"
+      stroke="#1e3025"
+      stroke-width="2"
+      stroke-linecap="round"
+    />
+  </svg>
+</div>
+<footer class="footer">
       <div class="container">
         <div class="footer-brand">
-          <p class="footer-name">PJ Rodriguez</p>
           <p class="footer-tagline" data-i18n="footer.tagline">
-            Illustration &middot; Design &middot; Bay Area
+            Illustration &middot; Design &middot; Motion
           </p>
           <p class="footer-location">
             San Francisco, CA &nbsp;&middot;&nbsp;
@@ -456,7 +247,7 @@
           </li>
           <li>
             <a
-              href="/cdn-cgi/l/email-protection#85ede0e9e9eac5f5eff7eae1f7ece2f0e0ffabe1e0f6ece2eb"
+              href="mailto:pjrodriguezdesign@gmail.com"
               >Email</a
             >
           </li>
@@ -465,15 +256,17 @@
               href="/assets/PJ-Rodriguez-Resume-2026.pdf"
               target="_blank"
               rel="noopener"
-              >Resume</a
+              ><span data-i18n="footer.resume">Resume</span></a
             >
           </li>
         </ul>
         <p class="footer-copy" data-i18n="footer.copy">
           &copy; 2026 Patrick Rodriguez
         </p>
+        <p class="footer-colophon" data-i18n-html="footer.colophon" style="grid-column:1/-1;font-family:var(--font-body);font-size:0.68rem;color:var(--text-light);letter-spacing:0.02em;margin-top:0.5em;line-height:1.8;"></p>
       </div>
     </footer>
+    </main>
     <script type="module" src="/src/js/main.js"></script>
   </body>
 </html>

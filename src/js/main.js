@@ -5,8 +5,50 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { MorphSVGPlugin } from "gsap/MorphSVGPlugin";
+import { CustomEase } from "gsap/CustomEase";
 
-gsap.registerPlugin(ScrollTrigger, MorphSVGPlugin);
+gsap.registerPlugin(ScrollTrigger, MorphSVGPlugin, CustomEase);
+
+const PJ_FACE = {
+  p: { rotation: 270, scaleX: 1.6, scaleY: 1.85, x: 30, y: 20 },
+  j: { scaleX: 1, scaleY: 1, x: 0, y: 0 },
+  dot1: { y: -50, x: 2 },
+  dot2: { y: -50, x: -12 },
+  smile: { rotation: -90, x: 92, y: 54, opacity: 1 },
+};
+
+// Sidebar runs at 2rem vs intro's 6rem — scale factor for px values
+const SIDEBAR_RATIO = 2 / 6;
+
+const PJ_FACE_SIDEBAR = {
+  p: {
+    rotation: 270,
+    scaleX: 1.5,
+    scaleY: 1.75,
+    x: 17,
+    y: 10,
+  },
+  j: {
+    scaleX: 1,
+    scaleY: 1.15,
+    x: PJ_FACE.j.x * SIDEBAR_RATIO,
+    y: PJ_FACE.j.y * SIDEBAR_RATIO,
+  },
+  dot1: {
+    y: -23,
+    x: 1,
+  },
+  dot2: {
+    y: -23,
+    x: -4,
+  },
+  smile: {
+    rotation: -90,
+    x: PJ_FACE.smile.x * SIDEBAR_RATIO,
+    y: PJ_FACE.smile.y * SIDEBAR_RATIO,
+    opacity: 1,
+  },
+};
 
 /* ============================================
    MOBILE NAV
@@ -141,6 +183,7 @@ function initHeroEntrance() {
     document.querySelector(".hero-info-block"),
     document.querySelector(".hero-cta"),
   ].filter(Boolean);
+  if (!els.length) return;
 
   gsap.fromTo(
     els,
@@ -281,7 +324,7 @@ function initHeroCursorGlow() {
   function splitTextEls() {
     hero
       .querySelectorAll(
-        ".hero-info-val, .hero-info-label, .hero-info-sep, .hero-disciplines",
+        ".hero-info-val, .hero-info-label, .hero-info-sep, .hero-disciplines, .hero-tagline-sub",
       )
       .forEach((el) => {
         if (el.dataset.split) return;
@@ -708,24 +751,37 @@ const TRANSLATIONS = {
     "nav.work": "Work",
     "nav.illustration": "Illustration",
     "nav.about": "About",
+    "nav.craft": "Craft",
+    "nav.soon": "soon",
     "nav.contact": "Contact",
-    "hero.status": "Available for work",
     "hero.tagline": "Interaction Design \u00B7 Motion \u00B7 Illustration",
+    "hero.tagline.sub":
+      "Third-generation San Franciscan with Yurok roots, an illustration background, and a practice in interaction design and motion.",
     "hero.bio":
       "Experience designer from the Bay Area \u2014 motion, interaction, and culture.",
     "hero.cta.work": "View My Work \u2192",
     "hero.cta.about": "About Me",
-    "hero.label.currently": "Currently",
-    "hero.val.currently": "Open to design roles",
-    "hero.label.previously": "Previously",
-    "hero.val.previously": "IDEO \u00B7 Zoox \u00B7 Grand Park LA",
-    "hero.label.building": "Building",
-    "hero.val.building": "Illustration \u00B7 Motion \u00B7 IxD",
+    "hero.location": "San Francisco, CA",
     "home.work.label": "Selected Work",
     "home.work.heading": "Selected Projects",
     "home.seeall": "All Projects \u2192",
-    "footer.tagline": "Illustration \u00B7 Design \u00B7 Bay Area",
+    "home.intro.p1": "PJ Rodriguez is an interaction designer, motion designer, and illustrator based in San Francisco.",
+    "home.intro.p2": "He is an <a href=\"https://ideo.com\" target=\"_blank\" rel=\"noopener\">IDEO Color by Design Fellow\u00A0\u2197<\/a> and a <a href=\"https://dschool.stanford.edu/programs/university-innovation-fellows\" target=\"_blank\" rel=\"noopener\">Stanford d.school University Innovation Fellow\u00A0\u2197<\/a>, with a B.S. in Interaction Design from Santa Monica College\u00A0\u2014 <a href=\"https://linkedin.com/in/pjrdesign\" target=\"_blank\" rel=\"noopener\">LinkedIn\u00A0\u2197<\/a>",
+    "footer.tagline": "Illustration \u00B7 Design \u00B7 Motion",
     "footer.copy": "\u00A9 2026 Patrick Rodriguez",
+    "footer.resume": "Resume",
+    "footer.colophon": "Built with Vite · Made with <span style=\"position:relative;display:inline-block;\"><span style=\"text-decoration:line-through;text-decoration-color:var(--sage-teal);\">blood</span><br><span style=\"font-size:0.85em;color:var(--sage-teal);position:absolute;left:0;top:100%;white-space:nowrap;\">caffeine</span></span> , <span style=\"position:relative;display:inline-block;\"><span style=\"text-decoration:line-through;text-decoration-color:var(--sage-teal);\">sweat</span><br><span style=\"font-size:0.85em;color:var(--sage-teal);position:absolute;left:0;top:100%;white-space:nowrap;\">caffeine</span></span> &amp; <span style=\"position:relative;display:inline-block;\"><span style=\"text-decoration:line-through;text-decoration-color:var(--sage-teal);\">tears</span><br><span style=\"font-size:0.85em;color:var(--sage-teal);position:absolute;left:0;top:100%;white-space:nowrap;\">vibes</span></span>",
+    "about.hobbies.label": "When I'm not designing",
+    "about.hobbies.dancing": "Dancing",
+    "about.hobbies.cubing": "Speedcubing",
+    "about.hobbies.reading": "Reading",
+    "about.hobbies.listening": "Listening",
+    "about.hobbies.nextbook": "Next book",
+    "about.hobbies.podcast": "Switch podcast",
+    "about.pill.sf": "Based in SF",
+    "about.pill.langs": "EN / PT / ES",
+    "about.pill.ideo": "IDEO Fellow",
+    "about.pill.dschool": "d.school Fellow",
     "projects.label": "Selected Work",
     "projects.heading": "All Projects",
     "proj.gg.title": "Grand Games",
@@ -749,22 +805,49 @@ const TRANSLATIONS = {
     "proj.genai.desc":
       "Bilingual EN/ES curriculum helping educators explore generative AI tools",
     "proj.genai.tags": "Education \u00B7 Bilingual \u00B7 IDEO \u00B7 2023",
-    "proj.samtrans.title": "SamTrans Timetable Redesign",
-    "proj.samtrans.desc":
-      "Grid-forward transit timetable spec \u2014 multilingual, print-ready",
-    "proj.samtrans.tags": "Transit Design \u00B7 Print \u00B7 Spec \u00B7 2026",
+    "proj.safehere.title": "SafeHere",
+    "proj.safehere.desc":
+      "A mobile app connecting Main Street businesses to safety ambassadors through discreet, real-time incident reporting.",
+    "proj.safehere.tags": "UX Research \u00B7 Interaction Design \u00B7 2020",
+    "proj.talklot.title": "TalkLot",
+    "proj.talklot.desc":
+      "A speech-first language learning app designed to reinforce spoken fluency through extensive oral production.",
+    "proj.talklot.tags":
+      "Interaction Design \u00B7 UX Research \u00B7 Solo \u00B7 2022",
+    "proj.musicbox.title": "Music Box",
+    "proj.musicbox.desc":
+      "A cardboard ambient sound device controlled by a physical enclosure, built with Arduino, Processing, and the Minim audio library.",
+    "proj.musicbox.tags":
+      "Interaction Design \u00B7 Physical Computing \u00B7 Motion \u00B7 Solo",
+    "proj.viagem.title": "ViaGem",
+    "proj.viagem.desc":
+      "A bilingual language-learning app connecting English and Portuguese speakers through travel, tutors, and consolidated tools.",
+    "proj.viagem.tags":
+      "UX Research \u00B7 Interaction Design \u00B7 Visual Design \u00B7 2020",
     "illus.label": "Illustration",
-    "about.heading": "Illustrator and designer\nfrom the Bay Area.",
+    "about.label": "About",
+    "about.page.heading": "Designer, Illustrator, Creative Technologist",
+    "about.heading":
+      "Illustrator and designer<br /><em>from the Bay Area.</em>",
+    "about.body":
+      "Designer and illustrator from the Bay Area — with a background in motion, interaction design, and cultural storytelling. IDEO Fellow. B.S. Interaction Design, Santa Monica College.",
+    "about.bio.p1":
+      "Born and raised in San Francisco, third generation. I came to design through illustration, moved into graphic design, then interaction design, and found at IDEO that motion design brought it all together into a single coherent practice.",
+    "about.bio.p2":
+      "I've been in the freestyle dance scene since 2008, which has shaped how I think about timing, rhythm, and what makes movement feel right.",
+    "about.bio.p3":
+      "My family has Yurok roots, from the Klamath River in Northern California, and contributing to the tribe's language and culture revitalization through interactive media is work I intend to do.",
     "about.bio":
       "Graphic designer and illustrator with a love for motion and interactive work — using tools like After Effects, Rive, and GSAP to make visuals that people actually engage with. Based in the Bay Area, working across print, digital, and whatever's in between since 2014.",
     "about.bio2":
       "IDEO Color by Design Fellow. Stanford d.school University Innovation Fellow. B.S. Interaction Design, Santa Monica College (3.93 GPA). English native, Portuguese\u2011BR advanced, Spanish\u2011LATAM advanced-intermediate.",
-    "about.meta.currently.label": "Currently",
-    "about.meta.currently.val": "Open to full-time roles",
     "about.meta.based.label": "Based in",
     "about.meta.based.val": "San Francisco Bay Area",
     "about.meta.edu.label": "Education",
-    "about.meta.edu.val": "B.S. Interaction Design, Santa Monica College",
+    "about.meta.edu.degree1": "B.S. Interaction Design",
+    "about.meta.edu.school1": "Santa Monica College",
+    "about.meta.edu.degree2": "A.A. Graphic Design",
+    "about.meta.edu.school2": "College of San Mateo",
     "about.meta.awards.label": "Languages",
     "about.meta.awards.val": "English<br />Portuguese<br />Spanish",
     "about.skills.label": "Skills & Tools",
@@ -801,25 +884,38 @@ const TRANSLATIONS = {
     "nav.work": "Projetos",
     "nav.illustration": "Ilustra\u00E7\u00E3o",
     "nav.about": "Sobre",
+    "nav.craft": "Arte",
+    "nav.soon": "em breve",
     "nav.contact": "Contato",
-    "hero.status": "Dispon\u00EDvel para projetos",
     "hero.tagline":
       "Design de Intera\u00E7\u00E3o \u00B7 Motion \u00B7 Ilustra\u00E7\u00E3o",
+    "hero.tagline.sub":
+      "Nativo de terceira gera\u00E7\u00E3o com ra\u00EDzes Yurok, forma\u00E7\u00E3o em ilustra\u00E7\u00E3o e uma pr\u00E1tica em design de intera\u00E7\u00E3o e motion.",
     "hero.bio":
       "Designer de experi\u00EAncias do Bay Area \u2014 movimento, intera\u00E7\u00E3o e cultura.",
     "hero.cta.work": "Ver meu trabalho \u2192",
     "hero.cta.about": "Sobre mim",
-    "hero.label.currently": "Atualmente",
-    "hero.val.currently": "Aberto a projetos de design",
-    "hero.label.previously": "Anteriormente",
-    "hero.val.previously": "IDEO \u00B7 Zoox \u00B7 Grand Park LA",
-    "hero.label.building": "Desenvolvendo",
-    "hero.val.building": "Ilustra\u00E7\u00E3o \u00B7 Motion \u00B7 IxD",
+    "hero.location": "São Francisco, CA",
     "home.work.label": "Trabalhos Selecionados",
     "home.work.heading": "Projetos em Destaque",
     "home.seeall": "Todos os projetos \u2192",
-    "footer.tagline": "Ilustra\u00E7\u00E3o \u00B7 Design \u00B7 Bay Area",
+    "home.intro.p1": "PJ Rodriguez \u00E9 designer de intera\u00E7\u00E3o, designer de motion e ilustrador baseado em S\u00E3o Francisco.",
+    "home.intro.p2": "\u00C9 fellow do <a href=\"https://ideo.com\" target=\"_blank\" rel=\"noopener\">IDEO Color by Design \u2197<\/a> e <a href=\"https://dschool.stanford.edu/programs/university-innovation-fellows\" target=\"_blank\" rel=\"noopener\">Stanford d.school University Innovation Fellow \u2197<\/a>, com bacharelado em Interaction Design pela Santa Monica College \u2014 <a href=\"https://linkedin.com/in/pjrdesign\" target=\"_blank\" rel=\"noopener\">LinkedIn \u2197<\/a>",
+    "footer.tagline": "Ilustra\u00E7\u00E3o \u00B7 Design \u00B7 Motion",
     "footer.copy": "\u00A9 2026 Patrick Rodriguez",
+    "footer.resume": "Curr\u00EDculo",
+    "footer.colophon": "Built with Vite · Feito com <span style=\"position:relative;display:inline-block;\"><span style=\"text-decoration:line-through;text-decoration-color:var(--sage-teal);\">sangue</span><br><span style=\"font-size:0.85em;color:var(--sage-teal);position:absolute;left:0;top:100%;white-space:nowrap;\">café</span></span> , <span style=\"position:relative;display:inline-block;\"><span style=\"text-decoration:line-through;text-decoration-color:var(--sage-teal);\">suor</span><br><span style=\"font-size:0.85em;color:var(--sage-teal);position:absolute;left:0;top:100%;white-space:nowrap;\">café</span></span> &amp; <span style=\"position:relative;display:inline-block;\"><span style=\"text-decoration:line-through;text-decoration-color:var(--sage-teal);\">lágrimas</span><br><span style=\"font-size:0.85em;color:var(--sage-teal);position:absolute;left:0;top:100%;white-space:nowrap;\">vibes</span></span>",
+    "about.hobbies.label": "Quando n\u00E3o estou desenhando",
+    "about.hobbies.dancing": "Dan\u00E7a",
+    "about.hobbies.cubing": "Speedcubing",
+    "about.hobbies.reading": "Leitura",
+    "about.hobbies.listening": "Escutando",
+    "about.hobbies.nextbook": "Pr\u00F3ximo livro",
+    "about.hobbies.podcast": "Outro podcast",
+    "about.pill.sf": "Baseado em SF",
+    "about.pill.langs": "EN / PT / ES",
+    "about.pill.ideo": "IDEO Fellow",
+    "about.pill.dschool": "d.school Fellow",
     "projects.label": "Trabalhos Selecionados",
     "projects.heading": "Todos os Projetos",
     "proj.gg.title": "Grand Games",
@@ -845,23 +941,49 @@ const TRANSLATIONS = {
       "Curr\u00EDculo biling\u00FCe EN/ES para educadores explorarem ferramentas de IA generativa",
     "proj.genai.tags":
       "Educa\u00E7\u00E3o \u00B7 Biling\u00FCe \u00B7 IDEO \u00B7 2023",
-    "proj.samtrans.title": "Redesign de Tabela SamTrans",
-    "proj.samtrans.desc":
-      "Tabela de hor\u00E1rios de transporte com grid moderno \u2014 multil\u00EDngue, pronta para impress\u00E3o",
-    "proj.samtrans.tags":
-      "Design de Transporte \u00B7 Impress\u00E3o \u00B7 Spec \u00B7 2026",
+    "proj.safehere.title": "SafeHere",
+    "proj.safehere.desc":
+      "Um app m\u00F3vel conectando empresas da Main Street a embaixadores de seguran\u00E7a por meio de relat\u00F3rios discretos em tempo real.",
+    "proj.safehere.tags":
+      "Pesquisa UX \u00B7 Design de Intera\u00E7\u00E3o \u00B7 2020",
+    "proj.talklot.title": "TalkLot",
+    "proj.talklot.desc":
+      "Um app de aprendizado de idiomas com foco na fala, projetado para refor\u00E7ar a flu\u00EAncia oral por meio de produ\u00E7\u00E3o oral extensiva.",
+    "proj.talklot.tags":
+      "Design de Intera\u00E7\u00E3o \u00B7 Pesquisa UX \u00B7 Solo \u00B7 2022",
+    "proj.musicbox.title": "Console de Som Ambiente",
+    "proj.musicbox.desc":
+      "Um dispositivo de som ambiente em papel\u00E3o controlado por uma caixa f\u00EDsica, constru\u00EDdo com Arduino, Processing e a biblioteca de \u00E1udio Minim.",
+    "proj.musicbox.tags":
+      "Design de Intera\u00E7\u00E3o \u00B7 Computa\u00E7\u00E3o F\u00EDsica \u00B7 Motion \u00B7 Solo",
+    "proj.viagem.title": "ViaGem",
+    "proj.viagem.desc":
+      "Um app bil\u00EDngue de aprendizado de idiomas conectando falantes de ingl\u00EAs e portugu\u00EAs atrav\u00E9s de viagens, tutores e ferramentas consolidadas.",
+    "proj.viagem.tags":
+      "Pesquisa UX \u00B7 Design de Intera\u00E7\u00E3o \u00B7 Design Visual \u00B7 2020",
     "illus.label": "Ilustra\u00E7\u00E3o",
-    "about.heading": "Ilustrador e designer\ndo Bay Area.",
+    "about.label": "Sobre",
+    "about.page.heading": "Designer, Ilustrador, Tecn\u00F3logo Criativo",
+    "about.heading": "Ilustrador e designer<br /><em>do Bay Area.</em>",
+    "about.body":
+      "Designer e ilustrador da \u00C1rea da Ba\u00EDa \u2014 com experi\u00EAncia em motion, design de intera\u00E7\u00E3o e narrativa cultural. Fellow IDEO. B.S. Interaction Design, Santa Monica College.",
+    "about.bio.p1":
+      "Nascido e criado em San Francisco, terceira gera\u00E7\u00E3o. Cheguei ao design atrav\u00E9s da ilustra\u00E7\u00E3o, passei para o design gr\u00E1fico, depois para o design de intera\u00E7\u00E3o, e descobri no IDEO que o motion design uniu tudo em uma pr\u00E1tica coerente.",
+    "about.bio.p2":
+      "Estou na cena do freestyle dance desde 2008, o que moldou como penso sobre tempo, ritmo e o que faz o movimento parecer certo.",
+    "about.bio.p3":
+      "Minha fam\u00EDlia tem ra\u00EDzes Yurok, no Rio Klamath no norte da Calif\u00F3rnia, e contribuir para a revitaliza\u00E7\u00E3o da l\u00EDngua e cultura da tribo atrav\u00E9s de m\u00EDdia interativa \u00E9 um trabalho que pretendo fazer.",
     "about.bio":
       "Designer gr\u00E1fico e ilustrador com paix\u00E3o por motion e trabalho interativo — usando ferramentas como After Effects, Rive e GSAP para criar visuais que as pessoas realmente curtem. Baseado no Bay Area, trabalhando em print, digital e o que vier desde 2014.",
     "about.bio2":
       "Fellow IDEO Color by Design e Stanford d.school University Innovation Fellow. Bacharelado em Interaction Design, Santa Monica College (GPA 3,93). Ingl\u00EAs nativo, portugu\u00EAs avan\u00E7ado, espanhol intermedi\u00E1rio avan\u00E7ado.",
-    "about.meta.currently.label": "Atualmente",
-    "about.meta.currently.val": "Aberto a vagas de tempo integral",
     "about.meta.based.label": "Localiza\u00E7\u00E3o",
     "about.meta.based.val": "Bay Area, Calif\u00F3rnia",
     "about.meta.edu.label": "Forma\u00E7\u00E3o",
-    "about.meta.edu.val": "B.S. Interaction Design, Santa Monica College",
+    "about.meta.edu.degree1": "B.S. Design de Intera\u00E7\u00E3o",
+    "about.meta.edu.school1": "Santa Monica College",
+    "about.meta.edu.degree2": "A.A. Design Gr\u00E1fico",
+    "about.meta.edu.school2": "College of San Mateo",
     "about.meta.awards.label": "Idiomas",
     "about.meta.awards.val": "Ingl\u00EAs<br />Portugu\u00EAs<br />Espanhol",
     "about.skills.label": "Habilidades e Ferramentas",
@@ -898,25 +1020,38 @@ const TRANSLATIONS = {
     "nav.work": "Proyectos",
     "nav.illustration": "Ilustraci\u00F3n",
     "nav.about": "Sobre m\u00ED",
+    "nav.craft": "Arte",
+    "nav.soon": "en breve",
     "nav.contact": "Contacto",
-    "hero.status": "Disponible para proyectos",
     "hero.tagline":
       "Dise\u00F1o de Interacci\u00F3n \u00B7 Motion \u00B7 Ilustraci\u00F3n",
+    "hero.tagline.sub":
+      "Nativo de tercera generaci\u00F3n con ra\u00EDces Yurok, formaci\u00F3n en ilustraci\u00F3n y una pr\u00E1ctica en dise\u00F1o de interacci\u00F3n y motion.",
     "hero.bio":
       "Dise\u00F1ador de experiencias del Bay Area \u2014 movimiento, interacci\u00F3n y cultura.",
     "hero.cta.work": "Ver mi trabajo \u2192",
     "hero.cta.about": "Sobre m\u00ED",
-    "hero.label.currently": "Actualmente",
-    "hero.val.currently": "Abierto a roles de dise\u00F1o",
-    "hero.label.previously": "Antes",
-    "hero.val.previously": "IDEO \u00B7 Zoox \u00B7 Grand Park LA",
-    "hero.label.building": "Desarrollando",
-    "hero.val.building": "Ilustraci\u00F3n \u00B7 Motion \u00B7 IxD",
+    "hero.location": "San Francisco, CA",
     "home.work.label": "Trabajo Seleccionado",
     "home.work.heading": "Proyectos Destacados",
     "home.seeall": "Todos los proyectos \u2192",
-    "footer.tagline": "Ilustraci\u00F3n \u00B7 Dise\u00F1o \u00B7 Bay Area",
+    "home.intro.p1": "PJ Rodriguez es dise\u00F1ador de interacci\u00F3n, dise\u00F1ador de motion e ilustrador con base en San Francisco.",
+    "home.intro.p2": "Es fellow de <a href=\"https://ideo.com\" target=\"_blank\" rel=\"noopener\">IDEO Color by Design \u2197<\/a> y <a href=\"https://dschool.stanford.edu/programs/university-innovation-fellows\" target=\"_blank\" rel=\"noopener\">Stanford d.school University Innovation Fellow \u2197<\/a>, con licenciatura en Interaction Design en Santa Monica College \u2014 <a href=\"https://linkedin.com/in/pjrdesign\" target=\"_blank\" rel=\"noopener\">LinkedIn \u2197<\/a>",
+    "footer.tagline": "Ilustraci\u00F3n \u00B7 Dise\u00F1o \u00B7 Motion",
     "footer.copy": "\u00A9 2026 Patrick Rodriguez",
+    "footer.resume": "Curr\u00EDculum",
+    "footer.colophon": "Built with Vite · Hecho con <span style=\"position:relative;display:inline-block;\"><span style=\"text-decoration:line-through;text-decoration-color:var(--sage-teal);\">sangre</span><br><span style=\"font-size:0.85em;color:var(--sage-teal);position:absolute;left:0;top:100%;white-space:nowrap;\">café</span></span> , <span style=\"position:relative;display:inline-block;\"><span style=\"text-decoration:line-through;text-decoration-color:var(--sage-teal);\">sudor</span><br><span style=\"font-size:0.85em;color:var(--sage-teal);position:absolute;left:0;top:100%;white-space:nowrap;\">café</span></span> &amp; <span style=\"position:relative;display:inline-block;\"><span style=\"text-decoration:line-through;text-decoration-color:var(--sage-teal);\">lágrimas</span><br><span style=\"font-size:0.85em;color:var(--sage-teal);position:absolute;left:0;top:100%;white-space:nowrap;\">vibes</span></span>",
+    "about.hobbies.label": "Cuando no estoy dise\u00F1ando",
+    "about.hobbies.dancing": "Baile",
+    "about.hobbies.cubing": "Speedcubing",
+    "about.hobbies.reading": "Lectura",
+    "about.hobbies.listening": "Escuchando",
+    "about.hobbies.nextbook": "Siguiente libro",
+    "about.hobbies.podcast": "Cambiar podcast",
+    "about.pill.sf": "Con base en SF",
+    "about.pill.langs": "EN / PT / ES",
+    "about.pill.ideo": "IDEO Fellow",
+    "about.pill.dschool": "d.school Fellow",
     "projects.label": "Trabajo Seleccionado",
     "projects.heading": "Todos los Proyectos",
     "proj.gg.title": "Grand Games",
@@ -943,23 +1078,50 @@ const TRANSLATIONS = {
       "Curr\u00EDculo biling\u00FCe EN/ES para que educadores exploren herramientas de IA generativa",
     "proj.genai.tags":
       "Educaci\u00F3n \u00B7 Biling\u00FCe \u00B7 IDEO \u00B7 2023",
-    "proj.samtrans.title": "Redise\u00F1o de Horario SamTrans",
-    "proj.samtrans.desc":
-      "Horario de transporte con grid moderno \u2014 multiling\u00FCe, listo para impresi\u00F3n",
-    "proj.samtrans.tags":
-      "Dise\u00F1o de Transporte \u00B7 Impresi\u00F3n \u00B7 Spec \u00B7 2026",
+    "proj.safehere.title": "SafeHere",
+    "proj.safehere.desc":
+      "Una app m\u00F3vil que conecta negocios de Main Street con embajadores de seguridad mediante reportes discretos en tiempo real.",
+    "proj.safehere.tags":
+      "Investigaci\u00F3n UX \u00B7 Dise\u00F1o de Interacci\u00F3n \u00B7 2020",
+    "proj.talklot.title": "TalkLot",
+    "proj.talklot.desc":
+      "Una app de aprendizaje de idiomas con \u00E9nfasis en el habla, dise\u00F1ada para reforzar la fluidez oral mediante una producci\u00F3n oral extensiva.",
+    "proj.talklot.tags":
+      "Dise\u00F1o de Interacci\u00F3n \u00B7 Investigaci\u00F3n UX \u00B7 Solo \u00B7 2022",
+    "proj.musicbox.title": "Consola de Sonido Ambiente",
+    "proj.musicbox.desc":
+      "Un dispositivo de sonido ambiente en cart\u00F3n controlado por una caja f\u00EDsica, construido con Arduino, Processing y la biblioteca de audio Minim.",
+    "proj.musicbox.tags":
+      "Dise\u00F1o de Interacci\u00F3n \u00B7 Computaci\u00F3n F\u00EDsica \u00B7 Motion \u00B7 Solo",
+    "proj.viagem.title": "ViaGem",
+    "proj.viagem.desc":
+      "Una app biling\u00FCe de aprendizaje de idiomas que conecta hablantes de ingl\u00E9s y portugu\u00E9s a trav\u00E9s de viajes, tutores y herramientas consolidadas.",
+    "proj.viagem.tags":
+      "Investigaci\u00F3n UX \u00B7 Dise\u00F1o de Interacci\u00F3n \u00B7 Dise\u00F1o Visual \u00B7 2020",
     "illus.label": "Ilustraci\u00F3n",
-    "about.heading": "Ilustrador y dise\u00F1ador\ndel Bay Area.",
+    "about.label": "Sobre m\u00ED",
+    "about.page.heading": "Dise\u00F1ador, Ilustrador, Tecn\u00F3logo Creativo",
+    "about.heading":
+      "Ilustrador y dise\u00F1ador<br /><em>del \u00C1rea de la Bah\u00EDa.</em>",
+    "about.body":
+      "Dise\u00F1ador e ilustrador del \u00C1rea de la Bah\u00EDa \u2014 con experiencia en motion, dise\u00F1o de interacci\u00F3n y narrativa cultural. Fellow de IDEO. B.S. Interaction Design, Santa Monica College.",
+    "about.bio.p1":
+      "Nacido y criado en San Francisco, tercera generaci\u00F3n. Llegu\u00E9 al dise\u00F1o a trav\u00E9s de la ilustraci\u00F3n, pas\u00E9 al dise\u00F1o gr\u00E1fico, luego al dise\u00F1o de interacci\u00F3n, y descubr\u00ED en IDEO que el motion design lo uni\u00F3 todo en una pr\u00E1ctica coherente.",
+    "about.bio.p2":
+      "Llevo en la escena del freestyle dance desde 2008, lo que ha moldeado c\u00F3mo pienso sobre el tiempo, el ritmo y lo que hace que el movimiento se sienta bien.",
+    "about.bio.p3":
+      "Mi familia tiene ra\u00EDces Yurok, del R\u00EDo Klamath en el norte de California, y contribuir a la revitalizaci\u00F3n de la lengua y cultura de la tribu a trav\u00E9s de medios interactivos es un trabajo que planeo hacer.",
     "about.bio":
       "Dise\u00F1ador gr\u00E1fico e ilustrador con pasi\u00F3n por el motion y el trabajo interactivo — usando herramientas como After Effects, Rive y GSAP para crear visuales con los que la gente realmente conecta. Basado en el Bay Area, trabajando en print, digital y lo que surja desde 2014.",
     "about.bio2":
       "Fellow IDEO Color by Design y Stanford d.school University Innovation Fellow. Licenciatura en Interaction Design, Santa Monica College (promedio 3.93). Ingl\u00E9s nativo, portugu\u00E9s avanzado, espa\u00F1ol intermedio avanzado.",
-    "about.meta.currently.label": "Actualmente",
-    "about.meta.currently.val": "Abierto a roles de tiempo completo",
     "about.meta.based.label": "Ubicaci\u00F3n",
     "about.meta.based.val": "Bay Area, California",
     "about.meta.edu.label": "Educaci\u00F3n",
-    "about.meta.edu.val": "B.S. Interaction Design, Santa Monica College",
+    "about.meta.edu.degree1": "B.S. Dise\u00F1o de Interacci\u00F3n",
+    "about.meta.edu.school1": "Santa Monica College",
+    "about.meta.edu.degree2": "A.A. Dise\u00F1o Gr\u00E1fico",
+    "about.meta.edu.school2": "College of San Mateo",
     "about.meta.awards.label": "Idiomas",
     "about.meta.awards.val":
       "Ingl\u00E9s<br />Portugu\u00E9s<br />Espa\u00F1ol",
@@ -1040,6 +1202,12 @@ function applyLang(lang) {
 }
 
 function initI18n() {
+  const enabled = document.body.hasAttribute("data-lang-toggle");
+  if (!enabled) {
+    document.querySelector(".lang-toggle, .sidebar-lang")?.classList.add("lang-toggle--disabled");
+    applyLang("en");
+    return;
+  }
   const saved = localStorage.getItem("pj-lang") || "en";
   applyLang(saved);
   document.querySelectorAll(".lang-btn").forEach((btn) => {
@@ -1097,36 +1265,125 @@ function initFooterBounce() {
   const bouncyPath = document.querySelector("#bouncy-path");
   if (!bouncyPath) return;
 
-  const flat = "M0,0C0,0,464,0,1139,0s1139,0,1139,0V120H0V0z";
+  const flat = "M0,4 Q1139,4 2278,4";
 
   function buildPath(intensity) {
-    return (
-      "M0,0C0,0,464," +
-      intensity +
-      ",1139," +
-      intensity +
-      "S2278,0,2278,0V120H0V0z"
-    );
+    return "M0,4 Q1139," + (4 + intensity) + " 2278,4";
   }
 
   function triggerBounce(rawVelocity) {
     const vel = Math.max(Math.abs(rawVelocity || 0), 600);
-    const droop = 40 + (Math.min(vel, 4000) / 4000) * 70;
+    const droop = 14 + (Math.min(vel, 4000) / 4000) * 30;
     gsap
       .timeline({ overwrite: true })
-      .set(bouncyPath, { morphSVG: buildPath(droop) })
+      .set(bouncyPath, { attr: { d: buildPath(droop) } })
       .to(bouncyPath, {
-        morphSVG: flat,
+        attr: { d: flat },
         duration: 3.5,
         ease: "elastic.out(1.2, 0.25)",
       });
   }
 
   ScrollTrigger.create({
-    trigger: ".footer-bounce",
+    trigger: ".footer-wave",
     start: "top bottom",
     onEnter: (self) => triggerBounce(self.getVelocity()),
     onEnterBack: (self) => triggerBounce(self.getVelocity()),
+  });
+}
+
+function initSectionWave() {
+  const path = document.querySelector("#section-wave-path");
+  if (!path) return;
+
+  const flat = "M0,4 Q1139,4 2278,4";
+
+  function buildPath(intensity) {
+    return "M0,4 Q1139," + (4 + intensity) + " 2278,4";
+  }
+
+  function triggerBounce(rawVelocity) {
+    const vel = Math.max(Math.abs(rawVelocity || 0), 600);
+    const droop = 14 + (Math.min(vel, 4000) / 4000) * 30;
+    gsap
+      .timeline({ overwrite: true })
+      .set(path, { attr: { d: buildPath(droop) } })
+      .to(path, {
+        attr: { d: flat },
+        duration: 3.5,
+        ease: "elastic.out(1.2, 0.25)",
+      });
+  }
+
+  ScrollTrigger.create({
+    trigger: ".section-wave",
+    start: "top bottom",
+    onEnter: (self) => triggerBounce(self.getVelocity()),
+    onEnterBack: (self) => triggerBounce(self.getVelocity()),
+  });
+}
+
+/* ============================================
+   IMAGE MAGNIFY CURSOR
+   ============================================ */
+function initImageMagnify() {
+  const targets = document.querySelectorAll("img[data-magnify]");
+  if (!targets.length) return;
+
+  const ZOOM = 2.4;
+  const LENS_SIZE = 200;
+
+  const lens = document.createElement("div");
+  lens.style.cssText = [
+    "position:fixed",
+    `width:${LENS_SIZE}px`,
+    `height:${LENS_SIZE}px`,
+    "border-radius:50%",
+    "overflow:hidden",
+    "pointer-events:none",
+    "z-index:9999",
+    "display:none",
+    "border:2px solid var(--forest,#1e3025)",
+    "box-shadow:0 4px 24px rgba(0,0,0,0.22)",
+    "background:#f2efe9",
+  ].join(";");
+  document.body.appendChild(lens);
+
+  const lensImg = document.createElement("img");
+  lensImg.style.cssText = "position:absolute;top:0;left:0;transform-origin:top left;pointer-events:none;max-width:none;";
+  lens.appendChild(lensImg);
+
+  let activeTarget = null;
+
+  function moveLens(e) {
+    if (!activeTarget) return;
+    const rect = activeTarget.getBoundingClientRect();
+    const relX = (e.clientX - rect.left) / rect.width;
+    const relY = (e.clientY - rect.top) / rect.height;
+    const scaledW = rect.width * ZOOM;
+    const scaledH = rect.height * ZOOM;
+    const offX = -(relX * scaledW - LENS_SIZE / 2);
+    const offY = -(relY * scaledH - LENS_SIZE / 2);
+    lensImg.style.width = scaledW + "px";
+    lensImg.style.height = scaledH + "px";
+    lensImg.style.transform = `translate(${offX}px,${offY}px)`;
+    lens.style.left = (e.clientX - LENS_SIZE / 2) + "px";
+    lens.style.top = (e.clientY - LENS_SIZE / 2) + "px";
+  }
+
+  targets.forEach((img) => {
+    img.style.cursor = "none";
+    img.addEventListener("mouseenter", () => {
+      activeTarget = img;
+      lensImg.src = img.currentSrc || img.src;
+      lens.style.display = "block";
+    });
+    img.addEventListener("mousemove", moveLens);
+    img.addEventListener("mouseleave", () => {
+      activeTarget = null;
+      lens.style.display = "none";
+      lensImg.src = "";
+    });
   });
 }
 
@@ -1224,15 +1481,123 @@ function initHeroNoise() {
 }
 
 /* ============================================
+   SPEX PAGE ANIMATIONS
+   ============================================ */
+function initSpexAnimations() {
+  if (!window.location.pathname.includes("project-spex")) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  const statNums = document.querySelectorAll(".stat-num");
+  if (statNums.length) {
+    ScrollTrigger.create({
+      trigger: statNums[0],
+      start: "top 85%",
+      once: true,
+      onEnter: () => {
+        statNums.forEach((el) => {
+          const target = parseInt(el.dataset.target, 10);
+          const obj = { val: 0 };
+          gsap.to(obj, {
+            val: target,
+            duration: 2,
+            ease: "power3.inOut",
+            onUpdate: () => {
+              el.innerText = Math.round(obj.val);
+            },
+          });
+        });
+      },
+    });
+  }
+
+  const protoSection = document.querySelector(".proto-gallery");
+  if (protoSection) {
+    const figures = protoSection.querySelectorAll(".media-figure");
+    gsap.from(figures, {
+      scrollTrigger: {
+        trigger: protoSection,
+        start: "top 85%",
+        once: true,
+      },
+      opacity: 0,
+      y: 30,
+      scale: 1.04,
+      duration: 0.8,
+      ease: "power3.out",
+      stagger: 0.25,
+    });
+  }
+
+  const storyImg = document.querySelector(".storyboard-figure img");
+  if (storyImg) {
+    gsap.fromTo(
+      storyImg,
+      { scale: 1.06 },
+      {
+        scale: 1,
+        ease: "none",
+        scrollTrigger: {
+          trigger: storyImg,
+          start: "top 90%",
+          end: "bottom 10%",
+          scrub: 1.5,
+        },
+      },
+    );
+  }
+}
+
+/* ============================================
+   GRAND GAMES PAGE ANIMATIONS
+   ============================================ */
+function initGrandGamesAnimations() {
+  if (!window.location.pathname.includes("project-grand-games")) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  document.querySelectorAll(".project-image-grid").forEach((grid) => {
+    const children = Array.from(grid.children);
+    if (!children.length) return;
+    gsap.fromTo(
+      children,
+      { opacity: 0, y: 40 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.7,
+        ease: "power2.out",
+        stagger: 0.12,
+        scrollTrigger: {
+          trigger: grid,
+          start: "top 80%",
+          toggleActions: "play none none none",
+        },
+      },
+    );
+  });
+}
+
+/* ============================================
    INIT
    ============================================ */
 document.addEventListener("DOMContentLoaded", () => {
+  if (!document.getElementById("pj-intro")) {
+    document.body.classList.add("skip-intro", "intro-done");
+  }
+  const skipIntro = new URLSearchParams(window.location.search).has("nav");
+  if (skipIntro) {
+    const intro = document.getElementById("pj-intro");
+    if (intro) intro.remove();
+    document.body.classList.add("skip-intro", "intro-done");
+  } else {
+    initIntroAnimation();
+  }
   initMobileNav();
   setActiveNav();
   initHeroLetters();
   initKlamathWave();
   initHeroEntrance();
-  const goo = initHeroCursorGlow();
+  // Disabled pending homepage restructure
+  // const goo = initHeroCursorGlow();
   initHeroTime();
   initHeroNoise();
   initScrollReveals();
@@ -1240,10 +1605,254 @@ document.addEventListener("DOMContentLoaded", () => {
   initSeeMore();
   initI18n();
   setTimeout(() => {
-    if (goo) goo.splitAndColor();
+    // if (goo) goo.splitAndColor();
   }, 250);
   initParallax();
   initRiveEmbeds();
   initFooterTime();
   initFooterBounce();
+  initSectionWave();
+  initImageMagnify();
+  initSpexAnimations();
+  initGrandGamesAnimations();
+
+  /* ============================================
+     CUSTOM CURSOR DOT
+     ============================================ */
+  const cursorDot = document.createElement("div");
+  cursorDot.className = "cursor-dot";
+  document.body.appendChild(cursorDot);
+
+  if (window.matchMedia("(min-width: 768px)").matches) {
+    const setX = gsap.quickSetter(cursorDot, "x", "px");
+    const setY = gsap.quickSetter(cursorDot, "y", "px");
+
+    window.addEventListener("mousemove", (e) => {
+      const half = cursorDot.offsetWidth / 2;
+      setX(e.clientX - half);
+      setY(e.clientY - half);
+    });
+
+    document.querySelectorAll("a, button, [role='button'], .work-item-thumb").forEach((el) => {
+      el.addEventListener("mouseenter", () => cursorDot.classList.add("cursor-hover"));
+      el.addEventListener("mouseleave", () => cursorDot.classList.remove("cursor-hover"));
+    });
+  } else {
+    cursorDot.style.display = "none";
+  }
+});
+
+/* ============================================
+   SIDEBAR MOBILE TOGGLE
+   ============================================ */
+const sidebarToggle = document.querySelector(".sidebar-toggle");
+const sidebar = document.querySelector(".sidebar");
+if (sidebarToggle && sidebar) {
+  sidebarToggle.addEventListener("click", () => {
+    sidebar.classList.toggle("sidebar-open");
+  });
+  document.addEventListener("click", (e) => {
+    if (!sidebar.contains(e.target) && !sidebarToggle.contains(e.target)) {
+      sidebar.classList.remove("sidebar-open");
+    }
+  });
+}
+
+
+/* ============================================
+   PJ INTRO ANIMATION — homepage only
+   ============================================ */
+function initIntroAnimation() {
+  const intro = document.getElementById("pj-intro");
+  if (intro) {
+    document.body.style.overflow = "hidden";
+    const mainContent = document.querySelector(".main-content");
+    if (mainContent) mainContent.style.pointerEvents = "none";
+
+    const p = intro.querySelector(".pj-p");
+    const dot1 = intro.querySelector(".pj-dot1");
+    const dot2 = intro.querySelector(".pj-dot2");
+    const j = intro.querySelector(".pj-j");
+    const smile = intro.querySelector(".pj-smile");
+
+    gsap.set(p, { ...PJ_FACE.p, transformOrigin: "top left" });
+    gsap.set(j, { ...PJ_FACE.j, transformOrigin: "bottom center" });
+    gsap.set(dot1, PJ_FACE.dot1);
+    gsap.set(dot2, PJ_FACE.dot2);
+    gsap.set(smile, { ...PJ_FACE.smile, transformOrigin: "center center" });
+
+    const face = intro.querySelector(".pj-face");
+
+    // Pre-calculate target before any animation runs
+    const targetEl = document.querySelector(".pj-initials");
+
+    const tl = gsap.timeline({
+      delay: 0.6,
+      onStart: () => {
+        const faceRect = face.getBoundingClientRect();
+        const pEl = document.querySelector(".sidebar-identity .pj-p");
+        const dot2El = document.querySelector(".sidebar-identity .pj-dot2");
+        const pRect = pEl.getBoundingClientRect();
+        const dot2Rect = dot2El.getBoundingClientRect();
+        const targetCenterX = (pRect.left + dot2Rect.right) / 2;
+        const targetCenterY = pRect.top + pRect.height / 2;
+        tl._flick = {
+          dx: targetCenterX - (faceRect.left + faceRect.width / 2),
+          dy: targetCenterY - (faceRect.top + faceRect.height / 2),
+          ds: pRect.height / faceRect.height,
+        };
+      },
+    });
+
+    tl.to({}, { duration: 0.5 })
+      .to(face, { scale: 0.82, duration: 0.45, ease: "power3.out" })
+      .to(face, { scale: 1, duration: 0.85, ease: "expo.in" })
+      .to(smile, { opacity: 0, duration: 1.2, ease: "power1.in" }, "<0.15")
+      .to(dot1, { y: 0, x: 0, duration: 0.5, ease: "power2.in" }, "<0.5")
+      .to(dot2, { y: 0, x: 0, duration: 0.5, ease: "power2.in" }, "<0")
+      .to(
+        p,
+        {
+          rotation: 0,
+          scaleX: 1,
+          scaleY: 1,
+          x: 0,
+          y: 0,
+          transformOrigin: "top left",
+          duration: 0.73,
+          ease: "power3.in",
+        },
+        "-=.8",
+      )
+      .to(
+        j,
+        {
+          scaleX: 1,
+          scaleY: 1,
+          x: 0,
+          y: 0,
+          transformOrigin: "baseline",
+          duration: 0.75,
+          ease: "power3.inOut",
+        },
+        "<0",
+      )
+      .add("flick")
+      .to(
+        face,
+        {
+          x: () => (tl._flick.dx < 0 ? 16 : -16),
+          y: () => (tl._flick.dy < 0 ? 10 : -10),
+          duration: 0.5,
+          ease: "linear.in",
+        },
+        "flick-=0.1",
+      )
+      .to(face, {
+        x: () => tl._flick.dx,
+        y: () => tl._flick.dy,
+        scale: () => tl._flick.ds,
+        transformOrigin: "center center",
+        duration: 1.4,
+        ease: "power3.out",
+      })
+      .call(() => {
+        document.body.classList.add("intro-done");
+      })
+      .to(
+        intro,
+        {
+          autoAlpha: 0,
+          duration: 0.15,
+          onComplete: () => {
+            intro.remove();
+            document.body.style.overflow = "";
+            document.body.style.pointerEvents = "";
+            if (mainContent) mainContent.style.pointerEvents = "";
+          },
+        },
+        "+=0.15",
+      );
+  }
+}
+
+/* ============================================
+   SIDEBAR IDENTITY HOVER
+   ============================================ */
+function initSidebarHover() {
+  const sidebarId = document.querySelector(".sidebar-identity");
+  if (!sidebarId) return;
+
+  const p = sidebarId.querySelector(".pj-p");
+  if (!p) return;
+  const dot1 = sidebarId.querySelector(".pj-dot1");
+  const dot2 = sidebarId.querySelector(".pj-dot2");
+  const j = sidebarId.querySelector(".pj-j");
+  const smile = sidebarId.querySelector(".pj-smile");
+
+  // Ensure smile starts hidden and pre-rotated
+  gsap.set(smile, {
+    rotation: -90,
+    opacity: 0,
+    transformOrigin: "center center",
+  });
+
+  let hoverTl = null;
+  let leaveTimeout = null;
+
+  sidebarId.querySelector(".pj-initials").addEventListener("mouseenter", () => {
+    if (leaveTimeout) {
+      clearTimeout(leaveTimeout);
+      leaveTimeout = null;
+    }
+    if (hoverTl) hoverTl.kill();
+    hoverTl = gsap.timeline();
+    hoverTl
+      .to(p, {
+        ...PJ_FACE_SIDEBAR.p,
+        transformOrigin: "top left",
+        duration: 0.7,
+        ease: "power2.inOut",
+      })
+      .to(
+        dot1,
+        { ...PJ_FACE_SIDEBAR.dot1, duration: 0.35, ease: "power2.out" },
+        0.1,
+      )
+      .to(
+        dot2,
+        { ...PJ_FACE_SIDEBAR.dot2, duration: 0.35, ease: "power2.out" },
+        0.14,
+      )
+      .to(smile, { opacity: 1, duration: 0.2, ease: "power1.in" }, 0.5);
+  });
+
+  sidebarId.querySelector(".pj-initials").addEventListener("mouseleave", () => {
+    leaveTimeout = setTimeout(() => {
+      if (hoverTl) hoverTl.kill();
+      hoverTl = gsap.timeline();
+      hoverTl
+        .to(smile, { opacity: 0, duration: 0.2, ease: "power1.in" })
+        .to(dot1, { y: 0, x: 0, duration: 0.35, ease: "power2.in" }, "-=0.1")
+        .to(dot2, { y: 0, x: 0, duration: 0.35, ease: "power2.in" }, "-=0.35")
+        .to(
+          p,
+          {
+            rotation: 0,
+            scaleX: 1,
+            scaleY: 1,
+            x: 0,
+            y: 0,
+            transformOrigin: "top left",
+            duration: 0.7,
+            ease: "power2.inOut",
+          },
+          "-=0.2",
+        );
+    }, 250);
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  initSidebarHover();
 });

@@ -1,0 +1,1109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ViaGem — PJ Rodriguez</title>
+    <meta
+      name="description"
+      content="ViaGem: A bilingual language-learning app connecting English and Portuguese speakers through travel, tutors, and consolidated learning tools. UX research, interaction design, and visual design by PJ Rodriguez."
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Sono:wght,MONO@200..800,1&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/src/styles/main.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+    <style>
+      .case-hero {
+        width: 100%;
+        height: 70vh;
+        margin-top: 4.75rem;
+        overflow: hidden;
+        position: relative;
+        display: flex;
+        align-items: flex-end;
+      }
+      .case-hero-overlay {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        padding: var(--space-md) var(--space-lg);
+        background: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.52) 0%,
+          transparent 100%
+        );
+        color: #fff;
+      }
+      .case-hero-label {
+        font-family: var(--font-body);
+        font-size: 0.72rem;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        opacity: 0.82;
+        display: block;
+        margin-bottom: 0.4em;
+      }
+      .case-hero-title {
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        font-weight: 600;
+        margin: 0;
+        color: #fff;
+        line-height: 1.1;
+      }
+      .case-caption {
+        font-family: var(--font-body);
+        font-size: 0.72rem;
+        color: var(--text-light);
+        margin-top: 0.5em;
+        letter-spacing: 0.02em;
+        line-height: 1.4;
+      }
+      .media-figure {
+        display: flex;
+        flex-direction: column;
+      }
+      .media-figure img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      .media-duo {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-sm);
+        margin-top: var(--space-md);
+      }
+      .media-trio {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-sm);
+        margin-top: var(--space-md);
+      }
+      .media-full {
+        margin-top: var(--space-md);
+        width: 100%;
+      }
+      .media-full img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      .back-link-wrap {
+        padding-top: var(--space-lg);
+        border-top: 1px solid rgba(30, 48, 37, 0.08);
+        margin-top: var(--space-xl);
+      }
+      .back-link {
+        font-family: var(--font-body);
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--sage-teal);
+        transition: color 0.2s;
+        text-decoration: none;
+      }
+      .back-link:hover {
+        color: var(--forest);
+      }
+      /* Stat block */
+      .viagem-stats {
+        display: flex;
+        justify-content: center;
+        gap: var(--space-lg);
+        margin-top: var(--space-md);
+        flex-wrap: wrap;
+      }
+      .viagem-stat {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .viagem-stat .stat-num {
+        font-family: var(--font-display);
+        font-size: 3rem;
+        color: var(--forest);
+        font-weight: 700;
+        line-height: 1;
+      }
+      .stat-label {
+        font-family: var(--font-body);
+        font-size: 0.8rem;
+        color: var(--text-light);
+        margin-top: 0.3em;
+      }
+      /* Chart */
+      .viagem-chart-wrap {
+        max-width: 480px;
+        margin: var(--space-md) auto 0;
+        text-align: center;
+      }
+      .viagem-chart-title {
+        font-family: var(--font-body);
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--text-light);
+        margin-bottom: 0.75em;
+      }
+      .viagem-chart-legend {
+        display: flex;
+        flex-direction: column;
+        gap: 0.35em;
+        margin-top: var(--space-sm);
+        text-align: left;
+        max-width: 340px;
+        margin-inline: auto;
+      }
+      .viagem-chart-legend-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5em;
+        font-family: var(--font-body);
+        font-size: 0.78rem;
+        color: var(--text-mid);
+      }
+      .viagem-chart-legend-swatch {
+        width: 11px;
+        height: 11px;
+        border-radius: 2px;
+        flex-shrink: 0;
+      }
+      /* Competitive analysis */
+      .viagem-comp-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-sm);
+        margin-top: var(--space-md);
+      }
+      .viagem-comp-col {
+        background: rgba(74, 140, 111, 0.06);
+        border-radius: 8px;
+        padding: var(--space-md);
+      }
+      .viagem-comp-logo {
+        height: 36px;
+        width: auto;
+        display: block;
+        object-fit: contain;
+        margin-bottom: 0.6em;
+      }
+      .viagem-comp-name {
+        font-family: var(--font-display);
+        font-weight: 600;
+        font-size: 1rem;
+        color: var(--forest);
+        margin-bottom: var(--space-sm);
+      }
+      .viagem-comp-heading {
+        font-family: var(--font-body);
+        font-size: 0.68rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 0.4em;
+      }
+      .viagem-comp-heading--pros { color: var(--forest); }
+      .viagem-comp-heading--cons { color: var(--text-light); margin-top: 0.75em; }
+      .viagem-comp-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .viagem-comp-list li {
+        font-family: var(--font-body);
+        font-size: 0.8rem;
+        color: var(--text-mid);
+        padding: 0.18em 0;
+        line-height: 1.4;
+      }
+      /* Results stat */
+      .viagem-result-stat {
+        text-align: center;
+        margin: var(--space-md) 0;
+      }
+      .viagem-result-stat .stat-num {
+        font-family: var(--font-display);
+        font-size: clamp(3.5rem, 9vw, 6rem);
+        font-weight: 700;
+        color: var(--forest);
+        line-height: 1;
+        display: inline;
+      }
+      .viagem-result-stat .viagem-pct {
+        font-family: var(--font-display);
+        font-size: clamp(2.5rem, 6vw, 4rem);
+        font-weight: 700;
+        color: var(--forest);
+        line-height: 1;
+      }
+      .viagem-result-label {
+        font-family: var(--font-body);
+        font-size: 1rem;
+        color: var(--text-mid);
+        margin-top: 0.5em;
+      }
+      .viagem-personas {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-lg);
+        margin-top: var(--space-md);
+      }
+      .viagem-persona {
+        border: 1px solid rgba(30, 48, 37, 0.08);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      .viagem-persona-header {
+        background: rgba(74, 140, 111, 0.08);
+        padding: var(--space-md);
+        display: flex;
+        align-items: center;
+        gap: var(--space-lg);
+      }
+      .viagem-persona-avatar {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        object-fit: cover;
+        flex-shrink: 0;
+      }
+      .viagem-persona-name {
+        font-family: var(--font-display);
+        font-size: var(--step-1);
+        color: var(--forest);
+        margin: 0 0 0.2em 0;
+      }
+      .viagem-persona-type {
+        font-family: var(--font-body);
+        font-size: 0.8rem;
+        color: var(--text-light);
+        letter-spacing: 0.03em;
+      }
+      .viagem-persona-body {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-lg);
+        padding: var(--space-md);
+      }
+      .viagem-persona-label {
+        font-family: var(--font-body);
+        font-size: 0.72rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--sage-teal);
+        margin: var(--space-sm) 0 0.4em 0;
+      }
+      .viagem-persona-label:first-child {
+        margin-top: 0;
+      }
+      .viagem-persona ul {
+        margin: 0 0 var(--space-sm) 0;
+        padding-left: 1.2em;
+      }
+      .viagem-persona li {
+        font-family: var(--font-body);
+        font-size: 0.875rem;
+        color: var(--text);
+        line-height: 1.6;
+      }
+      .project-section p {
+        text-indent: 1.5em;
+      }
+      @media (max-width: 767px) {
+        .viagem-personas-compact { grid-template-columns: 1fr; }
+      }
+      @media (max-width: 640px) {
+        .case-hero {
+          height: 50vh;
+          margin-top: 4rem;
+        }
+        .case-hero-overlay {
+          padding: var(--space-sm) var(--space-md);
+        }
+        .media-duo,
+        .media-trio,
+        .viagem-comp-grid {
+          grid-template-columns: 1fr;
+        }
+        .viagem-stats {
+          gap: var(--space-lg);
+        }
+        .viagem-persona-body {
+          grid-template-columns: 1fr;
+        }
+        .viagem-persona-header {
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="project-card-cursor-label" id="cursor-label">View &#8594;</div>
+
+    <svg
+      width="0"
+      height="0"
+      style="position: absolute; overflow: hidden"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <defs>
+        <clipPath id="wave-gentle" clipPathUnits="objectBoundingBox">
+          <path
+            d="M0,0.04 C0.1,0 0.2,0.02 0.3,0.04 C0.4,0.06 0.5,0.02 0.6,0.04 C0.7,0.06 0.8,0.02 0.9,0.04 C0.95,0.05 1,0.04 1,0.04 L1,0.96 C0.9,1 0.8,0.98 0.7,0.96 C0.6,0.94 0.5,0.98 0.4,0.96 C0.3,0.94 0.2,0.98 0.1,0.96 C0.05,0.95 0,0.96 0,0.96 Z"
+          />
+        </clipPath>
+        <pattern
+          id="scute-tile"
+          x="0"
+          y="0"
+          width="20"
+          height="16"
+          patternUnits="userSpaceOnUse"
+        >
+          <polygon
+            points="3,8 10,2 17,8"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1"
+            stroke-linejoin="round"
+          />
+          <polygon
+            points="3,8 10,14 17,8"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1"
+            stroke-linejoin="round"
+          />
+        </pattern>
+      </defs>
+    </svg>
+
+    <button class="sidebar-toggle" aria-label="Toggle navigation">☰</button>
+    <aside class="sidebar">
+      <a href="/index.html?nav=1" class="sidebar-logo" aria-label="Home">
+        <img
+          src="/assets/images/logo-chasing_dragons-color.svg"
+          alt="Chasing Dragons — PJ Rodriguez"
+          width="80"
+          height="70"
+        />
+      </a>
+      <span class="sidebar-identity">
+        <span class="pj-initials">
+          <span class="pj-p">P</span><span class="pj-dot1">.</span><span class="pj-j">J</span><span class="pj-dot2">.</span><span class="pj-smile">(</span>
+        </span>
+        <span class="surname-block">
+          <span class="surname-row"><span>R</span><span>O</span><span>D</span></span>
+          <span class="surname-row"><span>R</span><span>I</span><span>G</span></span>
+          <span class="surname-row"><span>U</span><span>E</span><span>Z</span></span>
+        </span>
+      </span>
+      <nav class="sidebar-nav">
+        <a href="/index.html?nav=1" data-i18n="nav.work">Work</a>
+        <span class="sidebar-nav-soon"><span data-i18n="nav.craft">Craft</span> <em data-i18n="nav.soon">soon</em></span>
+        <a href="/about.html" data-i18n="nav.about">About</a>
+      </nav>
+      <div class="sidebar-footer">
+
+        <div class="sidebar-lang">
+
+          <button class="lang-btn active" data-lang="en" aria-pressed="true" lang="en">EN</button>
+
+          <button class="lang-btn" data-lang="pt" aria-pressed="false" lang="pt-BR">PT</button>
+
+          <button class="lang-btn" data-lang="es" aria-pressed="false" lang="es">ES</button>
+
+        </div>
+
+      </div>
+    </aside>
+
+    <main class="main-content">
+
+    <!-- HERO -->
+    <div class="case-hero">
+      <img
+        src="/assets/images/viagem-cover-composite.webp"
+        alt="ViaGem app — language learning through travel"
+        style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;"
+      />
+    </div>
+
+    <!-- ALL CONTENT -->
+    <section class="section" style="padding-top: var(--space-lg)">
+      <div class="container">
+
+        <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-sm);">
+          <img
+            src="/assets/images/viagem-app-icon.webp"
+            alt="ViaGem app icon"
+            style="width: 64px; height: 64px; border-radius: 16px; display: block; flex-shrink: 0;"
+          />
+          <h1 style="font-family:var(--font-display);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;color:var(--forest);margin:0;">ViaGem</h1>
+        </div>
+
+        <!-- METADATA STRIP -->
+        <p class="project-meta-pills">
+          <span class="about-pill" style="--pill-color: var(--sage-teal);">UX Research · Interaction Design · Visual Design</span>
+          <span class="about-pill" style="--pill-color: #7a5fa0;">Adobe XD · Illustrator</span>
+          <span class="about-pill" style="--pill-color: var(--forest);">Solo</span>
+          <span class="about-pill" style="--pill-color: var(--ochre);">Spring 2020</span>
+        </p>
+
+        <div class="section-wave" aria-hidden="true">
+          <svg
+            viewBox="0 0 2278 30"
+            preserveAspectRatio="none"
+            style="display: block; width: 100%; height: 20px; overflow: visible;"
+          >
+            <path
+              id="section-wave-path"
+              d="M0,4 Q1139,4 2278,4"
+              fill="none"
+              stroke="var(--forest)"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </svg>
+        </div>
+
+        <!-- THE PROBLEM -->
+        <div class="project-section reveal">
+          <h2>The Problem</h2>
+          <p>
+            Language-learning apps are abundant, but the resources that teach
+            Brazilian Portuguese to English speakers are far outnumbered by
+            Spanish-learning equivalents. Learners who do find resources face a
+            second problem: the tools are scattered. Podcasts live in one app,
+            flashcards in another, grammar references somewhere else entirely.
+            The fragmentation makes the process feel harder than the language
+            itself.
+          </p>
+          <p>
+            My own experience made this concrete. In 2019 I traveled to Brazil
+            on a Skyline College study abroad trip for Cultural Anthropology.
+            The vocabulary I had learned in formal courses was largely useless
+            in the field. I needed something faster, more contextual, and all
+            in one place.
+          </p>
+          <p>
+            The design question: how might one app let learners practice, find native-speaker connections, and access the tools they actually use — without switching contexts?
+          </p>
+        </div>
+
+        <!-- RESEARCH -->
+        <div class="project-section reveal">
+          <h2>Research</h2>
+          <div class="viagem-stats">
+            <div class="viagem-stat">
+              <span class="stat-num" data-target="15">15</span>
+              <span class="stat-label">Interviews</span>
+            </div>
+            <div class="viagem-stat">
+              <span class="stat-num" data-target="3">3</span>
+              <span class="stat-label">Competitors analyzed</span>
+            </div>
+            <div class="viagem-stat">
+              <span class="stat-num" data-target="27">27</span>
+              <span class="stat-label">Survey responses</span>
+            </div>
+          </div>
+          <p style="margin-top: var(--space-md)">
+            To understand what language learners actually needed, I conducted
+            interviews with fifteen people: contacts made during the 2019 Brazil
+            trip, Brazilian drivers I worked with at Uber who came in for app
+            assistance, and English speakers learning Portuguese from the Bay
+            Area and Southern California. I ran surveys to compare the
+            experience of the three learner types I kept encountering:
+            Lusophones (Portuguese speakers learning English), Anglophones
+            (English speakers learning Portuguese), and Hispanophones (Spanish
+            speakers navigating the overlap between Spanish and Portuguese). I
+            also analyzed three dominant apps — Duolingo, Google Translate, and
+            Anki — to understand what users loved, what frustrated them, and
+            what was missing entirely.
+          </p>
+          <p style="margin-top: 1em">
+            The strongest finding from interviews: difficulty understanding
+            native speakers was the most common pain point, cited by 40% of
+            participants. The least common issue was lack of access to native
+            speakers — meaning people knew connections existed but couldn't
+            organize the experience around them. Sixty percent of learners
+            wanted to learn specifically to travel and explore other cultures.
+            Among Brazilian participants, 92% said they wanted to travel abroad
+            and identified English competency as the barrier.
+          </p>
+
+          <!-- CHART -->
+          <div class="viagem-chart-wrap">
+            <p class="viagem-chart-title">Difficulties Learning a New Language</p>
+            <canvas id="viagem-chart" width="480" height="320" aria-label="Doughnut chart: difficulties learning a new language" role="img"></canvas>
+            <div class="viagem-chart-legend" aria-hidden="true">
+              <div class="viagem-chart-legend-item">
+                <span class="viagem-chart-legend-swatch" style="background:#4A8C6F"></span>
+                Cannot understand native speakers — 40%
+              </div>
+              <div class="viagem-chart-legend-item">
+                <span class="viagem-chart-legend-swatch" style="background:#7BC4A0"></span>
+                Afraid to make mistakes — 37%
+              </div>
+              <div class="viagem-chart-legend-item">
+                <span class="viagem-chart-legend-swatch" style="background:#A8D5BE"></span>
+                Can't find interesting content — 20%
+              </div>
+              <div class="viagem-chart-legend-item">
+                <span class="viagem-chart-legend-swatch" style="background:#C5E8D4"></span>
+                Motivation loss — 10%
+              </div>
+              <div class="viagem-chart-legend-item">
+                <span class="viagem-chart-legend-swatch" style="background:#D4EDE3"></span>
+                No access to native speakers — 3%
+              </div>
+            </div>
+          </div>
+
+          <p style="margin-top: var(--space-md);">
+            The competitive analysis focused on three apps that came up repeatedly in interviews: Duolingo, Google Translate, and Anki. The goal was not to benchmark features abstractly but to understand what the existing market had already proven people wanted — and where it consistently fell short. Duolingo was the most cited, chosen for its status as the most-downloaded language app and its range of teaching methods. Google Translate and Anki represented the two other dominant patterns: instant lookup and spaced repetition.
+          </p>
+
+          <!-- COMPETITIVE ANALYSIS -->
+          <div class="viagem-comp-grid">
+            <div class="viagem-comp-col">
+              <img
+                class="viagem-comp-logo"
+                src="/assets/images/viagem-logo-duolingo.svg"
+                alt="Duolingo"
+                loading="lazy"
+              />
+              <p class="viagem-comp-name">Duolingo</p>
+              <p class="viagem-comp-heading viagem-comp-heading--pros">Pros</p>
+              <ul class="viagem-comp-list">
+                <li>Gamified and engaging</li>
+                <li>Free tier, widely available</li>
+                <li>Structured lesson paths</li>
+              </ul>
+              <p class="viagem-comp-heading viagem-comp-heading--cons">Cons</p>
+              <ul class="viagem-comp-list">
+                <li>Brazilian Portuguese underdeveloped</li>
+                <li>No real conversation practice</li>
+                <li>Repetitive drills lose context</li>
+              </ul>
+            </div>
+            <div class="viagem-comp-col">
+              <img
+                class="viagem-comp-logo"
+                src="/assets/images/viagem-logo-googletranslate.webp"
+                alt="Google Translate"
+                loading="lazy"
+              />
+              <p class="viagem-comp-name">Google Translate</p>
+              <p class="viagem-comp-heading viagem-comp-heading--pros">Pros</p>
+              <ul class="viagem-comp-list">
+                <li>Instant, always-available translation</li>
+                <li>Voice input and camera modes</li>
+                <li>Works offline</li>
+              </ul>
+              <p class="viagem-comp-heading viagem-comp-heading--cons">Cons</p>
+              <ul class="viagem-comp-list">
+                <li>No learning scaffolding</li>
+                <li>No retention or review tools</li>
+                <li>Context-free output</li>
+              </ul>
+            </div>
+            <div class="viagem-comp-col">
+              <img
+                class="viagem-comp-logo"
+                src="/assets/images/viagem-logo-anki.webp"
+                alt="Anki"
+                loading="lazy"
+              />
+              <p class="viagem-comp-name">Anki</p>
+              <p class="viagem-comp-heading viagem-comp-heading--pros">Pros</p>
+              <ul class="viagem-comp-list">
+                <li>Powerful spaced repetition</li>
+                <li>Highly customizable</li>
+                <li>Large community deck library</li>
+              </ul>
+              <p class="viagem-comp-heading viagem-comp-heading--cons">Cons</p>
+              <ul class="viagem-comp-list">
+                <li>Steep learning curve</li>
+                <li>No built-in content</li>
+                <li>No social or conversation features</li>
+              </ul>
+            </div>
+          </div>
+
+          <p class="case-caption" style="margin-top: 0.5em;">Apps mentioned by interviewees — analyzed for feature gaps, user reviews, and teaching patterns.</p>
+
+          <p style="margin-top: var(--space-md);">
+            Three learner archetypes emerged consistently across interviews and surveys. Rather than collapsing them into a single persona, I kept them distinct — the goals and frustrations of a Lusophone learning English are meaningfully different from those of an Anglophone learning Portuguese or a Hispanophone navigating the overlap between Spanish and Brazilian Portuguese.
+          </p>
+
+          <!-- PERSONAS -->
+          <div class="viagem-personas-compact" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-sm); margin-top: var(--space-md);">
+
+            <div style="border: 1px solid rgba(30,48,37,0.12); border-radius: 8px; padding: var(--space-md); background: rgba(74,140,111,0.04);">
+              <div style="display: flex; align-items: center; gap: 0.75em; margin-bottom: var(--space-sm);">
+                <img src="/assets/images/viagem-persona-everton.png" alt="Everton Silva" style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover; flex-shrink: 0;" />
+                <div>
+                  <p style="font-family: var(--font-display); font-weight: 600; font-size: 1rem; color: var(--forest); margin-bottom: 0.1em;">Everton Silva</p>
+                  <p style="font-size: 0.72rem; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.06em;">Lusophone — Learning English</p>
+                </div>
+              </div>
+              <p style="font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--sage-teal); margin-bottom: 0.4em;">Goals</p>
+              <ul style="padding-left: 1.1em; margin-bottom: var(--space-sm);">
+                <li style="font-size: 0.82rem; color: var(--text-mid); line-height: 1.5;">Talk to customers at work</li>
+                <li style="font-size: 0.82rem; color: var(--text-mid); line-height: 1.5;">Travel to the U.S.</li>
+              </ul>
+              <p style="font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-light); margin-bottom: 0.4em;">Pain Points</p>
+              <ul style="padding-left: 1.1em; margin: 0;">
+                <li style="font-size: 0.82rem; color: var(--text-mid); line-height: 1.5;">Can't organize books, podcasts, and resources</li>
+                <li style="font-size: 0.82rem; color: var(--text-mid); line-height: 1.5;">Gets bored easily when studying</li>
+              </ul>
+            </div>
+
+            <div style="border: 1px solid rgba(30,48,37,0.12); border-radius: 8px; padding: var(--space-md); background: rgba(74,140,111,0.04);">
+              <div style="display: flex; align-items: center; gap: 0.75em; margin-bottom: var(--space-sm);">
+                <img src="/assets/images/viagem-persona-jackie.png" alt="Jackie Wagner" style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover; flex-shrink: 0;" />
+                <div>
+                  <p style="font-family: var(--font-display); font-weight: 600; font-size: 1rem; color: var(--forest); margin-bottom: 0.1em;">Jackie Wagner</p>
+                  <p style="font-size: 0.72rem; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.06em;">Anglophone — Learning Portuguese</p>
+                </div>
+              </div>
+              <p style="font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--sage-teal); margin-bottom: 0.4em;">Goals</p>
+              <ul style="padding-left: 1.1em; margin-bottom: var(--space-sm);">
+                <li style="font-size: 0.82rem; color: var(--text-mid); line-height: 1.5;">Teach English in Brazil</li>
+                <li style="font-size: 0.82rem; color: var(--text-mid); line-height: 1.5;">Travel to Rio</li>
+              </ul>
+              <p style="font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-light); margin-bottom: 0.4em;">Pain Points</p>
+              <ul style="padding-left: 1.1em; margin: 0;">
+                <li style="font-size: 0.82rem; color: var(--text-mid); line-height: 1.5;">Doesn't know where to start</li>
+                <li style="font-size: 0.82rem; color: var(--text-mid); line-height: 1.5;">Can't find interesting Portuguese content</li>
+              </ul>
+            </div>
+
+            <div style="border: 1px solid rgba(30,48,37,0.12); border-radius: 8px; padding: var(--space-md); background: rgba(74,140,111,0.04);">
+              <div style="display: flex; align-items: center; gap: 0.75em; margin-bottom: var(--space-sm);">
+                <img src="/assets/images/viagem-persona-john.png" alt="John Guzman" style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover; flex-shrink: 0;" />
+                <div>
+                  <p style="font-family: var(--font-display); font-weight: 600; font-size: 1rem; color: var(--forest); margin-bottom: 0.1em;">John Guzman</p>
+                  <p style="font-size: 0.72rem; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.06em;">Hispanophone — Learning Portuguese</p>
+                </div>
+              </div>
+              <p style="font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--sage-teal); margin-bottom: 0.4em;">Goals</p>
+              <ul style="padding-left: 1.1em; margin-bottom: var(--space-sm);">
+                <li style="font-size: 0.82rem; color: var(--text-mid); line-height: 1.5;">Guide study abroad students</li>
+                <li style="font-size: 0.82rem; color: var(--text-mid); line-height: 1.5;">Grow side business in São Paulo</li>
+              </ul>
+              <p style="font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-light); margin-bottom: 0.4em;">Pain Points</p>
+              <ul style="padding-left: 1.1em; margin: 0;">
+                <li style="font-size: 0.82rem; color: var(--text-mid); line-height: 1.5;">Mixes Spanish into Portuguese without realizing it</li>
+                <li style="font-size: 0.82rem; color: var(--text-mid); line-height: 1.5;">Apps feel too complicated</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- IDEATION -->
+        <div class="project-section reveal">
+          <h2>Ideation</h2>
+          <p>
+            The research told me who I was designing for, what they needed, and
+            why. The design process moved through four stages: sketch, user
+            flow, wireframe, UI.
+          </p>
+          <p>
+            I started with paper sketches to establish the main screen's visual
+            hierarchy — how much information to show at once, where navigation
+            should live, how columns and rows could be swiped in multiple
+            directions to keep the surface clean. The constraint I held
+            throughout: no more than five options visible on any screen at a
+            time.
+          </p>
+          <div style="max-width: 480px; margin-inline: auto; margin-top: var(--space-md);">
+            <figure class="media-figure">
+              <img
+                src="/assets/images/viagem-sketch-photo.jpg"
+                alt="Initial skeleton sketches establishing the main screen hierarchy"
+                loading="lazy"
+                style="outline: 1.5px solid var(--forest); border-radius: 3px; display: block; width: 100%; height: auto;"
+              />
+              <figcaption class="case-caption">Initial skeleton sketches establishing the main screen hierarchy.</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <!-- USER FLOW -->
+        <div class="project-section reveal">
+          <h2>User Flow</h2>
+          <p>
+            I mapped the full travel-and-meet journey to surface what features
+            would actually matter at each stage — from the initial idea of
+            traveling to meet native speakers, through searching and
+            accommodation, to arrival and learning on the ground. The map covers
+            user goals, emotional states, problems, and feature ideas across
+            five stages.
+          </p>
+          <div style="max-width: 860px; margin-inline: auto; margin-top: var(--space-md);">
+            <figure class="media-figure">
+              <img
+                src="/assets/images/viagem-user-flow.webp"
+                alt="Journey map across five travel stages, applied to all three learner archetypes"
+                data-magnify="true"
+                loading="lazy"
+                style="outline: 1.5px solid var(--forest); border-radius: 3px; display: block; width: 100%; height: auto;"
+              />
+              <figcaption class="case-caption">Journey map across five travel stages, applied to all three learner archetypes.</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <!-- WIREFRAMES -->
+        <div class="project-section reveal">
+          <h2>Wireframes</h2>
+          <p>
+            Low-fidelity wireframes came before color or typography. The goal
+            was to validate layout decisions with language learners before
+            investing in visual design. Testing at this stage confirmed that the
+            card-based, swipeable structure worked for the core use cases and
+            that the pronunciation module needed to be more visually distinct
+            from the vocabulary section.
+          </p>
+          <div style="max-width: 480px; margin-inline: auto; margin-top: var(--space-md);">
+            <figure class="media-figure">
+              <img
+                src="/assets/images/viagem-wireframe-screens.webp"
+                alt="Low-fidelity wireframes, Adobe XD"
+                loading="lazy"
+                style="outline: 1.5px solid var(--forest); border-radius: 3px; display: block; width: 100%; height: auto;"
+              />
+              <figcaption class="case-caption">Low-fidelity wireframes, Adobe XD.</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <!-- VISUAL DESIGN -->
+        <div class="project-section reveal">
+          <h2>Visual Design</h2>
+          <p>
+            The name ViaGem comes from the Portuguese word for trip or travel.
+            The concept began as a hidden-gems travel app — a way to connect
+            people with locally approved places — and evolved into a
+            language-learning tool when I realized that travel and language
+            acquisition are the same desire expressed differently. The
+            background of the app is designed as a slowly rotating animated
+            globe. The gem-cut Earth icon in the logo holds both ideas at once.
+          </p>
+          <div style="max-width: 480px; margin-inline: auto; margin-top: var(--space-md);">
+            <figure class="media-figure">
+              <img
+                src="/assets/images/viagem-brand-system.webp"
+                alt="Color palette, typography (Museo Sans Rounded), and brand system"
+                loading="lazy"
+                style="outline: 1.5px solid var(--forest); border-radius: 3px; display: block; width: 100%; height: auto;"
+              />
+              <figcaption class="case-caption">Color palette, typography (Museo Sans Rounded), and brand system.</figcaption>
+            </figure>
+          </div>
+          <p style="margin-top: var(--space-md)">
+            Light and relaxing colors were chosen deliberately. Research on
+            language anxiety informed the palette: a 2008 Baker and MacIntyre
+            study found that anxiety affects advanced speakers as much as
+            beginners. Green and blue dominate the interface because they test
+            lower for stress association than warm or high-contrast schemes. The
+            rounded sans-serif reduces the formality that makes grammar study
+            feel like homework.
+          </p>
+        </div>
+
+        <!-- UI DESIGN -->
+        <div class="project-section reveal">
+          <h2>UI Design</h2>
+          <div style="max-width: 600px; margin-inline: auto;">
+            <div class="media-duo" style="gap: var(--space-lg);">
+              <figure class="media-figure">
+                <img
+                  src="/assets/images/viagem-screens-onboarding.webp"
+                  alt="Bilingual onboarding screens"
+                  loading="lazy"
+                  style="outline: 1.5px solid var(--forest); border-radius: 3px; display: block; width: 100%; height: auto;"
+                />
+              </figure>
+              <figure class="media-figure">
+                <img
+                  src="/assets/images/viagem-screen-language-select.webp"
+                  alt="Language selection screen"
+                  loading="lazy"
+                  style="outline: 1.5px solid var(--forest); border-radius: 3px; display: block; width: 100%; height: auto;"
+                />
+              </figure>
+            </div>
+          </div>
+          <figcaption class="case-caption" style="text-align:center; margin-top: 0.5em;">Bilingual onboarding and language selection.</figcaption>
+
+          <div style="max-width: 900px; margin-inline: auto;">
+            <div class="media-trio" style="gap: var(--space-lg);">
+              <figure class="media-figure">
+                <img
+                  src="/assets/images/viagem-screen-dashboard.webp"
+                  alt="Dashboard screen"
+                  loading="lazy"
+                  style="outline: 1.5px solid var(--forest); border-radius: 3px; display: block; width: 100%; height: auto;"
+                />
+              </figure>
+              <figure class="media-figure">
+                <img
+                  src="/assets/images/viagem-screen-partners.webp"
+                  alt="Language partner discovery screen"
+                  loading="lazy"
+                  style="outline: 1.5px solid var(--forest); border-radius: 3px; display: block; width: 100%; height: auto;"
+                />
+              </figure>
+              <figure class="media-figure">
+                <img
+                  src="/assets/images/viagem-screen-feed.webp"
+                  alt="Content feed screen"
+                  loading="lazy"
+                  style="outline: 1.5px solid var(--forest); border-radius: 3px; display: block; width: 100%; height: auto;"
+                />
+              </figure>
+            </div>
+          </div>
+          <figcaption class="case-caption" style="text-align:center; margin-top: 0.5em;">Dashboard, language partner discovery, and content feed.</figcaption>
+
+          <div style="max-width: 900px; margin-inline: auto;">
+            <div class="media-trio" style="gap: var(--space-lg);">
+              <figure class="media-figure">
+                <img
+                  src="/assets/images/viagem-screen-sidepanel.webp"
+                  alt="Side navigation panel"
+                  loading="lazy"
+                  style="outline: 1.5px solid var(--forest); border-radius: 3px; display: block; width: 100%; height: auto;"
+                />
+              </figure>
+              <figure class="media-figure">
+                <img
+                  src="/assets/images/viagem-screen-voice.webp"
+                  alt="Voice translation mode"
+                  loading="lazy"
+                  style="outline: 1.5px solid var(--forest); border-radius: 3px; display: block; width: 100%; height: auto;"
+                />
+              </figure>
+              <figure class="media-figure">
+                <img
+                  src="/assets/images/viagem-screen-signin.webp"
+                  alt="Sign-in screen"
+                  loading="lazy"
+                  style="outline: 1.5px solid var(--forest); border-radius: 3px; display: block; width: 100%; height: auto;"
+                />
+              </figure>
+            </div>
+          </div>
+          <figcaption class="case-caption" style="text-align:center; margin-top: 0.5em;">Side navigation panel, voice translation mode, and sign-in screen.</figcaption>
+
+          <p style="margin-top: var(--space-md)">
+            The central design decision was to address the biggest pain point —
+            disorganization — by making every tool accessible from a persistent
+            side panel. At any point in the flow, the user can reach the
+            translator (for immediate real-world situations), their profile and
+            settings, or their lesson history. The translator is always one
+            gesture away. Color-coding prevents accidental exits.
+          </p>
+
+          <div style="max-width: 900px; margin-inline: auto;">
+            <div class="media-trio" style="margin-top: var(--space-md); gap: var(--space-lg);">
+              <figure class="media-figure">
+                <img
+                  src="/assets/images/viagem-screen-loading-01.webp"
+                  alt="Loading screen 1 with language fact"
+                  loading="lazy"
+                  style="outline: 1.5px solid var(--forest); border-radius: 3px; display: block; width: 100%; height: auto;"
+                />
+              </figure>
+              <figure class="media-figure">
+                <img
+                  src="/assets/images/viagem-screen-loading-02.webp"
+                  alt="Loading screen 2 with language fact"
+                  loading="lazy"
+                  style="outline: 1.5px solid var(--forest); border-radius: 3px; display: block; width: 100%; height: auto;"
+                />
+              </figure>
+              <figure class="media-figure">
+                <img
+                  src="/assets/images/viagem-screen-loading-03.webp"
+                  alt="Loading screen 3 with language fact"
+                  loading="lazy"
+                  style="outline: 1.5px solid var(--forest); border-radius: 3px; display: block; width: 100%; height: auto;"
+                />
+              </figure>
+            </div>
+          </div>
+          <figcaption class="case-caption" style="text-align:center; margin-top: 0.5em;">Animated loading screens delivering quick language facts to maintain engagement between sessions.</figcaption>
+
+          <div style="max-width: 900px; margin-inline: auto; margin-top: var(--space-lg);">
+            <figure class="media-figure">
+              <img
+                src="/assets/images/viagem-ia-diagrams.webp"
+                alt="Information architecture showing bilingual app flows across user types"
+                loading="lazy"
+                style="outline: 1.5px solid var(--forest); border-radius: 3px; display: block; width: 100%; height: auto;"
+              />
+              <figcaption class="case-caption">Information architecture showing bilingual app flows across user types.</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <!-- RESULTS -->
+        <div class="project-section reveal">
+          <h2>Results</h2>
+          <div class="viagem-result-stat">
+            <div>
+              <span class="stat-num" data-target="94">94</span><span class="viagem-pct">%</span>
+            </div>
+            <p class="viagem-result-label">of 30 follow-up interviewees said they would choose ViaGem over existing competitors.</p>
+          </div>
+          <div style="margin-top: var(--space-md); text-align: center;">
+            <a
+              href="https://xd.adobe.com/view/6bbd58dd-374d-43d6-558d-6ec6beaf3883-1d8c/"
+              class="btn btn-primary"
+              target="_blank"
+              rel="noopener"
+            >Interact with the prototype &rarr;</a>
+          </div>
+        </div>
+
+        <!-- REFLECTION -->
+        <div class="project-section reveal">
+          <h2>Reflection</h2>
+          <p>
+            ViaGem was the first project where I ran the full
+            research-to-prototype cycle alone. That meant making every scoping
+            decision myself — including the decision to narrow to Brazilian
+            Portuguese and American English rather than trying to serve all
+            language pairs at once. That constraint made the research more
+            honest and the design more specific.
+          </p>
+          <p>
+            What I would do differently: the personas I built were grounded in
+            real people I had met and worked with, but the pain points I
+            extracted from interviews were too general to drive genuinely
+            surprising design decisions. The data pointed toward features any
+            language-learning app would contain. The more interesting finding —
+            that learners wanted to organize their existing resources rather
+            than replace them — was there in the interviews but I resolved it
+            too quickly into a feature list rather than sitting with it as a
+            design tension.
+          </p>
+          <p>
+            The follow-up project I eventually want to build, TalkLot, came
+            directly from what ViaGem left unresolved.
+          </p>
+        </div>
+
+      </div>
+    </section>
+    </main>    <!-- FOOTER -->
+    <div class="footer-wave" aria-hidden="true">
+  <svg
+    viewBox="0 0 2278 30"
+    preserveAspectRatio="none"
+    style="display: block; width: 100%; height: 20px; overflow: visible;"
+  >
+    <path
+      id="bouncy-path"
+      d="M0,4 Q1139,4 2278,4"
+      fill="none"
+      stroke="#1e3025"
+      stroke-width="2"
+      stroke-linecap="round"
+    />
+  </svg>
+</div>
+<footer class="footer">
+      <div class="container">
+        <div class="footer-brand">
+          <p class="footer-tagline" data-i18n="footer.tagline">
+            Illustration &middot; Design &middot; Motion
+          </p>
+          <p class="footer-location">
+            San Francisco, CA &nbsp;&middot;&nbsp;
+            <span id="footer-time"></span>
+          </p>
+        </div>
+        <ul class="footer-links">
+          <li>
+            <a
+              href="https://linkedin.com/in/pjrdesign"
+              target="_blank"
+              rel="noopener"
+              >LinkedIn</a
+            >
+          </li>
+          <li>
+            <a
+              href="/cdn-cgi/l/email-protection#a6cec3cacac9e6d6ccd4c9c2d4cfc1d3c3dc88c2c3d5cfc1c8"
+              >Email</a
+            >
+          </li>
+          <li>
+            <a
+              href="/assets/PJ-Rodriguez-Resume-2026.pdf"
+              target="_blank"
+              rel="noopener"
+              ><span data-i18n="footer.resume">Resume</span></a
+            >
+          </li>
+        </ul>
+        <p class="footer-copy" data-i18n="footer.copy">
+          &copy; 2026 Patrick Rodriguez
+        </p>
+        <p class="footer-colophon" data-i18n-html="footer.colophon" style="grid-column:1/-1;font-family:var(--font-body);font-size:0.68rem;color:var(--text-light);letter-spacing:0.02em;margin-top:0.5em;line-height:1.8;"></p>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        var ctx = document.getElementById('viagem-chart');
+        if (!ctx) return;
+        new Chart(ctx, {
+          type: 'doughnut',
+          data: {
+            labels: [
+              'Cannot understand native speakers',
+              'Afraid to make mistakes',
+              "Can't find interesting content",
+              'Motivation loss',
+              'No access to native speakers'
+            ],
+            datasets: [{
+              data: [40, 37, 20, 10, 3],
+              backgroundColor: ['#4A8C6F', '#7BC4A0', '#A8D5BE', '#C5E8D4', '#D4EDE3'],
+              borderWidth: 0,
+              hoverOffset: 6
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                callbacks: {
+                  label: function (context) {
+                    return context.label + ': ' + context.parsed + '%';
+                  }
+                }
+              }
+            },
+            cutout: '60%'
+          }
+        });
+      });
+    </script>
+
+    <script type="module" src="/src/js/main.js"></script>
+  </body>
+</html>

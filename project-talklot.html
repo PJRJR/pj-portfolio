@@ -1,0 +1,639 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TalkLot — PJ Rodriguez</title>
+    <meta
+      name="description"
+      content="TalkLot: A speech-first language learning app designed to reinforce spoken fluency through extensive oral production. Interaction design and UX research by PJ Rodriguez."
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Sono:wght,MONO@200..800,1&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/src/styles/main.css" />
+    <style>
+      .case-hero {
+        width: 100%;
+        height: 70vh;
+        margin-top: 4.75rem;
+        overflow: hidden;
+      }
+      .case-hero img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+        display: block;
+      }
+      .case-caption {
+        font-family: var(--font-body);
+        font-size: 0.72rem;
+        color: var(--text-light);
+        margin-top: 0.5em;
+        letter-spacing: 0.02em;
+        line-height: 1.4;
+      }
+      .media-img {
+        outline: 1.5px solid var(--forest);
+        border-radius: 3px;
+        display: block;
+      }
+      .media-figure {
+        display: flex;
+        flex-direction: column;
+      }
+      .media-figure img,
+      .media-figure video {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      /* Full-width: storyboard and testing hifi only */
+      .media-full {
+        margin-top: var(--space-md);
+        width: 100%;
+      }
+      .media-full img,
+      .media-full video {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      /* Mid: centered, constrained, used for single images and videos */
+      .media-mid {
+        max-width: 720px;
+        margin-inline: auto;
+        margin-top: var(--space-md);
+      }
+      .media-mid img,
+      .media-mid video {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      /* Duo: two equal columns */
+      .media-duo {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-sm);
+        margin-top: var(--space-md);
+      }
+      /* Trio: three equal columns */
+      .media-trio {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-sm);
+        margin-top: var(--space-md);
+      }
+      /* Teleprompter: contained unit, trio row + video below */
+      .media-teleprompter {
+        max-width: 720px;
+        margin-inline: auto;
+        margin-top: var(--space-md);
+      }
+      .media-teleprompter-row {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        gap: var(--space-sm);
+        align-items: center;
+        margin-bottom: var(--space-sm);
+        height: 180px;
+      }
+      .media-teleprompter-arrow {
+        font-size: 1.5rem;
+        color: var(--text-light);
+        text-align: center;
+        user-select: none;
+      }
+      .media-teleprompter video,
+      .media-teleprompter img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      /* TalkLot wordmark */
+      .talklot-wordmark {
+        font-family: var(--font-display);
+        font-size: var(--step-4);
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        line-height: 1;
+        margin-bottom: var(--space-md);
+      }
+      .talklot-wordmark .talk {
+        color: var(--forest);
+      }
+      .talklot-wordmark .lot {
+        color: #4a90d9;
+      }
+      /* Subsection h3 */
+      .project-section h3 {
+        font-size: var(--step-1);
+        margin-top: var(--space-lg);
+        margin-bottom: var(--space-sm);
+        color: var(--forest);
+      }
+      .project-section h3:first-child {
+        margin-top: var(--space-md);
+      }
+      .project-section p {
+        text-indent: 1.5em;
+      }
+      /* Prototype button */
+      .proto-btn {
+        display: inline-block;
+        margin-top: var(--space-md);
+        padding: 0.55em 1.2em;
+        font-family: var(--font-body);
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--forest);
+        border: 1.5px solid var(--forest);
+        border-radius: 4px;
+        text-decoration: none;
+        transition: background 0.18s ease, color 0.18s ease;
+      }
+      .proto-btn:hover {
+        background: var(--forest);
+        color: var(--page-bg);
+      }
+      @media (max-width: 640px) {
+        .case-hero {
+          height: 50vh;
+          margin-top: 4rem;
+        }
+        .media-duo,
+        .media-trio {
+          grid-template-columns: 1fr;
+        }
+        .media-teleprompter-row {
+          grid-template-columns: 1fr auto 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="project-card-cursor-label" id="cursor-label">View &#8594;</div>
+
+    <svg
+      width="0"
+      height="0"
+      style="position: absolute; overflow: hidden"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <defs>
+        <clipPath id="wave-gentle" clipPathUnits="objectBoundingBox">
+          <path
+            d="M0,0.04 C0.1,0 0.2,0.02 0.3,0.04 C0.4,0.06 0.5,0.02 0.6,0.04 C0.7,0.06 0.8,0.02 0.9,0.04 C0.95,0.05 1,0.04 1,0.04 L1,0.96 C0.9,1 0.8,0.98 0.7,0.96 C0.6,0.94 0.5,0.98 0.4,0.96 C0.3,0.94 0.2,0.98 0.1,0.96 C0.05,0.95 0,0.96 0,0.96 Z"
+          />
+        </clipPath>
+        <pattern
+          id="scute-tile"
+          x="0"
+          y="0"
+          width="20"
+          height="16"
+          patternUnits="userSpaceOnUse"
+        >
+          <polygon
+            points="3,8 10,2 17,8"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1"
+            stroke-linejoin="round"
+          />
+          <polygon
+            points="3,8 10,14 17,8"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1"
+            stroke-linejoin="round"
+          />
+        </pattern>
+      </defs>
+    </svg>
+
+    <button class="sidebar-toggle" aria-label="Toggle navigation">☰</button>
+    <aside class="sidebar">
+      <a href="/index.html?nav=1" class="sidebar-logo" aria-label="Home">
+        <img
+          src="/assets/images/logo-chasing_dragons-color.svg"
+          alt="Chasing Dragons — PJ Rodriguez"
+          width="80"
+          height="70"
+        />
+      </a>
+      <span class="sidebar-identity">
+        <span class="pj-initials">
+          <span class="pj-p">P</span><span class="pj-dot1">.</span><span class="pj-j">J</span><span class="pj-dot2">.</span><span class="pj-smile">(</span>
+        </span>
+        <span class="surname-block">
+          <span class="surname-row"><span>R</span><span>O</span><span>D</span></span>
+          <span class="surname-row"><span>R</span><span>I</span><span>G</span></span>
+          <span class="surname-row"><span>U</span><span>E</span><span>Z</span></span>
+        </span>
+      </span>
+      <nav class="sidebar-nav">
+        <a href="/index.html?nav=1" data-i18n="nav.work">Work</a>
+        <span class="sidebar-nav-soon"><span data-i18n="nav.craft">Craft</span> <em data-i18n="nav.soon">soon</em></span>
+        <a href="/about.html" data-i18n="nav.about">About</a>
+      </nav>
+      <div class="sidebar-footer">
+
+        <div class="sidebar-lang">
+
+          <button class="lang-btn active" data-lang="en" aria-pressed="true" lang="en">EN</button>
+
+          <button class="lang-btn" data-lang="pt" aria-pressed="false" lang="pt-BR">PT</button>
+
+          <button class="lang-btn" data-lang="es" aria-pressed="false" lang="es">ES</button>
+
+        </div>
+
+      </div>
+    </aside>
+
+    <main class="main-content">
+
+    <!-- HERO IMAGE -->
+    <div class="case-hero">
+      <img
+        src="/assets/images/talklot-hero.webp"
+        alt="TalkLot homescreen displayed on a MacBook Pro"
+      />
+    </div>
+
+    <!-- ALL CONTENT -->
+    <section class="section" style="padding-top: var(--space-lg)">
+      <div class="container">
+
+        <!-- WORDMARK -->
+        <p class="talklot-wordmark">
+          <span class="talk">Talk</span><span class="lot">Lot</span>
+        </p>
+
+        <!-- METADATA STRIP -->
+        <p class="project-meta-pills">
+          <span class="about-pill" style="--pill-color: var(--sage-teal);">UX Research · Interaction Design · Visual Design</span>
+          <span class="about-pill" style="--pill-color: #7a5fa0;">Adobe XD · Illustrator · Photoshop</span>
+          <span class="about-pill" style="--pill-color: var(--grove);">Solo</span>
+          <span class="about-pill" style="--pill-color: var(--forest);">Senior Studio · SMC</span>
+          <span class="about-pill" style="--pill-color: var(--ochre);">Spring 2022</span>
+        </p>
+
+        <div class="section-wave" aria-hidden="true">
+          <svg
+            viewBox="0 0 2278 30"
+            preserveAspectRatio="none"
+            style="display: block; width: 100%; height: 20px; overflow: visible;"
+          >
+            <path
+              id="section-wave-path"
+              d="M0,4 Q1139,4 2278,4"
+              fill="none"
+              stroke="var(--forest)"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </svg>
+        </div>
+
+        <!-- THE PROBLEM -->
+        <div class="project-section reveal">
+          <h2>The Problem</h2>
+          <p>
+            Most language-learning apps optimize for vocabulary acquisition: flashcards, listening comprehension, multiple-choice drills. Speaking is treated as a downstream reward, something you unlock after enough passive study. But fluency in conversation does not work that way. Oral production requires repetition under pressure, immediate feedback, and volume of practice that existing tools do not support.
+          </p>
+          <p>
+            The research question this project pursued: how might a language learner build genuine spoken fluency through structured, high-volume oral practice integrated directly into their study routine?
+          </p>
+        </div>
+
+        <!-- RESEARCH -->
+        <div class="project-section reveal">
+          <h2>Research</h2>
+
+          <h3>Competitive Analysis</h3>
+          <div class="media-mid" style="margin-top: var(--space-md);">
+            <figure class="media-figure" style="overflow: hidden; outline: 1.5px solid var(--forest); border-radius: 3px;">
+              <img
+                src="/assets/images/talklot-research-competitive.webp"
+                alt="Competitive analysis matrix of twelve language-learning platforms with a focus on speech-production features"
+                data-magnify="true"
+                loading="lazy"
+                style="width: 100%; height: auto; display: block;"
+              />
+            </figure>
+          </div>
+          <p style="margin-top: var(--space-md)">
+            Eight language-learning platforms were evaluated across four dimensions: speaking practice tools, feedback mechanisms, gamification structure, and community features. The pattern was consistent. Apps built around gamification and vocabulary retention dominated the market. Dedicated speaking practice was rare and, where it existed, was limited to pronunciation checking against a recorded model rather than sustained oral production. Duolingo, shown in detail, exemplifies the dominant pattern: a gamified, vocabulary-first product with no dedicated speaking practice mode.
+          </p>
+
+          <h3>Netnography</h3>
+          <div class="media-mid">
+            <figure class="media-figure">
+              <img
+                class="media-img"
+                src="/assets/images/talklot-research-netnography.webp"
+                alt="Netnography synthesis board drawn from language-learning forums and communities"
+                data-magnify="true"
+                loading="lazy"
+              />
+            </figure>
+          </div>
+          <div class="media-mid">
+            <figure class="media-figure">
+              <img
+                class="media-img"
+                src="/assets/images/talklot-research-netnography-callout-text.webp"
+                alt="Key insight callout: learners report freezing in real conversation despite years of passive study"
+                loading="lazy"
+              />
+            </figure>
+          </div>
+          <p style="margin-top: var(--space-md)">
+            A netnographic study of language-learning forums and communities surfaced the frustration directly. Learners who had studied a language for years described freezing in real conversations, losing words they had drilled extensively, and feeling that their study time had not prepared them to actually speak. The gap between passive study and active production was the dominant theme.
+          </p>
+
+          <h3>Secondary Research</h3>
+          <div class="media-mid">
+            <figure class="media-figure">
+              <img
+                class="media-img"
+                src="/assets/images/talklot-research-secondary.webp"
+                alt="Secondary research summary on extensive oral production and spoken fluency outcomes"
+                data-magnify="true"
+                loading="lazy"
+              />
+            </figure>
+          </div>
+          <div class="media-mid">
+            <figure class="media-figure">
+              <img
+                class="media-img"
+                src="/assets/images/talklot-research-secondary-callout-text.webp"
+                alt="Key finding callout from secondary research on output-based language learning"
+                loading="lazy"
+              />
+            </figure>
+          </div>
+          <p style="margin-top: var(--space-md)">
+            Linguistic research supported what the netnography surfaced. Extensive oral production — defined as high-volume low-stakes speaking practice — is among the most effective methods for building spoken fluency. Output-based learning forces the brain to retrieve and activate vocabulary differently than input-based methods do. Learners who speak more, even imperfectly, close the fluency gap faster.
+          </p>
+        </div>
+
+        <!-- SYNTHESIS -->
+        <div class="project-section reveal">
+          <h2>Synthesis</h2>
+          <figure class="media-full">
+            <img
+              class="media-img"
+              src="/assets/images/talklot-storyboard.webp"
+              alt="Storyboard mapping a learner's TalkLot session from launch through practice and review"
+              loading="lazy"
+            />
+          </figure>
+          <p style="margin-top: var(--space-md)">
+            Three research methods pointing to the same finding made the design direction clear. A language learner needed a tool built specifically around oral output: not a supplement to existing apps, but a dedicated space for speaking practice. I created a storyboard in Adobe Illustrator to map a learner's session from launch through practice and review, which served as the interaction framework for prototyping.
+          </p>
+        </div>
+
+        <!-- PROTOTYPING -->
+        <div class="project-section reveal">
+          <h2>Prototyping</h2>
+
+          <h3>Microinteractions</h3>
+          <div style="margin-top: var(--space-md);">
+            <div style="display: flex; flex-direction: column; gap: 16px; max-width: 720px; margin-inline: auto;">
+              <figure class="media-figure" style="overflow: hidden; outline: 1.5px solid var(--forest); border-radius: 3px;">
+                <img
+                  src="/assets/images/talklot-proto-microinteractions-dark-mockup.webp"
+                  alt="Dark theme microinteraction prototype mockup showing button states and transitions"
+                  loading="lazy"
+                  style="width: 100%; height: auto; display: block;"
+                />
+              </figure>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                <figure class="media-figure" style="overflow: hidden; outline: 1.5px solid var(--forest); border-radius: 3px; aspect-ratio: 4 / 3;">
+                  <img
+                    src="/assets/images/talklot-proto-microinteractions-dark-callout.webp"
+                    alt="Dark theme microinteraction detail callout"
+                    loading="lazy"
+                    style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;"
+                  />
+                </figure>
+                <figure class="media-figure" style="overflow: hidden; outline: 1.5px solid var(--forest); border-radius: 3px; aspect-ratio: 4 / 3;">
+                  <img
+                    src="/assets/images/talklot-proto-microinteractions-light-callout.webp"
+                    alt="Light theme microinteraction detail callout"
+                    loading="lazy"
+                    style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;"
+                  />
+                </figure>
+              </div>
+            </div>
+            <div style="margin-top: 16px;">
+              <div style="outline: 1.5px solid var(--forest); border-radius: 3px; overflow: hidden;">
+                <video autoplay muted loop playsinline style="width: 100%; height: auto; display: block;">
+                  <source src="/assets/videos/talklot-proto-microinteractions-light-demo.mp4" type="video/mp4" />
+                </video>
+              </div>
+              <figcaption class="case-caption">Light theme microinteraction demo</figcaption>
+            </div>
+          </div>
+          <p style="margin-top: var(--space-md)">
+            Early prototyping focused on microinteraction states: how buttons respond, how transitions signal mode changes, how feedback appears without interrupting the practice session. Two color themes were developed in parallel, dark and light, to evaluate legibility and focus across ambient conditions. The light theme performed better in usability checks and became the primary direction. Screen recordings of prototype interactions were captured with Windows Movie Maker, the tool available at the time.
+          </p>
+
+          <h3>Teleprompter</h3>
+          <div class="media-teleprompter">
+            <div class="media-teleprompter-row">
+              <figure class="media-figure" style="outline: 1.5px solid var(--forest); border-radius: 3px; overflow: hidden; height: 100%;">
+                <img
+                  src="/assets/images/talklot-proto-teleprompter-speech.webp"
+                  alt="Teleprompter feature showing a passage with speech-triggered scroll and word highlighting"
+                  loading="lazy"
+                  style="width: 100%; height: 100%; object-fit: cover; display: block;"
+                />
+              </figure>
+              <div class="media-teleprompter-arrow" aria-hidden="true" style="display: flex; align-items: center;">&#8594;</div>
+              <figure class="media-figure" style="outline: 1.5px solid var(--forest); border-radius: 3px; overflow: hidden; height: 100%;">
+                <img
+                  src="/assets/images/talklot-proto-microinteractions-dark-mockup.webp"
+                  alt="Dark theme screen showing the teleprompter feature in context"
+                  loading="lazy"
+                  style="width: 100%; height: 100%; object-fit: cover; display: block;"
+                />
+              </figure>
+            </div>
+            <div>
+              <div style="border-radius: 3px; overflow: hidden; outline: 1.5px solid var(--forest);">
+                <video autoplay muted loop playsinline style="width: 100%; height: auto; display: block;">
+                  <source src="/assets/videos/talklot-proto-teleprompter-demo.mp4" type="video/mp4" />
+                </video>
+              </div>
+              <figcaption class="case-caption">Teleprompter scroll driven by voice input</figcaption>
+            </div>
+          </div>
+          <p style="margin-top: var(--space-md)">
+            As research expanded to cover oral production outside of language-learning contexts, tools used in live presentations suggested a teleprompting format. In TalkLot's teleprompter feature, the user's voice triggers a downward scroll of the passage text in real time, creating a touchless, speech-driven reading experience. Early prototyping showed that highlighting words at completion aided pacing, but sub-word highlighting at the syllable level may better support pronunciation and liaison. User testing would determine the optimal unit of highlight.
+          </p>
+
+          <h3>Translation and Vocabulary</h3>
+          <div class="media-mid" style="position: relative;">
+            <figure class="media-figure" style="overflow: hidden; outline: 1.5px solid var(--forest); border-radius: 3px;">
+              <img
+                src="/assets/images/talklot-proto-translation.jpg"
+                alt="Translation overlay feature showing source and target language text in context"
+                loading="lazy"
+                style="width: 100%; height: auto; display: block;"
+              />
+            </figure>
+            <div style="position: absolute; top: var(--space-sm); right: var(--space-sm); width: 28%; margin: 0;">
+              <div style="border-radius: 4px; overflow: visible;">
+                <div style="border-radius: 4px; overflow: hidden; outline: 2.5px solid var(--forest); box-shadow: 0 0 10px 4px rgba(255, 220, 80, 0.85), 0 6px 24px rgba(30,48,37,0.22);">
+                  <img
+                    src="/assets/images/talklot-proto-translation-callout.webp"
+                    alt="Translation overlay callout detail"
+                    loading="lazy"
+                    style="width: 100%; height: auto; display: block;"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="media-mid">
+            <div>
+              <div style="border-radius: 3px; overflow: hidden; outline: 1.5px solid var(--forest);">
+                <video autoplay muted loop playsinline style="width: 100%; height: auto; display: block;">
+                  <source src="/assets/videos/talklot-proto-vocab-hover.mp4" type="video/mp4" />
+                </video>
+              </div>
+              <figcaption class="case-caption">Vocabulary hover interaction with background blur</figcaption>
+            </div>
+          </div>
+          <p style="margin-top: var(--space-md)">
+            Two features addressed the gap between reading and comprehension during practice. The translation overlay allowed learners to access meaning in context without leaving the session. The vocabulary hover interaction surfaced word definitions and alternatives when a learner paused on a term, with a background blur that kept the word in focus without removing it from sentence context.
+          </p>
+
+          <h3>Pronunciation Trainer</h3>
+          <div class="media-mid">
+            <div>
+              <div style="border-radius: 3px; overflow: hidden; outline: 1.5px solid var(--forest);">
+                <video autoplay muted loop playsinline style="width: 100%; height: auto; display: block;">
+                  <source src="/assets/videos/talklot-proto-pronunciation.mp4" type="video/mp4" />
+                </video>
+              </div>
+              <figcaption class="case-caption">Pronunciation trainer with session skill curve</figcaption>
+            </div>
+          </div>
+          <p style="margin-top: var(--space-md)">
+            The pronunciation trainer recorded and displayed a learner's spoken output against a target model, generating a visual skill curve across sessions. Rather than a binary pass/fail judgment, the tracker showed trajectory, rewarding consistent practice regardless of whether individual attempts matched the target exactly.
+          </p>
+        </div>
+
+        <!-- TESTING -->
+        <div class="project-section reveal">
+          <h2>Testing</h2>
+          <figure class="media-full">
+            <img
+              class="media-img"
+              src="/assets/images/talklot-testing-hifi.webp"
+              alt="High-fidelity prototype testing screens used across two sessions with five participants"
+              loading="lazy"
+            />
+          </figure>
+          <p style="margin-top: var(--space-md)">
+            High-fidelity prototype testing was conducted with five participants over two sessions. Testers included two intermediate Spanish learners, one advanced French learner, one beginner Mandarin learner, and one language educator reviewing the tool as an instructional aid.
+          </p>
+          <p>
+            Key findings: the teleprompter scroll rate needed user control rather than a fixed voice-detection threshold; the vocabulary hover interaction was intuitive without instruction; the pronunciation tracker was described as motivating by four of five participants; and the translation overlay required a clearer visual distinction between source and target language text.
+          </p>
+          <p>
+            Each finding produced a specific revision. Scroll rate became an adjustable setting. The translation overlay received a typographic treatment separating the two languages by weight and color. The pronunciation tracker's display range was extended to show the full session arc rather than only the most recent attempts.
+          </p>
+          <a
+            href="https://xd.adobe.com/view/e50fd662-bf01-4dbb-96cb-9ff6be709f10-b05c/"
+            class="proto-btn"
+            target="_blank"
+            rel="noopener"
+          >Interact with the prototype &#8594;</a>
+        </div>
+
+<!-- REFLECTION -->
+        <div class="project-section reveal">
+          <h2>Reflection</h2>
+          <p>
+            TalkLot was a solo project completed in Senior Studio at Santa Monica College, and the only project in the portfolio where every research, synthesis, and design decision was mine alone. That constraint clarified something: a thesis formed earlier and held longer when there was no one to defer to.
+          </p>
+          <p>
+            The research converged faster than expected. Three methodologies aligned on the same problem, which made synthesis straightforward. The harder design work was in the prototyping phase, specifically in figuring out how to make speaking feel supported rather than evaluated. The pronunciation tracker took several iterations to land on a display that felt like a record rather than a grade.
+          </p>
+          <p>
+            The features that tested best — vocabulary hover and pronunciation tracking — were also the furthest from what existing apps offered. That was the confirmation the research had been pointing toward: the gap was real and the direction was right.
+          </p>
+        </div>
+
+      </div>
+    </section>
+    </main>    <!-- FOOTER -->
+    <div class="footer-wave" aria-hidden="true">
+  <svg
+    viewBox="0 0 2278 30"
+    preserveAspectRatio="none"
+    style="display: block; width: 100%; height: 20px; overflow: visible;"
+  >
+    <path
+      id="bouncy-path"
+      d="M0,4 Q1139,4 2278,4"
+      fill="none"
+      stroke="#1e3025"
+      stroke-width="2"
+      stroke-linecap="round"
+    />
+  </svg>
+</div>
+<footer class="footer">
+      <div class="container">
+        <div class="footer-brand">
+          <p class="footer-tagline" data-i18n="footer.tagline">
+            Illustration &middot; Design &middot; Motion
+          </p>
+          <p class="footer-location">
+            San Francisco, CA &nbsp;&middot;&nbsp;
+            <span id="footer-time"></span>
+          </p>
+        </div>
+        <ul class="footer-links">
+          <li>
+            <a
+              href="https://linkedin.com/in/pjrdesign"
+              target="_blank"
+              rel="noopener"
+              >LinkedIn</a
+            >
+          </li>
+          <li>
+            <a
+              href="/cdn-cgi/l/email-protection#a6cec3cacac9e6d6ccd4c9c2d4cfc1d3c3dc88c2c3d5cfc1c8"
+              >Email</a
+            >
+          </li>
+          <li>
+            <a
+              href="/assets/PJ-Rodriguez-Resume-2026.pdf"
+              target="_blank"
+              rel="noopener"
+              ><span data-i18n="footer.resume">Resume</span></a
+            >
+          </li>
+        </ul>
+        <p class="footer-copy" data-i18n="footer.copy">
+          &copy; 2026 Patrick Rodriguez
+        </p>
+        <p class="footer-colophon" data-i18n-html="footer.colophon" style="grid-column:1/-1;font-family:var(--font-body);font-size:0.68rem;color:var(--text-light);letter-spacing:0.02em;margin-top:0.5em;line-height:1.8;"></p>
+      </div>
+    </footer>
+    <script type="module" src="/src/js/main.js"></script>
+  </body>
+</html>

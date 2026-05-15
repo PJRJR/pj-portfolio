@@ -1,0 +1,1267 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ambient Sound Console — PJ Rodriguez</title>
+    <meta
+      name="description"
+      content="Ambient Sound Console: A physical ambient sound device controlled through a cardboard enclosure — Arduino, Processing, and the Minim audio library. Physical computing project by PJ Rodriguez."
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Sono:wght,MONO@200..800,1&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/src/styles/main.css" />
+    <style>
+      /* ── SHARED CASE STUDY PATTERNS (from SPEX) ── */
+      .case-hero {
+        width: 100%;
+        height: 70vh;
+        margin-top: 4.75rem;
+        overflow: hidden;
+      }
+      .case-caption {
+        font-family: var(--font-body);
+        font-size: 0.72rem;
+        color: var(--text-light);
+        margin-top: 0.5em;
+        letter-spacing: 0.02em;
+        line-height: 1.4;
+      }
+      .media-figure {
+        display: flex;
+        flex-direction: column;
+      }
+      .media-figure img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      .media-duo {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-sm);
+        margin-top: var(--space-md);
+      }
+      .media-trio {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-sm);
+        margin-top: var(--space-md);
+      }
+      .media-full {
+        margin-top: var(--space-md);
+        width: 100%;
+      }
+      .media-full img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      .back-link-wrap {
+        padding-top: var(--space-lg);
+        border-top: 1px solid rgba(30, 48, 37, 0.08);
+        margin-top: var(--space-xl);
+      }
+      .back-link {
+        font-family: var(--font-body);
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--sage-teal);
+        transition: color 0.2s;
+        text-decoration: none;
+      }
+      .back-link:hover {
+        color: var(--forest);
+      }
+      .project-section p {
+        text-indent: 1.5em;
+      }
+
+      /* ── MUSICBOX-SCOPED STYLES ── */
+      .musicbox-hero {
+        position: relative;
+      }
+      .musicbox-hero img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .musicbox-hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.42);
+        pointer-events: none;
+      }
+      .musicbox-code-section {
+        margin-top: var(--space-md);
+      }
+      .musicbox-code-wrap {
+        margin-top: var(--space-sm);
+        border-radius: 6px;
+        overflow: hidden;
+        background: var(--forest);
+      }
+      .musicbox-code-block {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        padding: var(--space-md);
+        font-family: "SFMono-Regular", "Consolas", "Liberation Mono", "Menlo", monospace;
+        font-size: 0.78rem;
+        line-height: 1.65;
+        color: var(--mint);
+        margin: 0;
+        white-space: pre;
+        tab-size: 2;
+      }
+      .musicbox-code-caption {
+        font-family: var(--font-body);
+        font-size: 0.72rem;
+        color: var(--text-light);
+        margin-top: 0.5em;
+        letter-spacing: 0.02em;
+        line-height: 1.4;
+      }
+
+      /* ── SIMULATOR ── */
+      .musicbox-sim-outer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+        position: relative;
+        margin-top: var(--space-md);
+        user-select: none;
+        -webkit-user-select: none;
+      }
+      .musicbox-sim-wrap {
+        background: #1e1e1e;
+        border-radius: 10px;
+        overflow: hidden;
+        width: 100%;
+        box-shadow:
+          0 24px 60px rgba(0,0,0,0.45),
+          0 4px 16px rgba(0,0,0,0.2),
+          0 0 0 1px rgba(0,0,0,0.35);
+      }
+      .musicbox-macos-bar {
+        background: linear-gradient(180deg, #ececec 0%, #d8d8d8 100%);
+        height: 28px;
+        display: flex;
+        align-items: center;
+        padding: 0 12px;
+        border-bottom: 1px solid rgba(0,0,0,0.14);
+        flex-shrink: 0;
+      }
+      .musicbox-macos-buttons {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+      }
+      .musicbox-macos-btn {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        display: block;
+        flex-shrink: 0;
+      }
+      .musicbox-macos-close  { background: #ff5f57; box-shadow: 0 0 0 0.5px rgba(0,0,0,0.18); }
+      .musicbox-macos-min    { background: #febc2e; box-shadow: 0 0 0 0.5px rgba(0,0,0,0.18); }
+      .musicbox-macos-max    { background: #28c840; box-shadow: 0 0 0 0.5px rgba(0,0,0,0.18); }
+      .musicbox-sim-begin {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(26, 26, 24, 0.92);
+        z-index: 20;
+        cursor: pointer;
+        transition: opacity 0.5s;
+        border-radius: 4px;
+      }
+      .musicbox-sim-begin span {
+        font-family: var(--font-body);
+        font-size: 0.82rem;
+        color: rgba(180, 220, 200, 0.75);
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+      .musicbox-sim-begin.sim-hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+      .musicbox-scene {
+        width: 260px;
+        height: 260px;
+        perspective: 700px;
+        flex-shrink: 0;
+        cursor: grab;
+        background: transparent;
+      }
+      .musicbox-scene:active { cursor: grabbing; }
+      .musicbox-cube {
+        width: 260px;
+        height: 260px;
+        position: relative;
+        transform-style: preserve-3d;
+        will-change: transform;
+        background: transparent;
+      }
+      .musicbox-face {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 260px;
+        height: 260px;
+        background-size: 101%;
+        background-position: center;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        overflow: hidden;
+      }
+      .musicbox-face--front  { transform: translateZ(131px); background-image: url('/assets/images/musicbox-panel-1.png'); }
+      .musicbox-face--back   { transform: rotateY(180deg) translateZ(131px); background-image: url('/assets/images/musicbox-panel-2.png'); }
+      .musicbox-face--left   { transform: rotateY(-90deg) translateZ(131px); background-image: url('/assets/images/musicbox-panel-3.png'); }
+      .musicbox-face--right  { transform: rotateY(90deg) translateZ(131px); background-image: url('/assets/images/musicbox-panel-4.png'); }
+      .musicbox-face--top    { transform: rotateX(90deg) translateZ(131px); background-image: url('/assets/images/musicbox-panel-1.png'); background-size: 101%; background-position: center; }
+      .musicbox-face--bottom { transform: rotateX(-90deg) translateZ(131px); background-image: url('/assets/images/musicbox-panel-2.png'); background-size: 101%; background-position: center; }
+      .musicbox-sim-canvas {
+        width: 100%;
+        height: 220px;
+        display: block;
+        box-shadow: inset 0 2px 8px rgba(0,0,0,0.6);
+      }
+      .musicbox-controls {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-sm);
+        width: 100%;
+        background:
+          repeating-linear-gradient(
+            90deg,
+            rgba(255,255,255,0.04) 0px,
+            transparent 1px,
+            transparent 4px,
+            rgba(0,0,0,0.03) 5px
+          ),
+          linear-gradient(175deg, #c8a96e 0%, #a8854a 30%, #b89058 55%, #8a6830 80%, #9a7840 100%);
+        border-radius: 4px;
+        padding: 16px 20px;
+        box-shadow:
+          0 12px 32px rgba(0,0,0,0.45),
+          0 4px 10px rgba(0,0,0,0.25),
+          inset 0 2px 0 rgba(255,255,255,0.18),
+          inset 0 -2px 0 rgba(0,0,0,0.35),
+          inset 3px 0 6px rgba(0,0,0,0.15),
+          inset -3px 0 6px rgba(0,0,0,0.15),
+          inset 0 0 20px rgba(0,0,0,0.1);
+      }
+      .musicbox-control-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.55em;
+      }
+      .musicbox-control-label {
+        font-family: var(--font-body);
+        font-size: 0.62rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(40,20,5,0.75);
+      }
+      .musicbox-track-btn {
+        width: 54px;
+        height: 54px;
+        border-radius: 50%;
+        border: 1px solid rgba(0,0,0,0.2);
+        background: rgba(0,0,0,0.25);
+        color: rgba(40,20,5,0.8);
+        font-size: 1rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.15s, border-color 0.15s;
+        line-height: 1;
+        padding: 0;
+        box-shadow:
+          inset 0 2px 6px rgba(0,0,0,0.5),
+          inset 0 1px 3px rgba(0,0,0,0.3);
+      }
+      .musicbox-track-btn:hover { background: rgba(0,0,0,0.35); }
+      .musicbox-track-btn:active {
+        background: rgba(0,0,0,0.45);
+        box-shadow:
+          inset 0 3px 8px rgba(0,0,0,0.7),
+          inset 0 1px 3px rgba(0,0,0,0.5);
+      }
+      .musicbox-lcd {
+        font-family: "SFMono-Regular", "Consolas", "Liberation Mono", monospace;
+        font-size: 0.78rem;
+        padding: 0.35em 0.8em;
+        border-radius: 4px;
+        min-width: 80px;
+        text-align: center;
+        transition: background 0.4s, color 0.4s, box-shadow 0.4s, opacity 0.2s;
+        letter-spacing: 0.04em;
+        background: rgba(0,0,0,0.25);
+        border: 1px solid rgba(0,0,0,0.2);
+        color: rgba(30,15,5,0.9);
+        box-shadow:
+          inset 0 2px 6px rgba(0,0,0,0.5),
+          inset 0 1px 3px rgba(0,0,0,0.3);
+      }
+      .musicbox-lcd[data-track="ocean"] { color: rgba(30,15,5,0.9); }
+      .musicbox-lcd[data-track="creek"] { color: rgba(30,15,5,0.9); }
+      .musicbox-lcd[data-track="rain"]  { color: rgba(30,15,5,0.9); }
+      .musicbox-slider {
+        width: 100%;
+        max-width: 120px;
+        opacity: 1;
+        cursor: pointer;
+        accent-color: rgba(30,15,5,0.75);
+        background: transparent;
+      }
+      .musicbox-slider::-webkit-slider-thumb {
+        background: rgba(30,15,5,0.75);
+      }
+      .musicbox-slider::-moz-range-thumb {
+        background: rgba(30,15,5,0.75);
+        border: none;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+      }
+      .musicbox-slider::-webkit-slider-runnable-track {
+        background: rgba(30,15,5,0.4);
+        border-radius: 3px;
+        height: 4px;
+      }
+      .musicbox-slider::-moz-range-track {
+        background: rgba(30,15,5,0.4);
+        border-radius: 3px;
+        height: 4px;
+      }
+      .musicbox-touch-zone {
+        width: 88px;
+        height: 54px;
+        border-radius: 8px;
+        border: 1px solid rgba(0,0,0,0.2);
+        background: rgba(0,0,0,0.25);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        transition: border-color 0.2s, box-shadow 0.2s;
+        touch-action: none;
+        box-shadow:
+          inset 0 2px 6px rgba(0,0,0,0.5),
+          inset 0 1px 3px rgba(0,0,0,0.3);
+      }
+      .musicbox-touch-zone.sim-touch-active {
+        background: #253a2d;
+        border-color: #4a8c6f;
+        box-shadow: 0 0 14px rgba(74, 140, 111, 0.38);
+      }
+      #sim-ambient-label {
+        font-family: var(--font-body);
+        font-size: 1.4rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        color: rgba(30,15,5,0.75);
+        pointer-events: none;
+        text-align: center;
+        line-height: 1.3;
+        text-shadow:
+          0 1px 0 rgba(255,255,255,0.15),
+          0 -1px 2px rgba(0,0,0,0.6);
+      }
+
+      @media (max-width: 640px) {
+        .case-hero {
+          height: 50vh;
+          margin-top: 4rem;
+        }
+        .media-duo,
+        .media-trio {
+          grid-template-columns: 1fr;
+        }
+        .musicbox-sim-canvas {
+          height: 140px;
+        }
+        .musicbox-controls {
+          padding: 12px var(--space-sm);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="project-card-cursor-label" id="cursor-label">View &#8594;</div>
+
+    <svg
+      width="0"
+      height="0"
+      style="position: absolute; overflow: hidden"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <defs>
+        <clipPath id="wave-gentle" clipPathUnits="objectBoundingBox">
+          <path
+            d="M0,0.04 C0.1,0 0.2,0.02 0.3,0.04 C0.4,0.06 0.5,0.02 0.6,0.04 C0.7,0.06 0.8,0.02 0.9,0.04 C0.95,0.05 1,0.04 1,0.04 L1,0.96 C0.9,1 0.8,0.98 0.7,0.96 C0.6,0.94 0.5,0.98 0.4,0.96 C0.3,0.94 0.2,0.98 0.1,0.96 C0.05,0.95 0,0.96 0,0.96 Z"
+          />
+        </clipPath>
+        <pattern
+          id="scute-tile"
+          x="0"
+          y="0"
+          width="20"
+          height="16"
+          patternUnits="userSpaceOnUse"
+        >
+          <polygon
+            points="3,8 10,2 17,8"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1"
+            stroke-linejoin="round"
+          />
+          <polygon
+            points="3,8 10,14 17,8"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1"
+            stroke-linejoin="round"
+          />
+        </pattern>
+      </defs>
+    </svg>
+
+    <button class="sidebar-toggle" aria-label="Toggle navigation">☰</button>
+    <aside class="sidebar">
+      <a href="/index.html?nav=1" class="sidebar-logo" aria-label="Home">
+        <img
+          src="/assets/images/logo-chasing_dragons-color.svg"
+          alt="Chasing Dragons — PJ Rodriguez"
+          width="80"
+          height="70"
+        />
+      </a>
+      <span class="sidebar-identity">
+        <span class="pj-initials">
+          <span class="pj-p">P</span><span class="pj-dot1">.</span><span class="pj-j">J</span><span class="pj-dot2">.</span><span class="pj-smile">(</span>
+        </span>
+        <span class="surname-block">
+          <span class="surname-row"><span>R</span><span>O</span><span>D</span></span>
+          <span class="surname-row"><span>R</span><span>I</span><span>G</span></span>
+          <span class="surname-row"><span>U</span><span>E</span><span>Z</span></span>
+        </span>
+      </span>
+      <nav class="sidebar-nav">
+        <a href="/index.html?nav=1" data-i18n="nav.work">Work</a>
+        <span class="sidebar-nav-soon"><span data-i18n="nav.craft">Craft</span> <em data-i18n="nav.soon">soon</em></span>
+        <a href="/about.html" data-i18n="nav.about">About</a>
+      </nav>
+      <div class="sidebar-footer">
+
+        <div class="sidebar-lang">
+
+          <button class="lang-btn active" data-lang="en" aria-pressed="true" lang="en">EN</button>
+
+          <button class="lang-btn" data-lang="pt" aria-pressed="false" lang="pt-BR">PT</button>
+
+          <button class="lang-btn" data-lang="es" aria-pressed="false" lang="es">ES</button>
+
+        </div>
+
+      </div>
+    </aside>
+
+    <main class="main-content">
+
+    <!-- HERO -->
+    <div style="width:100%;min-height:60vh;margin-top:4.75rem;background:var(--forest);display:flex;align-items:flex-end;">
+      <div style="padding:var(--space-md) var(--space-lg);">
+        <p style="font-family:var(--font-body);font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--fern);margin:0 0 0.6em;">Interaction Design &middot; Sound &middot; Behavior</p>
+        <h1 style="font-family:var(--font-display);color:#fff;margin:0 0 0.45em;">Ambient Sound Console</h1>
+        <p style="font-family:var(--font-body);font-size:1rem;color:rgba(255,255,255,0.6);margin:0;max-width:52ch;line-height:1.55;">A tabletop device for sound-guided relaxation. Designed and built in SMC Tangible Design, 2021.</p>
+      </div>
+    </div>
+
+    <!-- CUBE DISPLAY -->
+    <div style="background:var(--forest);display:flex;justify-content:center;align-items:center;padding:var(--space-xl) 0;min-height:40vh;">
+      <div class="musicbox-scene" id="sim-scene">
+        <div class="musicbox-cube" id="sim-cube">
+          <div class="musicbox-face musicbox-face--front"></div>
+          <div class="musicbox-face musicbox-face--back"></div>
+          <div class="musicbox-face musicbox-face--left"></div>
+          <div class="musicbox-face musicbox-face--right"></div>
+          <div class="musicbox-face musicbox-face--top"></div>
+          <div class="musicbox-face musicbox-face--bottom"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ALL CONTENT -->
+    <section class="section" style="padding-top: var(--space-lg)">
+      <div class="container">
+
+        <!-- METADATA STRIP -->
+        <p class="project-meta-pills">
+          <span class="about-pill" style="--pill-color: var(--sage-teal);">Physical Prototyping · Interaction Design · Creative Coding</span>
+          <span class="about-pill" style="--pill-color: #7a5fa0;">Arduino · Processing · Minim</span>
+          <span class="about-pill" style="--pill-color: var(--forest);">Group · 3 members</span>
+          <span class="about-pill" style="--pill-color: var(--ochre);">2021</span>
+        </p>
+
+        <div class="section-wave" aria-hidden="true">
+          <svg
+            viewBox="0 0 2278 30"
+            preserveAspectRatio="none"
+            style="display: block; width: 100%; height: 20px; overflow: visible;"
+          >
+            <path
+              id="section-wave-path"
+              d="M0,4 Q1139,4 2278,4"
+              fill="none"
+              stroke="var(--forest)"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </svg>
+        </div>
+        <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          var path = document.getElementById('section-wave-path');
+          if (!path) return;
+          function tryBounce() {
+            if (!window.gsap) { setTimeout(tryBounce, 50); return; }
+            var flat = 'M0,4 Q1139,4 2278,4';
+            gsap.timeline()
+              .set(path, { attr: { d: 'M0,4 Q1139,22 2278,4' } })
+              .to(path, { attr: { d: flat }, duration: 3.5, ease: 'elastic.out(1.2, 0.25)' });
+          }
+          setTimeout(tryBounce, 300);
+        });
+        </script>
+
+        <!-- OVERVIEW -->
+        <div class="project-section reveal">
+          <h2>Overview</h2>
+          <p>
+            The brief was open: build a music-making system using Arduino and
+            Processing, house it in a cardboard enclosure, and make something
+            worth experiencing. Our team interpreted it as an invitation to slow
+            down. The result was a small ambient sound device that let a listener
+            compose their own atmosphere by combining nature recordings with a
+            secondary instrumental layer, controlled entirely through physical
+            interaction with a printed enclosure.
+          </p>
+        </div>
+
+        <!-- THE PROBLEM -->
+        <div class="project-section reveal">
+          <h2>The Problem</h2>
+          <p>
+            Most ambient sound tools are software interfaces — apps, browser
+            tabs, something you navigate rather than touch. The brief asked us
+            to think differently: what does it feel like to control sound with
+            your hands, through a physical object that has weight and texture?
+            The design question became whether the physical interface could communicate as much as the audio it controlled — not just function, but texture and intention.
+          </p>
+        </div>
+
+        <!-- MY ROLE -->
+        <div class="project-section reveal">
+          <h2>My Role</h2>
+          <p>
+            I built the hardware-software bridge. On the Arduino side, I wrote
+            the code that reads the push button and cycles through the three
+            primary tracks — Ocean, Creek, and Rain — displaying the current
+            track name on the RGB LCD screen. The potentiometer controls LCD
+            brightness, mapping the analog read value to a color shift across
+            the display. I also wrote the initial Processing sketch for the
+            Minim-based audio integration, iterating through three versions
+            before the final sketch merged both audio layers into a single
+            serial-connected program.
+          </p>
+          <p>
+            For the generative visuals, I built the concentric ring animation
+            that pulses in response to the audio signal. My teammate built the
+            Perlin noise wave form independently. In V2 we merged the two, and
+            the combined system became the visual identity of the project.
+          </p>
+        </div>
+
+        <!-- THE ENCLOSURE -->
+        <div class="project-section reveal">
+          <h2>The Enclosure</h2>
+          <p>
+            The box is cardboard, printed with a wood grain and resin ocean wave
+            texture across all faces. The controls sit in a recessed inset panel
+            on the front face — a detail that changed from the original sketch,
+            where components were surface-mounted. Moving them into a cutout
+            protected the hardware and gave the front face a cleaner, more
+            intentional appearance. The touch sensor is on the side panel, the
+            USB port on the opposite side.
+          </p>
+        </div>
+
+        <!-- HOW IT WORKS -->
+        <div class="project-section reveal">
+          <h2>How It Works</h2>
+          <p>
+            The button cycles the primary track. The potentiometer adjusts the
+            LCD brightness. The touch sensor triggers the secondary ambient
+            layer independently, so any combination of primary track and ambient
+            layer can run simultaneously — creek with forest, ocean with ocean
+            ambience, rain with nothing. The Processing sketch reads serial
+            input from the Arduino and plays the corresponding audio files
+            through the Minim library while rendering the generative visual
+            display on screen.
+          </p>
+          <p>
+            The browser simulation below recreates this interaction without the
+            hardware. The button, slider, and touch zone each map directly to
+            their physical counterparts. Note that the original system ran on
+            Arduino and Processing; this is a web-native reconstruction built
+            for portfolio review.
+          </p>
+        </div>
+
+        <!-- PROCESS IMAGES -->
+        <div class="project-section reveal">
+          <h2>Process Images</h2>
+
+          <div style="max-width: 720px; margin-inline: auto; margin-top: var(--space-md);">
+          <figure class="media-figure">
+            <img
+              src="/assets/images/musicbox-sketch.jpg"
+              alt="Planning sketch showing component layout"
+              loading="lazy"
+              style="outline: 1.5px solid var(--forest); border-radius: 3px; display: block; width: 100%; height: auto;"
+            />
+            <figcaption class="case-caption">Planning sketch — components initially surface-mounted, later moved to an inset panel</figcaption>
+          </figure>
+          </div>
+
+          <div style="max-width: 720px; margin-inline: auto; margin-top: var(--space-md);">
+          <figure class="media-figure">
+            <img
+              src="/assets/images/musicbox-physical.jpg"
+              alt="Finished enclosure with inset control panel and printed texture"
+              loading="lazy"
+              style="outline: 1.5px solid var(--forest); border-radius: 3px; display: block; width: 100%; height: auto;"
+            />
+            <figcaption class="case-caption">Finished enclosure with inset control panel, printed wood and resin wave texture</figcaption>
+          </figure>
+          </div>
+
+          <div class="media-trio">
+            <figure class="media-figure">
+              <img
+                src="/assets/images/musicbox-visual-v1.jpg"
+                alt="V1 generative output showing Perlin wave form with particles"
+                loading="lazy"
+                style="outline: 1.5px solid var(--forest); border-radius: 3px; display: block; width: 100%; height: auto;"
+              />
+              <figcaption class="case-caption">V1 generative output — Perlin wave form with floating particle system</figcaption>
+            </figure>
+            <figure class="media-figure">
+              <img
+                src="/assets/images/musicbox-visual-v2.jpg"
+                alt="V2 generative output combining wave form and concentric rings"
+                loading="lazy"
+                style="outline: 1.5px solid var(--forest); border-radius: 3px; display: block; width: 100%; height: auto;"
+              />
+              <figcaption class="case-caption">V2 — wave form combined with concentric ring animation</figcaption>
+            </figure>
+            <figure class="media-figure">
+              <img
+                src="/assets/images/musicbox-visual-v3.jpg"
+                alt="V3 final generative output with warm background"
+                loading="lazy"
+                style="outline: 1.5px solid var(--forest); border-radius: 3px; display: block; width: 100%; height: auto;"
+              />
+              <figcaption class="case-caption">V3 final — warm background variant</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <!-- ARDUINO CODE -->
+        <div class="project-section reveal">
+          <h2>Arduino Code</h2>
+          <div class="musicbox-code-section">
+            <div class="musicbox-code-wrap">
+              <pre class="musicbox-code-block"><code>const int POT_PIN = A0;
+const int BUTTON_PIN = 2;
+const int TOUCH_PIN = 3;
+
+int songOrder = 0;
+String currentSong = "";
+
+int colorR, colorG, colorB;
+
+#include &lt;Wire.h&gt;
+#include "rgb_lcd.h"
+
+rgb_lcd lcd;
+
+int volume;
+
+String songList[3] = {"1 - Ocean", "2 - Creek", "3 - Rain"};
+
+void setup() {
+  pinMode(POT_PIN, INPUT);
+  pinMode(TOUCH_PIN, INPUT);
+  pinMode(BUTTON_PIN, INPUT);
+  lcd.begin(16, 2);
+  delay(100);
+  Serial.begin(9600);
+}
+
+void loop() {
+  float potVal = analogRead(POT_PIN);
+  bool touchVal = digitalRead(TOUCH_PIN);
+  bool buttonVal = digitalRead(BUTTON_PIN);
+
+  Serial.print(potVal);
+  Serial.print(",");
+  Serial.print(touchVal);
+  Serial.print(",");
+  Serial.println(buttonVal);
+
+  if (digitalRead(BUTTON_PIN) == HIGH) {
+    if (songOrder >= 2) {
+      songOrder = 0;
+    } else {
+      songOrder += 1;
+    }
+  }
+  currentSong = String(songList[songOrder]);
+
+  lcd.clear();
+
+  int val = analogRead(0);
+  float brightness = map(val, 0, 1024, 0, 250);
+
+  colorR = 140 - brightness / 2.5;
+  colorG = 250 - brightness / 1.5;
+  colorB = 250 - brightness / 1.5;
+
+  lcd.setRGB(colorR, colorG, colorB);
+  lcd.setCursor(0, 0);
+  lcd.print(currentSong);
+
+  delay(200);
+}</code></pre>
+            </div>
+            <p class="musicbox-code-caption">Arduino code handling button input, track cycling, and LCD display — written by PJ Rodriguez, November 2021.</p>
+          </div>
+        </div>
+
+        <!-- REFLECTION -->
+        <div class="project-section reveal">
+          <h2>Reflection</h2>
+          <p>
+            This was the first time I wrote code that controlled physical
+            hardware, and the first time a piece of software I built made sound
+            in response to something I touched. The gap between the planning
+            sketch and the finished object was smaller than expected — most of
+            what we drew we built — but the inset panel detail was an
+            improvement that came from handling the prototype rather than from
+            any plan. That kind of adjustment, where the making teaches you
+            something the drawing could not, is something I have looked for in
+            every project since.
+          </p>
+        </div>
+
+        <!-- SIMULATOR -->
+        <div id="simulator-section" class="project-section reveal">
+          <h2>Browser Simulation</h2>
+          <div class="musicbox-sim-outer">
+            <div class="musicbox-sim-begin" id="sim-begin"><span>tap anywhere to begin</span></div>
+            <div class="musicbox-sim-wrap">
+              <div class="musicbox-macos-bar">
+                <div class="musicbox-macos-buttons">
+                  <span class="musicbox-macos-btn musicbox-macos-close"></span>
+                  <span class="musicbox-macos-btn musicbox-macos-min"></span>
+                  <span class="musicbox-macos-btn musicbox-macos-max"></span>
+                </div>
+              </div>
+              <canvas id="sim-canvas" class="musicbox-sim-canvas" aria-hidden="true"></canvas>
+            </div>
+            <div class="musicbox-controls">
+              <div class="musicbox-control-group">
+                <span class="musicbox-control-label">Track</span>
+                <button class="musicbox-track-btn" id="sim-track-btn" aria-label="Cycle track">&#9654;</button>
+                <div class="musicbox-lcd" id="sim-lcd" data-track="ocean"><span id="sim-lcd-text">Ocean</span></div>
+              </div>
+              <div class="musicbox-control-group">
+                <span class="musicbox-control-label">Brightness / Volume</span>
+                <input type="range" class="musicbox-slider" id="sim-volume" min="0" max="100" value="70" aria-label="Volume" />
+              </div>
+              <div class="musicbox-control-group">
+                <span class="musicbox-control-label">Touch</span>
+                <div class="musicbox-touch-zone" id="sim-touch" role="button" tabindex="0" aria-label="Ambient layer — hold to play">
+                  <span id="sim-ambient-label">I</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </section>
+    </main>
+    <!-- FOOTER -->
+    <div class="footer-wave" aria-hidden="true">
+  <svg
+    viewBox="0 0 2278 30"
+    preserveAspectRatio="none"
+    style="display: block; width: 100%; height: 20px; overflow: visible;"
+  >
+    <path
+      id="bouncy-path"
+      d="M0,4 Q1139,4 2278,4"
+      fill="none"
+      stroke="#1e3025"
+      stroke-width="2"
+      stroke-linecap="round"
+    />
+  </svg>
+</div>
+<footer class="footer">
+      <div class="container">
+        <div class="footer-brand">
+          <p class="footer-tagline" data-i18n="footer.tagline">
+            Illustration &middot; Design &middot; Motion
+          </p>
+          <p class="footer-location">
+            San Francisco, CA &nbsp;&middot;&nbsp;
+            <span id="footer-time"></span>
+          </p>
+        </div>
+        <ul class="footer-links">
+          <li>
+            <a
+              href="https://linkedin.com/in/pjrdesign"
+              target="_blank"
+              rel="noopener"
+              >LinkedIn</a
+            >
+          </li>
+          <li>
+            <a
+              href="/cdn-cgi/l/email-protection#a6cec3cacac9e6d6ccd4c9c2d4cfc1d3c3dc88c2c3d5cfc1c8"
+              >Email</a
+            >
+          </li>
+          <li>
+            <a
+              href="/assets/PJ-Rodriguez-Resume-2026.pdf"
+              target="_blank"
+              rel="noopener"
+              ><span data-i18n="footer.resume">Resume</span></a
+            >
+          </li>
+        </ul>
+        <p class="footer-copy" data-i18n="footer.copy">
+          &copy; 2026 Patrick Rodriguez
+        </p>
+        <p class="footer-colophon" data-i18n-html="footer.colophon" style="grid-column:1/-1;font-family:var(--font-body);font-size:0.68rem;color:var(--text-light);letter-spacing:0.02em;margin-top:0.5em;line-height:1.8;"></p>
+      </div>
+    </footer>
+
+    <script>
+    (function () {
+      'use strict';
+
+      var TRACKS = [
+        { id: 'ocean', label: 'Ocean', color: [0, 212, 232] },
+        { id: 'creek', label: 'Creek', color: [80, 200, 80] },
+        { id: 'rain',  label: 'Rain',  color: [128, 144, 200] }
+      ];
+      var AMBIENT = [
+        { id: 'forest-ambience', label: 'I'   },
+        { id: 'ocean-ambience',  label: 'II'  },
+        { id: 'rain-ambience',   label: 'III' }
+      ];
+      var AUDIO_PREFIX = '/assets/audio/musicbox/';
+
+      var audioCtx = null;
+      var primaryBufs = {};
+      var ambientBufs = {};
+      var primarySource = null;
+      var primaryGain = null;
+      var ambientSource = null;
+      var ambientGain = null;
+      var ambientFadeTimer = null;
+
+      var trackIdx = 0;
+      var ambientIdx = 0;
+      var volume = 0.7;
+      var audioReady = false;
+
+      var rotY = -25;
+      var rotX = 12;
+      var spinning = false;
+      var dragging = false;
+      var dragStartX = 0;
+      var dragStartY = 0;
+      var dragRotY = 0;
+      var dragRotX = 0;
+      var SPIN_DEG = 0.12;
+
+      var canvasRunning = false;
+      var animFrame = null;
+      var rings = [];
+      var ringTimer = null;
+      var started = false;
+
+      function rgba(rgb, a) {
+        return 'rgba(' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + ',' + a + ')';
+      }
+
+      // ── AUDIO ──
+      function decodeAudio(url) {
+        return fetch(url)
+          .then(function (res) { return res.arrayBuffer(); })
+          .then(function (buf) {
+            return new Promise(function (resolve, reject) {
+              audioCtx.decodeAudioData(buf, resolve, reject);
+            });
+          });
+      }
+
+      function initAudio() {
+        if (audioReady) return;
+        try {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+          primaryGain = audioCtx.createGain();
+          primaryGain.gain.value = volume;
+          primaryGain.connect(audioCtx.destination);
+          ambientGain = audioCtx.createGain();
+          ambientGain.gain.value = 0;
+          ambientGain.connect(audioCtx.destination);
+
+          var files = [
+            AUDIO_PREFIX + 'ocean.mp3',
+            AUDIO_PREFIX + 'creek.mp3',
+            AUDIO_PREFIX + 'rain.mp3',
+            AUDIO_PREFIX + 'forest-ambience.mp3',
+            AUDIO_PREFIX + 'ocean-ambience.mp3',
+            AUDIO_PREFIX + 'rain-ambience.mp3'
+          ];
+          Promise.all(files.map(decodeAudio)).then(function (bufs) {
+            primaryBufs = { ocean: bufs[0], creek: bufs[1], rain: bufs[2] };
+            ambientBufs = {
+              'forest-ambience': bufs[3],
+              'ocean-ambience':  bufs[4],
+              'rain-ambience':   bufs[5]
+            };
+            audioReady = true;
+            playPrimary();
+          }).catch(function () {
+            audioReady = true; // visuals work without audio
+          });
+        } catch (e) {
+          audioReady = true;
+        }
+      }
+
+      function playPrimary() {
+        if (!audioReady) return;
+        if (primarySource) { try { primarySource.stop(); } catch (_) {} }
+        var buf = primaryBufs[TRACKS[trackIdx].id];
+        if (!buf) return;
+        primarySource = audioCtx.createBufferSource();
+        primarySource.buffer = buf;
+        primarySource.loop = true;
+        primarySource.connect(primaryGain);
+        primarySource.start(0);
+      }
+
+      function startAmbient() {
+        if (!audioReady) return;
+        if (ambientFadeTimer) clearTimeout(ambientFadeTimer);
+        var buf = ambientBufs[AMBIENT[ambientIdx].id];
+        if (!buf) return;
+        if (ambientSource) { try { ambientSource.stop(); } catch (_) {} }
+        ambientSource = audioCtx.createBufferSource();
+        ambientSource.buffer = buf;
+        ambientSource.loop = true;
+        ambientSource.connect(ambientGain);
+        ambientSource.start(0);
+        ambientGain.gain.cancelScheduledValues(audioCtx.currentTime);
+        ambientGain.gain.setValueAtTime(ambientGain.gain.value, audioCtx.currentTime);
+        ambientGain.gain.linearRampToValueAtTime(volume * 0.6, audioCtx.currentTime + 0.3);
+      }
+
+      function fadeAmbient() {
+        if (!audioReady || !ambientSource) return;
+        ambientGain.gain.cancelScheduledValues(audioCtx.currentTime);
+        ambientGain.gain.setValueAtTime(ambientGain.gain.value, audioCtx.currentTime);
+        ambientGain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.8);
+        var src = ambientSource;
+        ambientFadeTimer = setTimeout(function () { try { src.stop(); } catch (_) {} }, 900);
+        ambientSource = null;
+      }
+
+      function updateVolume(v) {
+        volume = v;
+        if (primaryGain) primaryGain.gain.value = v;
+        if (ambientGain && ambientSource) ambientGain.gain.value = v * 0.6;
+      }
+
+      // ── CUBE ──
+      function applyCubeTransform(cube) {
+        cube.style.transform = 'rotateX(' + rotX + 'deg) rotateY(' + rotY + 'deg)';
+      }
+
+      function spinLoop(cube) {
+        if (!dragging && spinning) rotY += SPIN_DEG;
+        applyCubeTransform(cube);
+        requestAnimationFrame(function () { spinLoop(cube); });
+      }
+
+      // ── CANVAS ──
+      var canvasT = 0;
+
+      function scheduleRing() {}
+      function stopRings() {}
+
+      function drawCanvas(canvas) {
+        var w = canvas.width;
+        var h = canvas.height;
+        var ctx = canvas.getContext('2d');
+
+        ctx.clearRect(0, 0, w, h);
+        ctx.fillStyle = '#f5f2ec';
+        ctx.fillRect(0, 0, w, h);
+        var cornerDist = Math.sqrt(w * w / 4 + h * h / 4);
+        var vignette = ctx.createRadialGradient(w / 2, h / 2, w * 0.3, w / 2, h / 2, cornerDist);
+        vignette.addColorStop(0, 'rgba(245,242,236,0)');
+        vignette.addColorStop(1, 'rgba(220,215,205,0.4)');
+        ctx.fillStyle = vignette;
+        ctx.fillRect(0, 0, w, h);
+
+        var midY    = h * 0.62;
+        var spacing = 1.2;
+        var waveAmp = 60 + 20 * Math.sin(canvasT * 0.4);
+
+        // bezier ribbon — 70 stacked quadratic curves
+        ctx.lineWidth = 0.6;
+        for (var i = 0; i < 70; i++) {
+          var y0   = midY + i * spacing;
+          var cpY  = midY + waveAmp * Math.sin(canvasT + i * 0.08);
+          var norm = i / 69;
+          var bell = Math.exp(-Math.pow((norm - 0.5) * 4, 2));
+          var alpha = 0.15 + 0.7 * bell;
+          ctx.beginPath();
+          ctx.moveTo(0, y0);
+          ctx.quadraticCurveTo(w / 2, cpY, w, y0);
+          ctx.strokeStyle = 'rgba(0,210,220,' + alpha.toFixed(3) + ')';
+          ctx.stroke();
+        }
+
+        // concentric rings when touch zone is held
+        var touchEl = document.getElementById('sim-touch');
+        if (touchEl && touchEl.classList.contains('sim-touch-active')) {
+          var now  = performance.now();
+          var rcx  = w / 2;
+          var rcy  = h * 0.4;
+          var maxR = h * 0.6;
+          ctx.lineWidth = 1.5;
+          for (var ri = 0; ri < 8; ri++) {
+            var phase    = ((now - ri * 240) % 2000 + 2000) % 2000;
+            var progress = phase / 2000;
+            var ringAlpha = 0.3 * (1 - progress);
+            ctx.beginPath();
+            ctx.arc(rcx, rcy, progress * maxR, 0, Math.PI * 2);
+            ctx.strokeStyle = 'rgba(0,210,220,' + ringAlpha.toFixed(3) + ')';
+            ctx.stroke();
+          }
+        }
+
+        canvasT += 0.012;
+      }
+
+      function canvasLoop(canvas, t) {
+        if (!canvasRunning) return;
+        drawCanvas(canvas);
+        animFrame = requestAnimationFrame(function (ts) { canvasLoop(canvas, ts); });
+      }
+
+      // ── INIT ──
+      function init() {
+        var simBegin  = document.getElementById('sim-begin');
+        var cube      = document.getElementById('sim-cube');
+        var scene     = document.getElementById('sim-scene');
+        var canvas    = document.getElementById('sim-canvas');
+        var lcd       = document.getElementById('sim-lcd');
+        var lcdText   = document.getElementById('sim-lcd-text');
+        var trackBtn  = document.getElementById('sim-track-btn');
+        var volSlider = document.getElementById('sim-volume');
+        var touchZone = document.getElementById('sim-touch');
+        var ambLabel  = document.getElementById('sim-ambient-label');
+
+        var touchHeld = false;
+        touchZone.addEventListener('mousedown', function(e) {
+          touchHeld = true;
+          var rect = touchZone.getBoundingClientRect();
+          var x = e.clientX - rect.left;
+          var y = e.clientY - rect.top;
+          touchZone.style.background = 'radial-gradient(circle 40px at ' + x + 'px ' + y + 'px, rgba(180,120,60,0.45) 0%, rgba(140,90,40,0.18) 50%, rgba(0,0,0,0.22) 100%)';
+        });
+        touchZone.addEventListener('mousemove', function(e) {
+          if (!touchHeld) return;
+          var rect = touchZone.getBoundingClientRect();
+          var x = e.clientX - rect.left;
+          var y = e.clientY - rect.top;
+          touchZone.style.background = 'radial-gradient(circle 40px at ' + x + 'px ' + y + 'px, rgba(180,120,60,0.45) 0%, rgba(140,90,40,0.18) 50%, rgba(0,0,0,0.22) 100%)';
+        });
+        touchZone.addEventListener('mouseup', function() {
+          touchHeld = false;
+          touchZone.style.background = 'rgba(0,0,0,0.25)';
+        });
+        touchZone.addEventListener('mouseleave', function() {
+          touchHeld = false;
+          touchZone.style.background = 'rgba(0,0,0,0.25)';
+        });
+
+        if (!simBegin || !cube || !canvas) return;
+
+        spinning = true;
+        spinLoop(cube);
+
+        function resizeCanvas() {
+          var w = canvas.clientWidth;
+          var h = canvas.clientHeight;
+          if (w < 1) w = 280;
+          if (h < 1) h = 220;
+          canvas.width  = w;
+          canvas.height = h;
+        }
+
+        function begin() {
+          if (started) return;
+          started = true;
+          simBegin.classList.add('sim-hidden');
+          resizeCanvas();
+          canvasRunning = true;
+          spinning = true;
+          animFrame = requestAnimationFrame(function (ts) { canvasLoop(canvas, ts); });
+          spinLoop(cube);
+          scheduleRing();
+          initAudio();
+        }
+
+        simBegin.addEventListener('click', begin);
+        simBegin.addEventListener('touchstart', begin, { passive: true });
+
+        // cube drag
+        function onDragStart(e) {
+          if (e.preventDefault) e.preventDefault();
+          dragging = true;
+          spinning = false;
+          var pt = e.touches ? e.touches[0] : e;
+          dragStartX = pt.clientX;
+          dragStartY = pt.clientY;
+          dragRotY = rotY;
+          dragRotX = rotX;
+        }
+        function onDragMove(e) {
+          if (!dragging) return;
+          var pt = e.touches ? e.touches[0] : e;
+          rotY = dragRotY + (pt.clientX - dragStartX) * 0.5;
+          rotX = dragRotX - (pt.clientY - dragStartY) * 0.5;
+          rotX = Math.max(-85, Math.min(85, rotX));
+        }
+        function onDragEnd() {
+          if (!dragging) return;
+          dragging = false;
+          spinning = true;
+        }
+        scene.addEventListener('mousedown',  onDragStart, { passive: false });
+        scene.addEventListener('touchstart', onDragStart, { passive: true });
+        window.addEventListener('mousemove', onDragMove);
+        window.addEventListener('touchmove', onDragMove, { passive: true });
+        window.addEventListener('mouseup',   onDragEnd);
+        window.addEventListener('touchend',  onDragEnd);
+
+        // track button
+        trackBtn.addEventListener('click', function () {
+          trackIdx = (trackIdx + 1) % TRACKS.length;
+          var t = TRACKS[trackIdx];
+          lcd.dataset.track = t.id;
+          lcdText.textContent = t.label;
+          playPrimary();
+        });
+
+        // volume slider
+        volSlider.addEventListener('input', function () {
+          var v = volSlider.value / 100;
+          updateVolume(v);
+          lcd.style.opacity = String(0.35 + v * 0.65);
+        });
+
+        // touch zone — hold to play ambient, release to fade
+        function activateTouch() {
+          ambientIdx = (ambientIdx + 1) % AMBIENT.length;
+          ambLabel.textContent = AMBIENT[ambientIdx].label;
+          touchZone.classList.add('sim-touch-active');
+          startAmbient();
+        }
+        function releaseTouch() {
+          touchZone.classList.remove('sim-touch-active');
+          fadeAmbient();
+        }
+        touchZone.addEventListener('mousedown',  activateTouch);
+        touchZone.addEventListener('touchstart', activateTouch, { passive: true });
+        touchZone.addEventListener('mouseup',    releaseTouch);
+        touchZone.addEventListener('mouseleave', releaseTouch);
+        touchZone.addEventListener('touchend',   releaseTouch);
+        touchZone.addEventListener('keydown', function (e) {
+          if (e.key === ' ' || e.key === 'Enter') activateTouch();
+        });
+        touchZone.addEventListener('keyup', releaseTouch);
+
+        // pause canvas when off-screen
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (!started) return;
+            if (entry.isIntersecting && !canvasRunning) {
+              resizeCanvas();
+              canvasRunning = true;
+              spinning = true;
+              scheduleRing();
+              animFrame = requestAnimationFrame(function (ts) { canvasLoop(canvas, ts); });
+            } else if (!entry.isIntersecting && canvasRunning) {
+              canvasRunning = false;
+              spinning = false;
+              stopRings();
+              cancelAnimationFrame(animFrame);
+            }
+          });
+        }, { threshold: 0.1 });
+        observer.observe(canvas);
+
+        window.addEventListener('resize', function () {
+          if (canvasRunning) resizeCanvas();
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+    </script>
+    <script type="module" src="/src/js/main.js"></script>
+  </body>
+</html>

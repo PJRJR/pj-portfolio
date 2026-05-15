@@ -11,12 +11,26 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Sono:wght,MONO@200..800,1&family=Space+Grotesk:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/src/styles/main.css" />
   </head>
-  <body>
+  <body data-lang-toggle>
+    <div
+      id="vp-glow"
+      aria-hidden="true"
+      style="position: fixed; inset: 0; pointer-events: none; z-index: 99999"
+    ></div>
+    <div id="pj-intro" aria-hidden="true">
+      <div class="pj-face">
+        <span class="pj-p">P</span>
+        <span class="pj-dot1">.</span>
+        <span class="pj-j">J</span>
+        <span class="pj-dot2">.</span>
+        <span class="pj-smile">(</span>
+      </div>
+    </div>
     <!-- "View →" label — must be direct child of body to escape GSAP stacking context -->
     <div class="project-card-cursor-label" id="cursor-label">View &#8594;</div>
 
@@ -74,35 +88,42 @@
       </defs>
     </svg>
 
-    <!-- ============================================================
-         NAVIGATION
-         ============================================================ -->
-    <nav class="nav" role="navigation" aria-label="Main navigation">
-      <div class="container">
-        <a href="/" class="nav-logo-zone" aria-label="PJ Rodriguez — home">
-          <span class="nav-logo-text">P.J.</span>
-          <!-- Swap for animation asset once ready:
-               <img class="nav-logo-img" src="/assets/images/pj-logo.svg" alt="" aria-hidden="true" /> -->
-        </a>
-
-        <button
-          class="nav-toggle"
-          aria-label="Toggle menu"
-          aria-expanded="false"
+    <button class="sidebar-toggle" aria-label="Toggle navigation">☰</button>
+    <aside class="sidebar">
+      <a href="/index.html?nav=1" class="sidebar-logo" aria-label="Home">
+        <img
+          src="/assets/images/logo-chasing_dragons-color.svg"
+          alt="Chasing Dragons — PJ Rodriguez"
+        />
+      </a>
+      <span class="sidebar-identity">
+        <span class="pj-initials">
+          <span class="pj-p">P</span><span class="pj-dot1">.</span
+          ><span class="pj-j">J</span><span class="pj-dot2">.</span
+          ><span class="pj-smile">(</span>
+        </span>
+        <span class="surname-block">
+          <span class="surname-row"
+            ><span>R</span><span>O</span><span>D</span></span
+          >
+          <span class="surname-row"
+            ><span>R</span><span>I</span><span>G</span></span
+          >
+          <span class="surname-row"
+            ><span>U</span><span>E</span><span>Z</span></span
+          >
+        </span>
+      </span>
+      <nav class="sidebar-nav">
+        <a href="/index.html?nav=1" data-i18n="nav.work">Work</a>
+        <span class="sidebar-nav-soon"
+          ><span data-i18n="nav.craft">Craft</span>
+          <em data-i18n="nav.soon">soon</em></span
         >
-          <span></span><span></span><span></span>
-        </button>
-
-        <ul class="nav-links">
-          <li><a href="/" class="active" data-i18n="nav.home">Home</a></li>
-          <li><a href="/work.html" data-i18n="nav.work">Work</a></li>
-          <li>
-            <a href="/work.html" data-i18n="nav.illustration">Illustration</a>
-          </li>
-          <li><a href="/about.html" data-i18n="nav.about">About</a></li>
-        </ul>
-
-        <div class="lang-toggle" role="group" aria-label="Language">
+        <a href="/about.html" data-i18n="nav.about">About</a>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="sidebar-lang">
           <button
             class="lang-btn active"
             data-lang="en"
@@ -111,6 +132,7 @@
           >
             EN
           </button>
+
           <button
             class="lang-btn"
             data-lang="pt"
@@ -119,6 +141,7 @@
           >
             PT
           </button>
+
           <button
             class="lang-btn"
             data-lang="es"
@@ -128,419 +151,446 @@
             ES
           </button>
         </div>
-
-        <!-- LinkedIn + Resume icons — top-right like Dave Lee -->
-        <div class="nav-icon-links">
-          <a
-            href="https://linkedin.com/in/pjrdesign"
-            class="nav-icon-link"
-            target="_blank"
-            rel="noopener"
-            aria-label="LinkedIn"
-          >
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path
-                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
-              />
-            </svg>
-          </a>
-          <a
-            href="/assets/PJ-Rodriguez-Resume-2026.pdf"
-            class="nav-icon-link"
-            target="_blank"
-            rel="noopener"
-            aria-label="Resume PDF"
-          >
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path
-                d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"
-              />
-            </svg>
-          </a>
-        </div>
       </div>
-    </nav>
+    </aside>
 
-    <!-- ============================================================
-         HERO — dark forest, cursor-tracked radial glow
-         IA inspired by leedave.com: availability · location · live time
+    <main class="main-content">
+      <!-- ============================================================
+         HERO (commented out — remove <template> tags to restore)
          ============================================================ -->
-    <section class="hero" aria-label="Introduction">
-      <div class="container">
-        <div class="hero-content">
-          <!-- Top bar: location + time (left) · availability (right) · HR below
+      <template>
+        <section class="hero" aria-label="Introduction">
+          <div class="container">
+            <div class="hero-content">
+              <!-- Top bar: location + time (left) · availability (right) · HR below
                Direct translation of Dave Lee's structural header row -->
-          <div class="hero-topbar">
-            <div class="hero-topbar-left">
-              <span>San Francisco, CA</span>
-              <span class="hero-topbar-arrow" aria-hidden="true">&#8594;</span>
-              <span
-                class="hero-topbar-time"
-                id="hero-time"
-                aria-label="Current San Francisco time"
-              ></span>
-            </div>
-            <div class="hero-topbar-right">
-              <span class="hero-topbar-dot" aria-hidden="true"></span>
-              <span class="hero-topbar-status" data-i18n="hero.status"
-                >Available for work</span
-              >
-            </div>
-          </div>
+              <div class="hero-topbar">
+                <div class="hero-topbar-left">
+                  <span data-i18n="hero.location">San Francisco, CA</span>
+                  <span class="hero-topbar-arrow" aria-hidden="true"
+                    >&#8594;</span
+                  >
+                  <span
+                    class="hero-topbar-time"
+                    id="hero-time"
+                    aria-label="Current San Francisco time"
+                  ></span>
+                </div>
+              </div>
 
-          <!-- Topbar rule — SVG so JS can do partial blob inversion like Klamath -->
-          <svg
-            class="hero-topbar-rule"
-            viewBox="0 0 600 2"
-            width="600"
-            height="2"
-            preserveAspectRatio="none"
-            aria-hidden="true"
-            focusable="false"
-            style="display: block; width: 100%; margin-bottom: var(--space-lg)"
-          >
-            <defs>
-              <linearGradient
-                id="topbar-grad"
-                x1="0"
-                y1="0"
-                x2="1"
-                y2="0"
-                gradientUnits="objectBoundingBox"
+              <!-- Topbar rule — SVG so JS can do partial blob inversion like Klamath -->
+              <svg
+                class="hero-topbar-rule"
+                viewBox="0 0 600 2"
+                width="600"
+                height="2"
+                preserveAspectRatio="none"
+                aria-hidden="true"
+                focusable="false"
+                style="
+                  display: block;
+                  width: 100%;
+                  margin-bottom: var(--space-lg);
+                "
               >
-                <stop offset="0%" stop-color="#1e3025" />
-                <stop offset="100%" stop-color="#1e3025" />
-              </linearGradient>
-            </defs>
-            <line
-              x1="0"
-              y1="1"
-              x2="600"
-              y2="1"
-              stroke="url(#topbar-grad)"
-              stroke-width="1.5"
-            />
-          </svg>
-          <h1 class="hero-name" aria-label="PJ Rodriguez">PJ Rodriguez</h1>
+                <defs>
+                  <linearGradient
+                    id="topbar-grad"
+                    x1="0"
+                    y1="0"
+                    x2="1"
+                    y2="0"
+                    gradientUnits="objectBoundingBox"
+                  >
+                    <stop offset="0%" stop-color="#1e3025" />
+                    <stop offset="100%" stop-color="#1e3025" />
+                  </linearGradient>
+                </defs>
+                <line
+                  x1="0"
+                  y1="1"
+                  x2="600"
+                  y2="1"
+                  stroke="url(#topbar-grad)"
+                  stroke-width="2"
+                />
+              </svg>
+              <h1 class="hero-name" aria-label="PJ Rodriguez">PJ Rodriguez</h1>
 
-          <!-- Klamath river wave underline — perpetually animated by GSAP -->
-          <svg
-            class="hero-klamath"
-            viewBox="0 0 600 14"
-            width="600"
-            height="14"
-            aria-hidden="true"
-            focusable="false"
-          >
-            <defs>
-              <linearGradient
-                id="klamath-grad"
-                x1="0"
-                y1="0"
-                x2="1"
-                y2="0"
-                gradientUnits="objectBoundingBox"
+              <!-- Klamath river wave underline — perpetually animated by GSAP -->
+              <svg
+                class="hero-klamath"
+                viewBox="0 0 600 14"
+                width="600"
+                height="14"
+                aria-hidden="true"
+                focusable="false"
               >
-                <stop offset="0%" stop-color="#4a90d9" />
-                <stop offset="100%" stop-color="#4a90d9" />
-              </linearGradient>
-            </defs>
-            <path
-              d="M0 7 Q50 1,100 7 Q150 13,200 7 Q250 1,300 7 Q350 13,400 7 Q450 1,500 7 Q550 13,600 7"
-              fill="none"
-              stroke="url(#klamath-grad)"
-              stroke-width="3"
-              stroke-linecap="round"
-            />
-          </svg>
+                <defs>
+                  <linearGradient
+                    id="klamath-grad"
+                    x1="0"
+                    y1="0"
+                    x2="1"
+                    y2="0"
+                    gradientUnits="objectBoundingBox"
+                  >
+                    <stop offset="0%" stop-color="#4a90d9" />
+                    <stop offset="100%" stop-color="#4a90d9" />
+                  </linearGradient>
+                </defs>
+                <path
+                  d="M0 7 Q50 1,100 7 Q150 13,200 7 Q250 1,300 7 Q350 13,400 7 Q450 1,500 7 Q550 13,600 7"
+                  fill="none"
+                  stroke="url(#klamath-grad)"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                />
+              </svg>
 
-          <!-- Disciplines -->
-          <p class="hero-disciplines" data-i18n="hero.tagline">
-            Interaction Design &nbsp;&middot;&nbsp; Motion &nbsp;&middot;&nbsp;
-            Illustration
-          </p>
+              <!-- Disciplines -->
+              <p class="hero-disciplines" data-i18n="hero.tagline">
+                Interaction Design &nbsp;&middot;&nbsp; Motion
+                &nbsp;&middot;&nbsp; Illustration
+              </p>
 
-          <!-- Label → bold value info block — body-size text, bold values -->
-          <div class="hero-info-block">
-            <div class="hero-info-row">
-              <span class="hero-info-label" data-i18n="hero.label.currently"
-                >Currently</span
-              >
-              <span class="hero-info-sep">&#8594;</span>
-              <span class="hero-info-val" data-i18n="hero.val.currently"
-                >Open to design roles</span
-              >
-            </div>
-            <div class="hero-info-row">
-              <span class="hero-info-label" data-i18n="hero.label.previously"
-                >Previously</span
-              >
-              <span class="hero-info-sep">&#8594;</span>
-              <span class="hero-info-val" data-i18n="hero.val.previously"
-                >IDEO &nbsp;&middot;&nbsp; Zoox &nbsp;&middot;&nbsp; Uber
-              </span>
-            </div>
-            <div class="hero-info-row">
-              <span class="hero-info-label" data-i18n="hero.label.building"
-                >Building</span
-              >
-              <span class="hero-info-sep">&#8594;</span>
-              <span class="hero-info-val" data-i18n="hero.val.building"
-                >Illustration &nbsp;&middot;&nbsp; Motion &nbsp;&middot;&nbsp;
-                IxD</span
-              >
+              <p class="hero-tagline-sub" data-i18n="hero.tagline.sub">
+                Third-generation San Franciscan with Yurok roots, an
+                illustration background, and a practice in interaction design
+                and motion.
+              </p>
+
+              <div class="hero-cta">
+                <a
+                  href="/projects.html"
+                  class="btn btn-primary"
+                  data-i18n="hero.cta.work"
+                >
+                  View My Work &#8594;
+                </a>
+              </div>
             </div>
           </div>
+        </section>
 
-          <div class="hero-cta">
-            <a
-              href="/work.html"
-              class="btn btn-primary"
-              data-i18n="hero.cta.work"
-            >
-              View My Work &#8594;
-            </a>
-            <a
-              href="/about.html"
-              class="btn btn-outline"
-              data-i18n="hero.cta.about"
-            >
-              About Me
-            </a>
+        <hr class="section-rule" aria-hidden="true" />
+      </template>
+
+      <section class="home-intro home-intro-ruled">
+        <div class="container">
+          <div class="home-intro-grid">
+            <p class="home-intro-text" data-i18n="home.intro.p1">
+              PJ Rodriguez is an interaction designer, motion designer, and
+              illustrator based in San Francisco.
+            </p>
+            <p class="home-intro-text" data-i18n-html="home.intro.p2">
+              He is an
+              <a href="https://ideo.com" target="_blank" rel="noopener"
+                >IDEO Color by Design Fellow&nbsp;&#8599;</a
+              >
+              and a
+              <a
+                href="https://dschool.stanford.edu/programs/university-innovation-fellows"
+                target="_blank"
+                rel="noopener"
+                >Stanford d.school University Innovation Fellow&nbsp;&#8599;</a
+              >, with a B.S. in Interaction Design from Santa Monica
+              College&nbsp;&mdash;
+              <a
+                href="https://linkedin.com/in/pjrdesign"
+                target="_blank"
+                rel="noopener"
+                >LinkedIn&nbsp;&#8599;</a
+              >
+            </p>
           </div>
         </div>
+      </section>
+
+      <div class="section-wave" aria-hidden="true">
+        <svg
+          viewBox="0 0 2278 30"
+          preserveAspectRatio="none"
+          style="
+            display: block;
+            width: calc(100% - 150px);
+            margin: 0 auto;
+            height: 20px;
+            overflow: visible;
+          "
+        >
+          <path
+            id="section-wave-path"
+            d="M0,4 Q1139,4 2278,4"
+            fill="none"
+            stroke="#1e3025"
+            stroke-width="2"
+            stroke-linecap="round"
+          />
+        </svg>
       </div>
-    </section>
 
-    <hr class="section-rule" aria-hidden="true" />
-
-    <!-- ============================================================
+      <!-- ============================================================
          FEATURED PROJECTS
          ============================================================ -->
-    <section class="section" id="featured">
-      <div class="container">
-        <p class="label reveal" data-i18n="home.work.label">Selected Work</p>
-        <h2
-          class="reveal"
-          style="margin-bottom: 0"
-          data-i18n="home.work.heading"
-        >
-          Selected Projects
-        </h2>
-
-        <!-- Dave Lee–style work list: rows + lines + thumbnail right -->
-        <div class="work-list">
-          <a href="/work.html" class="work-item reveal">
-            <span class="work-item-num">01</span>
-            <div class="work-item-body">
-              <h3 class="work-item-title">Grand Games</h3>
-              <p class="work-item-desc">
-                Multilingual public signage designed, printed, and installed at
-                Grand Park LA
-              </p>
-              <p class="work-item-tags">
-                Graphic Design &middot; Multilingual &middot; Print &middot;
-                2022
-              </p>
-            </div>
-            <div class="work-item-right">
-              <span class="work-item-arrow" aria-hidden="true">&#8594;</span>
-              <div class="work-item-thumb">
-                <img
-                  src="https://placehold.co/320x180/1E3025/7FBF9B?text=Grand+Games"
-                  alt="Grand Games signage at Grand Park LA"
-                  loading="lazy"
-                  width="320"
-                  height="180"
-                />
+      <section class="section" id="featured">
+        <div class="container">
+          <!-- Thumbnail left, text right -->
+          <div class="work-list">
+            <div class="work-item reveal">
+              <a href="/project-grand-games.html" class="work-item-thumb-link">
+                <div class="work-item-thumb">
+                  <img
+                    src="/assets/images/grandgames-hero.jpg"
+                    alt="Grand Games signage at Grand Park LA"
+                    loading="lazy"
+                  />
+                </div>
+              </a>
+              <div class="work-item-body">
+                <span class="work-item-num">01</span>
+                <a
+                  href="/project-grand-games.html"
+                  class="work-item-title-link"
+                >
+                  <h3 class="work-item-title" data-i18n="proj.gg.title">
+                    Grand Games
+                  </h3>
+                  <span class="work-item-arrow" aria-hidden="true"
+                    >&#8594;</span
+                  >
+                </a>
+                <p class="work-item-desc" data-i18n="proj.gg.desc">
+                  Multilingual public signage designed, printed, and installed
+                  at Grand Park LA
+                </p>
+                <p class="work-item-tags">
+                  <span class="pill">UX</span>
+                  <span class="pill">Wayfinding</span>
+                </p>
               </div>
             </div>
-          </a>
 
-          <a href="/work.html" class="work-item reveal">
-            <span class="work-item-num">02</span>
-            <div class="work-item-body">
-              <h3 class="work-item-title">SPEX</h3>
-              <p class="work-item-desc">
-                Mixed-reality wearable learning tool for hands-on skills
-                education
-              </p>
-              <p class="work-item-tags">
-                Interaction Design &middot; AR &middot; Wearable
-              </p>
-            </div>
-            <div class="work-item-right">
-              <span class="work-item-arrow" aria-hidden="true">&#8594;</span>
-              <div class="work-item-thumb">
-                <img
-                  src="https://placehold.co/320x180/2A4A36/B8E8CB?text=SPEX"
-                  alt="SPEX wearable learning tool"
-                  loading="lazy"
-                  width="320"
-                  height="180"
-                />
+            <div class="work-item reveal">
+              <a href="/project-spex.html" class="work-item-thumb-link">
+                <div class="work-item-thumb">
+                  <img
+                    src="/assets/images/spex-hero-poster.jpg"
+                    alt="SPEX wearable learning tool"
+                    loading="lazy"
+                  />
+                </div>
+              </a>
+              <div class="work-item-body">
+                <span class="work-item-num">02</span>
+                <a href="/project-spex.html" class="work-item-title-link">
+                  <h3 class="work-item-title" data-i18n="proj.spex.title">
+                    SPEX
+                  </h3>
+                  <span class="work-item-arrow" aria-hidden="true"
+                    >&#8594;</span
+                  >
+                </a>
+                <p class="work-item-desc" data-i18n="proj.spex.desc">
+                  Mixed-reality wearable learning tool for hands-on skills
+                  education
+                </p>
+                <p class="work-item-tags">
+                  <span class="pill">Product Design</span>
+                  <span class="pill">Microinteractions</span>
+                  <span class="pill">AR</span>
+                </p>
               </div>
             </div>
-          </a>
 
-          <a href="/work.html" class="work-item reveal">
-            <span class="work-item-num">03</span>
-            <div class="work-item-body">
-              <h3 class="work-item-title">AI Diagnosis Tool</h3>
-              <p class="work-item-desc">
-                Conversational AI appliance repair experience — persona, UI, and
-                prototypes
-              </p>
-              <p class="work-item-tags">
-                Interaction Design &middot; AI &middot; IDEO &middot; 2023
-              </p>
-            </div>
-            <div class="work-item-right">
-              <span class="work-item-arrow" aria-hidden="true">&#8594;</span>
-              <div class="work-item-thumb">
-                <img
-                  src="https://placehold.co/320x180/4A8C6F/1E3025?text=IDEO+AI"
-                  alt="IDEO AI appliance repair tool"
-                  loading="lazy"
-                  width="320"
-                  height="180"
-                />
+            <div class="work-item reveal">
+              <a href="/project-safehere.html" class="work-item-thumb-link">
+                <div class="work-item-thumb">
+                  <img
+                    src="/assets/images/safehere-hero.jpg"
+                    alt="SafeHere mobile app interface"
+                    loading="lazy"
+                  />
+                </div>
+              </a>
+              <div class="work-item-body">
+                <span class="work-item-num">03</span>
+                <a href="/project-safehere.html" class="work-item-title-link">
+                  <h3 class="work-item-title">SafeHere</h3>
+                  <span class="work-item-arrow" aria-hidden="true"
+                    >&#8594;</span
+                  >
+                </a>
+                <p class="work-item-desc">
+                  A mobile app connecting Main Street businesses to safety
+                  ambassadors through discreet, real-time incident reporting.
+                </p>
+                <p class="work-item-tags">
+                  <span class="pill">UX Research</span>
+                  <span class="pill">Interaction Design</span>
+                </p>
               </div>
             </div>
-          </a>
 
-          <a href="/work.html" class="work-item reveal">
-            <span class="work-item-num">04</span>
-            <div class="work-item-body">
-              <h3 class="work-item-title">COP28 AR Experience</h3>
-              <p class="work-item-desc">
-                Immersive AR installation promoting climate action at the UN
-                climate conference
-              </p>
-              <p class="work-item-tags">
-                AR &middot; Visual Design &middot; IDEO &middot; 2023
-              </p>
-            </div>
-            <div class="work-item-right">
-              <span class="work-item-arrow" aria-hidden="true">&#8594;</span>
-              <div class="work-item-thumb">
-                <img
-                  src="https://placehold.co/320x180/2D7A6B/E8F5EE?text=COP28+AR"
-                  alt="COP28 AR experience"
-                  loading="lazy"
-                  width="320"
-                  height="180"
-                />
+            <div class="work-item reveal">
+              <a href="/project-talklot.html" class="work-item-thumb-link">
+                <div class="work-item-thumb">
+                  <img
+                    src="/assets/images/talklot-testing-hifi.webp"
+                    alt="TalkLot language learning app"
+                    loading="lazy"
+                  />
+                </div>
+              </a>
+              <div class="work-item-body">
+                <span class="work-item-num">04</span>
+                <a href="/project-talklot.html" class="work-item-title-link">
+                  <h3 class="work-item-title" data-i18n="proj.talklot.title">
+                    TalkLot
+                  </h3>
+                  <span class="work-item-arrow" aria-hidden="true"
+                    >&#8594;</span
+                  >
+                </a>
+                <p class="work-item-desc" data-i18n="proj.talklot.desc">
+                  A speech-first language learning app designed to reinforce
+                  spoken fluency through extensive oral production
+                </p>
+                <p class="work-item-tags">
+                  <span class="pill">Interaction Design</span>
+                  <span class="pill">UX Research</span>
+                </p>
               </div>
             </div>
-          </a>
-        </div>
 
-        <div style="margin-top: var(--space-lg)">
-          <a
-            href="/work.html"
-            class="btn btn-outline--dark reveal"
-            data-i18n="home.seeall"
-          >
-            All Projects &#8594;
-          </a>
-        </div>
-      </div>
-    </section>
+            <div class="work-item reveal">
+              <a href="/project-viagem.html" class="work-item-thumb-link">
+                <div class="work-item-thumb">
+                  <img
+                    src="/assets/images/viagem-cover-composite.webp"
+                    alt="ViaGem language learning app"
+                    loading="lazy"
+                  />
+                </div>
+              </a>
+              <div class="work-item-body">
+                <span class="work-item-num">05</span>
+                <a href="/project-viagem.html" class="work-item-title-link">
+                  <h3 class="work-item-title" data-i18n="proj.viagem.title">
+                    ViaGem
+                  </h3>
+                  <span class="work-item-arrow" aria-hidden="true"
+                    >&#8594;</span
+                  >
+                </a>
+                <p class="work-item-desc" data-i18n="proj.viagem.desc">
+                  A bilingual language-learning app connecting English and
+                  Portuguese speakers through travel, tutors, and consolidated
+                  tools.
+                </p>
+                <p class="work-item-tags">
+                  <span class="pill">UX Research</span>
+                  <span class="pill">Interaction Design</span>
+                  <span class="pill">Visual Design</span>
+                </p>
+              </div>
+            </div>
 
-    <hr class="section-rule" aria-hidden="true" />
-
-    <!-- ============================================================
-         ABOUT STRIP
-         ============================================================ -->
-    <section class="section section--mist">
-      <div class="container" style="position: relative">
-        <div style="max-width: 680px">
-          <p class="label reveal">About</p>
-          <h2 class="reveal" style="margin-bottom: var(--space-md)">
-            Illustrator and designer<br />
-            <em>from the Bay Area.</em>
-          </h2>
-
-          <p class="p-display reveal">
-            Designer and illustrator from the Bay Area — with a background in
-            motion, interaction design, and cultural storytelling. IDEO Fellow.
-            B.S. Interaction Design, Santa Monica College.
-          </p>
-
-          <div style="margin-top: var(--space-lg)">
-            <a
-              href="/about.html"
-              class="btn btn-outline--dark reveal"
-              data-i18n="hero.cta.about"
-            >
-              About Me
-            </a>
+            <div class="work-item reveal">
+              <a href="/project-music-box.html" class="work-item-thumb-link">
+                <div class="work-item-thumb">
+                  <img
+                    src="/assets/images/musicbox-visual-v3.jpg"
+                    alt="Music Box ambient sound device"
+                    loading="lazy"
+                  />
+                </div>
+              </a>
+              <div class="work-item-body">
+                <span class="work-item-num">06</span>
+                <a href="/project-music-box.html" class="work-item-title-link">
+                  <h3 class="work-item-title" data-i18n="proj.musicbox.title">
+                    Ambient Sound Console
+                  </h3>
+                  <span class="work-item-arrow" aria-hidden="true"
+                    >&#8594;</span
+                  >
+                </a>
+                <p class="work-item-desc" data-i18n="proj.musicbox.desc">
+                  A tabletop ambient sound console built from a printed cardboard
+                  enclosure, combining physical controls with generative visuals.
+                </p>
+                <p class="work-item-tags">
+                  <span class="pill">Interaction Design</span>
+                  <span class="pill">Physical Computing</span>
+                </p>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ============================================================
+      <!-- ============================================================
          FOOTER BOUNCE + FOOTER
          ============================================================ -->
-    <div class="footer-bounce" aria-hidden="true">
-      <svg
-        viewBox="0 0 2278 120"
-        preserveAspectRatio="none"
-        style="display: block; width: 100%; height: 120px"
-      >
-        <path
-          id="bouncy-path"
-          d="M0,0C0,0,464,0,1139,0s1139,0,1139,0V120H0V0z"
-          fill="#1e3025"
-        />
-      </svg>
-    </div>
-
-    <footer class="footer">
-      <div class="container">
-        <div class="footer-brand">
-          <p class="footer-name">PJ Rodriguez</p>
-          <p class="footer-tagline" data-i18n="footer.tagline">
-            Illustration &middot; Design &middot; Bay Area
-          </p>
-          <p class="footer-location">
-            San Francisco, CA &nbsp;&middot;&nbsp;
-            <span id="footer-time"></span>
-          </p>
-        </div>
-
-        <ul class="footer-links">
-          <li>
-            <a
-              href="https://linkedin.com/in/pjrdesign"
-              target="_blank"
-              rel="noopener"
-              >LinkedIn</a
-            >
-          </li>
-          <li>
-            <a
-              href="/cdn-cgi/l/email-protection#69010c0505062919031b060d1b000e1c0c13470d0c1a000e07"
-              >Email</a
-            >
-          </li>
-          <li>
-            <a
-              href="/assets/PJ-Rodriguez-Resume-2026.pdf"
-              target="_blank"
-              rel="noopener"
-              >Resume</a
-            >
-          </li>
-        </ul>
-
-        <p class="footer-copy" data-i18n="footer.copy">
-          &copy; 2026 Patrick Rodriguez
-        </p>
+      <div class="footer-wave" aria-hidden="true">
+        <svg
+          viewBox="0 0 2278 30"
+          preserveAspectRatio="none"
+          style="display: block; width: 100%; height: 20px; overflow: visible"
+        >
+          <path
+            id="bouncy-path"
+            d="M0,4 Q1139,4 2278,4"
+            fill="none"
+            stroke="#1e3025"
+            stroke-width="2"
+            stroke-linecap="round"
+          />
+        </svg>
       </div>
-    </footer>
+      <footer class="footer">
+        <div class="container">
+          <div class="footer-brand">
+            <p class="footer-tagline" data-i18n="footer.tagline">
+              Illustration &middot; Design &middot; Bay Area
+            </p>
+            <p class="footer-location">
+              <span data-i18n="hero.location">San Francisco, CA</span>
+              &nbsp;&middot;&nbsp;
+              <span id="footer-time"></span>
+            </p>
+          </div>
+
+          <ul class="footer-links">
+            <li>
+              <a
+                href="https://linkedin.com/in/pjrdesign"
+                target="_blank"
+                rel="noopener"
+                >LinkedIn</a
+              >
+            </li>
+            <li>
+              <a href="mailto:pjrodriguezdesign@gmail.com">Email</a>
+            </li>
+            <li>
+              <a
+                href="/assets/PJ-Rodriguez-Resume-2026.pdf"
+                target="_blank"
+                rel="noopener"
+                ><span data-i18n="footer.resume">Resume</span></a
+              >
+            </li>
+          </ul>
+
+          <p class="footer-copy">
+            &copy; 2026 PJ Rodriguez
+          </p>
+          <p class="footer-colophon" data-i18n-html="footer.colophon" style="grid-column:1/-1;font-family:var(--font-body);font-size:0.68rem;color:var(--text-light);letter-spacing:0.02em;margin-top:0.5em;line-height:1.8;"></p>
+        </div>
+      </footer>
+    </main>
     <script type="module" src="/src/js/main.js"></script>
   </body>
 </html>

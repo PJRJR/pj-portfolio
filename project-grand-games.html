@@ -1,0 +1,596 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grand Games — PJ Rodriguez</title>
+    <meta
+      name="description"
+      content="Grand Games: A system of bilingual game instruction signs designed to activate Grand Park LA through play. Research, content design, and visual design by PJ Rodriguez."
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Sono:wght,MONO@200..800,1&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/src/styles/main.css" />
+    <style>
+      .case-hero {
+        width: 100%;
+        height: 70vh;
+        margin-top: 4.75rem;
+        overflow: hidden;
+        position: relative;
+        display: flex;
+        align-items: flex-end;
+        box-shadow: inset 0 0 0 2px var(--forest);
+      }
+      .case-hero-img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .case-hero-overlay {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        padding: var(--space-md) var(--space-lg);
+        background: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.52) 0%,
+          transparent 100%
+        );
+        color: #fff;
+      }
+      .case-hero-label {
+        font-family: var(--font-body);
+        font-size: 0.72rem;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        opacity: 0.82;
+        display: block;
+        margin-bottom: 0.4em;
+      }
+      .case-hero-title {
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        font-weight: 600;
+        margin: 0;
+        color: #fff;
+        line-height: 1.1;
+      }
+      .case-caption {
+        font-family: var(--font-body);
+        font-size: 0.72rem;
+        color: var(--text-light);
+        margin-top: 0.5em;
+        letter-spacing: 0.02em;
+        line-height: 1.4;
+      }
+      .back-link {
+        font-family: var(--font-body);
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--sage-teal);
+        transition: color 0.2s;
+        text-decoration: none;
+      }
+      .back-link:hover {
+        color: var(--forest);
+      }
+      @media (max-width: 640px) {
+        .case-hero {
+          height: 50vh;
+          margin-top: 4rem;
+        }
+        .case-hero-overlay {
+          padding: var(--space-sm) var(--space-md);
+        }
+      }
+      .project-section p { text-indent: 1.5em; }
+    </style>
+  </head>
+  <body>
+    <div class="project-card-cursor-label" id="cursor-label">View &#8594;</div>
+
+    <svg
+      width="0"
+      height="0"
+      style="position: absolute; overflow: hidden"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <defs>
+        <clipPath id="wave-gentle" clipPathUnits="objectBoundingBox">
+          <path
+            d="M0,0.04 C0.1,0 0.2,0.02 0.3,0.04 C0.4,0.06 0.5,0.02 0.6,0.04 C0.7,0.06 0.8,0.02 0.9,0.04 C0.95,0.05 1,0.04 1,0.04 L1,0.96 C0.9,1 0.8,0.98 0.7,0.96 C0.6,0.94 0.5,0.98 0.4,0.96 C0.3,0.94 0.2,0.98 0.1,0.96 C0.05,0.95 0,0.96 0,0.96 Z"
+          />
+        </clipPath>
+        <pattern
+          id="scute-tile"
+          x="0"
+          y="0"
+          width="20"
+          height="16"
+          patternUnits="userSpaceOnUse"
+        >
+          <polygon
+            points="3,8 10,2 17,8"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1"
+            stroke-linejoin="round"
+          />
+          <polygon
+            points="3,8 10,14 17,8"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1"
+            stroke-linejoin="round"
+          />
+        </pattern>
+      </defs>
+    </svg>
+
+    <button class="sidebar-toggle" aria-label="Toggle navigation">☰</button>
+    <aside class="sidebar">
+      <a href="/index.html?nav=1" class="sidebar-logo" aria-label="Home">
+        <img
+          src="/assets/images/logo-chasing_dragons-color.svg"
+          alt="Chasing Dragons — PJ Rodriguez"
+        />
+      </a>
+      <span class="sidebar-identity">
+        <span class="pj-initials">
+          <span class="pj-p">P</span><span class="pj-dot1">.</span
+          ><span class="pj-j">J</span><span class="pj-dot2">.</span
+          ><span class="pj-smile">(</span>
+        </span>
+        <span class="surname-block">
+          <span class="surname-row"
+            ><span>R</span><span>O</span><span>D</span></span
+          >
+          <span class="surname-row"
+            ><span>R</span><span>I</span><span>G</span></span
+          >
+          <span class="surname-row"
+            ><span>U</span><span>E</span><span>Z</span></span
+          >
+        </span>
+      </span>
+      <nav class="sidebar-nav">
+        <a href="/index.html?nav=1" data-i18n="nav.work">Work</a>
+        <span class="sidebar-nav-soon"
+          ><span data-i18n="nav.craft">Craft</span>
+          <em data-i18n="nav.soon">soon</em></span
+        >
+        <a href="/about.html" data-i18n="nav.about">About</a>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="sidebar-lang">
+          <button
+            class="lang-btn active"
+            data-lang="en"
+            aria-pressed="true"
+            lang="en"
+          >
+            EN
+          </button>
+          <button
+            class="lang-btn"
+            data-lang="pt"
+            aria-pressed="false"
+            lang="pt-BR"
+          >
+            PT
+          </button>
+          <button
+            class="lang-btn"
+            data-lang="es"
+            aria-pressed="false"
+            lang="es"
+          >
+            ES
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+
+    <!-- HERO -->
+    <div class="case-hero">
+      <img
+        class="case-hero-img"
+        src="/assets/images/grandgames-hero.jpg"
+        alt="Grand Park, downtown Los Angeles"
+        loading="eager"
+      />
+    </div>
+
+    <!-- ALL CONTENT -->
+    <section class="section" style="padding-top: var(--space-lg)">
+      <div class="container">
+        <h1 style="font-family:var(--font-display);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;color:var(--forest);margin-bottom:var(--space-sm);">Grand Games</h1>
+        <!-- METADATA STRIP -->
+        <p class="project-meta-pills">
+          <span class="about-pill" style="--pill-color: var(--sage-teal);">Researcher · Content Designer · Visual Designer</span>
+          <span class="about-pill" style="--pill-color: #7a5fa0;">SMC × verynice × Grand Park LA</span>
+          <span class="about-pill" style="--pill-color: var(--forest);">Team of 4</span>
+          <span class="about-pill" style="--pill-color: var(--ochre);">2022</span>
+        </p>
+
+        <div class="section-wave" aria-hidden="true">
+          <svg
+            viewBox="0 0 2278 30"
+            preserveAspectRatio="none"
+            style="display: block; width: 100%; height: 20px; overflow: visible;"
+          >
+            <path
+              id="section-wave-path"
+              d="M0,4 Q1139,4 2278,4"
+              fill="none"
+              stroke="#1e3025"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </svg>
+        </div>
+
+        <!-- THE PROBLEM -->
+        <div class="project-section reveal">
+          <h2>The Problem</h2>
+          <div class="case-split">
+            <div class="case-split__text">
+              <p>
+                Grand Park sits in the heart of downtown Los Angeles, flanked by
+                City Hall and the Music Center and surrounded by concrete and
+                commuters. It is a genuinely beautiful public space that most
+                Angelenos pass by without stopping.
+              </p>
+              <p>
+                The brief came from Grand Park stakeholders working with verynice,
+                a design strategy agency. The ask was to increase public interest
+                and usage of the park, extend its reach to a wider audience, and
+                establish deeper cultural value. The client wanted a solution that
+                blended physical and digital experience, stayed low-cost and
+                scalable, and could be updated continuously without requiring city
+                permits for permanent installation.
+              </p>
+              <p>
+                The underlying problem was less logistical than cultural. The park
+                was underutilized not because people disliked it, but because it
+                gave casual visitors nothing to do once they arrived and no
+                particular reason to return. Scheduled events drew crowds reliably,
+                but the space between them went largely unclaimed.
+              </p>
+            </div>
+            <div class="case-split__media">
+              <div class="media-frame">
+                <img
+                  src="/assets/images/grandgames-park-ambient.jpg"
+                  alt="Grand Park, downtown Los Angeles"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MY ROLE -->
+        <div class="project-section reveal">
+          <h2>My Role</h2>
+          <p>
+            I joined the team after the initial proposal phase, prior to key
+            implementation decisions. My contributions were concentrated in
+            three areas: secondary and observational research, visual design of
+            the game signage and Instagram takeover assets, and copywriting for
+            the game instructions themselves.
+          </p>
+          <p>
+            One constraint I worked within was geography. Two of our four team
+            members, myself included, were not based in Los Angeles and could
+            not visit Grand Park in person. I conducted remote observation using
+            Google Maps and Street View, navigating the park and surrounding
+            streets virtually and documenting areas of interest through
+            screenshots. This gave me enough spatial understanding of the park
+            to contribute meaningfully to design decisions about signage
+            placement and visibility.
+          </p>
+          <div class="media-grid media-grid--tall" data-cols="2">
+            <div class="media-frame">
+              <img
+                src="/assets/images/grandgames-streetview-grid.jpg"
+                alt="Remote research via Google Street View"
+                loading="lazy"
+              />
+            </div>
+            <div class="media-frame">
+              <img
+                src="/assets/images/grandgames-sme-interview.jpg"
+                alt="SME interview with David Javelosa, game development specialist"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- RESEARCH -->
+        <div class="project-section reveal">
+          <h2>Research</h2>
+          <div class="case-split case-split--reverse">
+            <div class="case-split__media">
+              <div class="media-frame media-frame--tall">
+                <img
+                  src="/assets/images/grandgames-netnography.jpg"
+                  alt="Netnography research documentation"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+            <div class="case-split__text">
+              <p>
+                Our research pulled from three directions. We analyzed competing
+                events and interactive public installations to understand what
+                already drew people into shared outdoor spaces. We conducted
+                netnography, reading Reddit threads and Quora discussions about
+                Grand Park and Los Angeles public life, which surfaced a consistent
+                theme: locals feel proud of the city's cultural diversity and
+                respond warmly to experiences that reflect it. And we spoke with
+                two subject matter experts in game design, including David
+                Javelosa, a game development specialist and professor at SMC, who
+                told us directly that physical involvement in an outdoor location
+                would be the most appropriate way to get people engaged.
+              </p>
+              <p>
+                Three findings shaped everything that followed. People tend to
+                look down while walking, which meant ground-level and eye-level
+                signage placement mattered more than we initially assumed. Long
+                instructions with dense text caused confusion and disengagement.
+                And culturally specific content, when presented accessibly, was a
+                draw rather than a barrier.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- IDEATION AND DESIGN -->
+        <div class="project-section reveal">
+          <h2>Ideation and Design</h2>
+          <p>
+            We went through several iterations of the signage before landing on
+            the final system. Early versions were text-heavy and difficult to
+            follow at a distance or while moving. We stripped them down
+            progressively, leading with the game title and a visual summary of
+            play, then presenting numbered steps in plain language, and closing
+            with a Culture Bonus section linking to a QR code with background on
+            each game's cultural origins.
+          </p>
+
+          <div class="case-split" style="margin-top: var(--space-md)">
+            <div class="case-split__media">
+              <div class="media-grid" data-cols="2">
+                <div class="media-frame" style="height: auto;">
+                  <img
+                    src="/assets/images/grandgames-sign-english.jpg"
+                    alt="Game instruction sign, English"
+                    loading="lazy"
+                    style="height: auto; width: auto; max-width: 100%;"
+                  />
+                </div>
+                <div class="media-frame" style="height: auto;">
+                  <img
+                    src="/assets/images/grandgames-sign-spanish.jpg"
+                    alt="Game instruction sign, Spanish"
+                    loading="lazy"
+                    style="height: auto; width: auto; max-width: 100%;"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="case-split__text">
+              <p>
+                The final signs were designed bilingually in English and Spanish,
+                using Grand Park's existing color palette of hot pink and yellow to
+                feel native to the space rather than imposed on it. Games were
+                selected from a range of cultural traditions to reflect the
+                diversity of Los Angeles rather than defaulting to any single
+                reference point.
+              </p>
+            </div>
+          </div>
+
+          <div class="case-split case-split--reverse" style="margin-top: var(--space-md)">
+            <div class="case-split__media">
+              <div class="media-grid" data-cols="2">
+                <div class="media-frame">
+                  <img
+                    src="/assets/images/grandgames-hopscotch-concept.jpg"
+                    alt="Concept showing game markings extending onto the ground"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="media-frame">
+                  <img
+                    src="/assets/images/grandgames-sign-pole-concept.jpg"
+                    alt="Signage concept placed on park pole"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="case-split__text">
+              <p>
+                We also proposed placing game markings directly on the ground and
+                on park poles to increase discoverability, based on our research
+                finding that visitors often walk with their gaze downward.
+              </p>
+            </div>
+          </div>
+
+          <div class="case-split" style="margin-top: var(--space-md)">
+            <div class="case-split__media">
+              <div class="media-frame media-frame--tall">
+                <img
+                  src="/assets/images/grandgames-qr-concept.jpg"
+                  alt="QR code scan interaction on park walkway"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+            <div class="case-split__text">
+              <p>
+                Each sign's Culture Bonus section invited visitors to scan a QR
+                code and read the history behind the game they were playing. The
+                goal was to make cultural context feel like a reward rather than a
+                requirement, available to anyone curious enough to look.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- TESTING AND RESULTS -->
+        <div class="project-section reveal">
+          <h2>Testing and Results</h2>
+          <div class="case-split">
+            <div class="case-split__text">
+              <p>
+                We printed and laminated the final signs and brought them to Grand
+                Park for in-person prototype testing. Participants were recruited
+                on-site. We observed people reading the instructions, attempting
+                the games, and in several cases pulling in bystanders to join. One
+                teen visitor summed up the dynamic: "If I see other people playing
+                it, I'll probably jump in too."
+              </p>
+            </div>
+            <div class="case-split__media">
+              <div class="media-grid" data-cols="2">
+                <div class="media-frame">
+                  <img
+                    src="/assets/images/grandgames-posters.jpg"
+                    alt="Printed game signs laid out on a Grand Park table before testing"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="media-frame">
+                  <img
+                    src="/assets/images/grandgames-prototype-table.jpg"
+                    alt="Participants reviewing game instructions during in-person testing at Grand Park"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="media-grid" data-cols="2" style="margin-top: var(--space-sm)">
+            <div class="media-frame media-frame--tall">
+              <img
+                src="/assets/images/grandgames-instagram-takeover.jpg"
+                alt="Instagram story takeover screens"
+                loading="lazy"
+              />
+            </div>
+            <div class="media-frame media-frame--tall">
+              <img
+                src="/assets/images/grandgames-instagram-metrics.jpg"
+                alt="Instagram story metrics: 6,282 accounts reached, 7,330 impressions, 291 interactions"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <p style="margin-top: var(--space-md)">
+            The Instagram takeover campaign reached 6,282 accounts with 7,330 impressions and generated 291 interactions. I designed the visual assets for the campaign. That reach confirmed the concept extended beyond foot traffic at the park on testing day.
+          </p>
+        </div>
+
+        <!-- REFLECTION -->
+        <div class="project-section reveal">
+          <h2>Reflection</h2>
+          <p>
+            The team benefited from clear specialization — visual design, game research, and bilingual copywriting stayed in distinct hands, and the deliverables showed it. The remote constraint that applied to two of us produced a research method, Google Street View observation, that we would not have reached for otherwise.
+          </p>
+          <p>
+            If I were to extend this project, I would focus on the digital layer. The QR codes pointed to cultural history content that was never fully built. That connection between a game played in a park and the tradition it came from is the most interesting part of the concept, and it deserved more than a placeholder.
+          </p>
+        </div>
+      </div>
+
+      <!-- CLOSING IMAGE -->
+      <div style="padding: 0 0 var(--space-xl) 0;">
+        <img
+          src="/assets/images/grandgames-walkway-final.jpg"
+          alt="Grand Park walkway with game signage and ground markings"
+          loading="lazy"
+          style="
+            display: block;
+            width: 100%;
+            max-height: 280px;
+            object-fit: cover;
+            outline: 2px solid var(--forest);
+            outline-offset: 4px;
+          "
+        />
+      </div>
+    </section>    <!-- FOOTER -->
+    <div class="footer-wave" aria-hidden="true">
+  <svg
+    viewBox="0 0 2278 30"
+    preserveAspectRatio="none"
+    style="display: block; width: 100%; height: 20px; overflow: visible;"
+  >
+    <path
+      id="bouncy-path"
+      d="M0,4 Q1139,4 2278,4"
+      fill="none"
+      stroke="#1e3025"
+      stroke-width="2"
+      stroke-linecap="round"
+    />
+  </svg>
+</div>
+<footer class="footer">
+      <div class="container">
+        <div class="footer-brand">
+          <p class="footer-tagline" data-i18n="footer.tagline">
+            Illustration &middot; Design &middot; Motion
+          </p>
+          <p class="footer-location">
+            San Francisco, CA &nbsp;&middot;&nbsp;
+            <span id="footer-time"></span>
+          </p>
+        </div>
+        <ul class="footer-links">
+          <li>
+            <a
+              href="https://linkedin.com/in/pjrdesign"
+              target="_blank"
+              rel="noopener"
+              >LinkedIn</a
+            >
+          </li>
+          <li>
+            <a
+              href="/cdn-cgi/l/email-protection#a6cec3cacac9e6d6ccd4c9c2d4cfc1d3c3dc88c2c3d5cfc1c8"
+              >Email</a
+            >
+          </li>
+          <li>
+            <a
+              href="/assets/PJ-Rodriguez-Resume-2026.pdf"
+              target="_blank"
+              rel="noopener"
+              ><span data-i18n="footer.resume">Resume</span></a
+            >
+          </li>
+        </ul>
+        <p class="footer-copy" data-i18n="footer.copy">
+          &copy; 2026 Patrick Rodriguez
+        </p>
+        <p class="footer-colophon" data-i18n-html="footer.colophon" style="grid-column:1/-1;font-family:var(--font-body);font-size:0.68rem;color:var(--text-light);letter-spacing:0.02em;margin-top:0.5em;line-height:1.8;"></p>
+      </div>
+    </footer>
+
+    </main>
+    <script type="module" src="/src/js/main.js"></script>
+  </body>
+</html>

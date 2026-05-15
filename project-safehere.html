@@ -1,0 +1,648 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SafeHere — PJ Rodriguez</title>
+    <meta
+      name="description"
+      content="SafeHere: A mobile app connecting business employees on Santa Monica's Main Street to trained safety ambassadors through discreet, real-time incident reporting. UX research and prototype design by PJ Rodriguez."
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Sono:wght,MONO@200..800,1&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/src/styles/main.css" />
+    <style>
+  .case-hero {
+    width: 100%;
+    height: 70vh;
+    margin-top: 4.75rem;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    box-shadow: inset 0 0 0 2px var(--forest);
+  }
+  .case-hero-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .case-caption {
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    color: var(--text-light);
+    margin-top: 0.5em;
+    letter-spacing: 0.02em;
+    line-height: 1.4;
+  }
+  .media-figure {
+    display: flex;
+    flex-direction: column;
+  }
+  .media-figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  @media (max-width: 640px) {
+    .case-hero {
+      height: 50vh;
+      margin-top: 4rem;
+    }
+  }
+  .project-section p { text-indent: 1.5em; }
+</style>
+  </head>
+  <body>
+    <div class="project-card-cursor-label" id="cursor-label">View &#8594;</div>
+
+    <svg
+      width="0"
+      height="0"
+      style="position: absolute; overflow: hidden"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <defs>
+        <clipPath id="wave-gentle" clipPathUnits="objectBoundingBox">
+          <path
+            d="M0,0.04 C0.1,0 0.2,0.02 0.3,0.04 C0.4,0.06 0.5,0.02 0.6,0.04 C0.7,0.06 0.8,0.02 0.9,0.04 C0.95,0.05 1,0.04 1,0.04 L1,0.96 C0.9,1 0.8,0.98 0.7,0.96 C0.6,0.94 0.5,0.98 0.4,0.96 C0.3,0.94 0.2,0.98 0.1,0.96 C0.05,0.95 0,0.96 0,0.96 Z"
+          />
+        </clipPath>
+        <pattern
+          id="scute-tile"
+          x="0"
+          y="0"
+          width="20"
+          height="16"
+          patternUnits="userSpaceOnUse"
+        >
+          <polygon
+            points="3,8 10,2 17,8"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1"
+            stroke-linejoin="round"
+          />
+          <polygon
+            points="3,8 10,14 17,8"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1"
+            stroke-linejoin="round"
+          />
+        </pattern>
+      </defs>
+    </svg>
+
+    <button class="sidebar-toggle" aria-label="Toggle navigation">☰</button>
+    <aside class="sidebar">
+      <a href="/index.html?nav=1" class="sidebar-logo" aria-label="Home">
+        <img
+          src="/assets/images/logo-chasing_dragons-color.svg"
+          alt="Chasing Dragons — PJ Rodriguez"
+          width="80"
+          height="70"
+        />
+      </a>
+      <span class="sidebar-identity">
+        <span class="pj-initials">
+          <span class="pj-p">P</span><span class="pj-dot1">.</span><span class="pj-j">J</span><span class="pj-dot2">.</span><span class="pj-smile">(</span>
+        </span>
+        <span class="surname-block">
+          <span class="surname-row"><span>R</span><span>O</span><span>D</span></span>
+          <span class="surname-row"><span>R</span><span>I</span><span>G</span></span>
+          <span class="surname-row"><span>U</span><span>E</span><span>Z</span></span>
+        </span>
+      </span>
+      <nav class="sidebar-nav">
+        <a href="/index.html?nav=1" data-i18n="nav.work">Work</a>
+        <span class="sidebar-nav-soon"><span data-i18n="nav.craft">Craft</span> <em data-i18n="nav.soon">soon</em></span>
+        <a href="/about.html" data-i18n="nav.about">About</a>
+      </nav>
+      <div class="sidebar-footer">
+
+        <div class="sidebar-lang">
+
+          <button class="lang-btn active" data-lang="en" aria-pressed="true" lang="en">EN</button>
+
+          <button class="lang-btn" data-lang="pt" aria-pressed="false" lang="pt-BR">PT</button>
+
+          <button class="lang-btn" data-lang="es" aria-pressed="false" lang="es">ES</button>
+
+        </div>
+
+      </div>
+    </aside>
+
+    <main class="main-content">
+
+    <!-- HERO -->
+    <div class="case-hero">
+      <img
+        class="case-hero-img"
+        src="/assets/images/safehere-hero.jpg"
+        alt="SafeHere mobile app interface"
+        loading="eager"
+      />
+    </div>
+
+    <!-- ALL CONTENT -->
+    <section class="section" style="padding-top: var(--space-lg)">
+      <div class="container">
+
+        <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-sm);">
+          <img
+            src="/assets/images/safehere-app-icon.png"
+            alt="SafeHere app icon"
+            style="width: 52px; height: 52px; border-radius: 14px; display: block; flex-shrink: 0;"
+          />
+          <h1 style="font-family:var(--font-display);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;color:var(--forest);margin:0;">SafeHere</h1>
+        </div>
+        <!-- METADATA STRIP -->
+        <p class="project-meta-pills">
+          <span class="about-pill" style="--pill-color: var(--sage-teal);">UX Researcher · Interaction Designer</span>
+          <span class="about-pill" style="--pill-color: #7a5fa0;">Adobe XD · Marvel · UseBerry</span>
+          <span class="about-pill" style="--pill-color: var(--forest);">Group · 3 members</span>
+          <span class="about-pill" style="--pill-color: var(--ochre);">Fall 2020</span>
+        </p>
+        <div class="section-wave" aria-hidden="true">
+          <svg
+            viewBox="0 0 2278 30"
+            preserveAspectRatio="none"
+            style="display: block; width: 100%; height: 20px; overflow: visible;"
+          >
+            <path
+              id="section-wave-path"
+              d="M0,4 Q1139,4 2278,4"
+              fill="none"
+              stroke="var(--forest)"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </svg>
+        </div>
+
+        <!-- OVERVIEW -->
+        <div class="project-section reveal">
+          <h2>Overview</h2>
+          <p>
+            SafeHere is a mobile app that connects business employees along
+            Santa Monica's Main Street to trained safety ambassadors through
+            discreet, real-time incident reporting. The project was built in
+            response to a specific civic problem: during the height of the
+            pandemic, there was no standard way for local businesses to address
+            non-emergency safety concerns, and customers were leaving with
+            complaints rather than resolutions. I led primary and secondary
+            research, contributed to prototype design, and presented our work
+            to the class and invited guests across the 13-week project.
+          </p>
+        </div>
+
+        <!-- PROBLEM -->
+        <div class="project-section reveal">
+          <h2>Problem</h2>
+          <p>
+            In 2020, visitors along Main Street felt unsafe near others who
+            weren't following health guidelines, and local businesses had no
+            reliable channel to act on those concerns quickly. Calling the
+            police was disproportionate. Asking employees to handle
+            confrontations directly was unreasonable. The gap between a
+            complaint and a response had no infrastructure.
+          </p>
+          <p>
+            A 23-person survey we distributed across Reddit, Nextdoor,
+            Facebook, and Ring confirmed what we observed in the field: 64.3%
+            of respondents felt unsafe while visiting the area. Field
+            observation backed that up. Storefronts were vacant or boarded.
+            There was no signage about COVID guidelines or the al fresco dining
+            setup newly installed on the street.
+          </p>
+          <div class="media-grid media-grid--tall" data-cols="2" style="margin-top: var(--space-md)">
+  <div>
+    <div class="media-frame" style="height: 420px;">
+      <figure class="media-figure">
+        <img
+          src="/assets/images/safehere-main-street-field-observation.jpg"
+          alt="Main Street sidewalk, Santa Monica, 2020"
+          loading="lazy"
+          style="width: 100%; height: 420px !important; object-fit: cover;"
+        />
+      </figure>
+    </div>
+    <figcaption class="case-caption">Main Street, Santa Monica, 2020</figcaption>
+  </div>
+  <div>
+    <div class="media-frame" style="height: 420px;">
+      <figure class="media-figure">
+        <img
+          src="/assets/images/safehere-survey-pie-chart.jpg"
+          alt="Survey results: 64.3% of respondents felt unsafe on Main Street"
+          loading="lazy"
+          style="width: 100%; height: 420px !important; object-fit: cover;"
+        />
+      </figure>
+    </div>
+    <figcaption class="case-caption">64.3% of survey respondents felt unsafe on Main Street</figcaption>
+  </div>
+</div>
+        </div>
+
+        <!-- RESEARCH AND PIVOT -->
+        <div class="project-section reveal">
+          <h2>Research and Pivot</h2>
+          <p>
+            Our secondary research surfaced something important. Several cities
+            had already implemented safety ambassador programs for exactly this
+            kind of non-emergency situation, and Santa Monica's Main Street had
+            one.
+          </p>
+
+          <p>
+            Competitor research identified two existing tools businesses on Main Street were already relying on. Neither addressed the business side of the communication gap.
+          </p>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md); margin-top: var(--space-md); margin-bottom: var(--space-md);">
+
+            <div style="border: 1px solid rgba(var(--ochre-rgb, 180, 120, 40), 0.25); background: rgba(var(--ochre-rgb, 180, 120, 40), 0.04); border-radius: 6px; padding: var(--space-md);">
+              <img
+                src="/assets/images/safehere-competitor-smart-system.jpg"
+                alt="Block by Block SMART System"
+                loading="lazy"
+                style="height: 48px; width: auto; display: block; margin-bottom: var(--space-sm); object-fit: contain;"
+              />
+              <p style="font-size: 0.85rem; color: var(--text-mid); margin-bottom: var(--space-sm);">
+                Block by Block's SMART System tracked ambassador locations, logged incidents, and maintained a persons-of-interest database for the ambassador program.
+              </p>
+              <p style="font-size: 0.78rem; font-family: var(--font-body); letter-spacing: 0.04em; text-transform: uppercase; color: var(--ochre); margin-bottom: 0.4em;">Gap</p>
+              <p style="font-size: 0.85rem; color: var(--text-mid); margin: 0;">
+                Businesses had no ability to create a report or request an ambassador directly.
+              </p>
+            </div>
+
+            <div style="border: 1px solid rgba(var(--ochre-rgb, 180, 120, 40), 0.25); background: rgba(var(--ochre-rgb, 180, 120, 40), 0.04); border-radius: 6px; padding: var(--space-md);">
+              <img
+                src="/assets/images/safehere-competitor-santa-monica.png"
+                alt="City of Santa Monica"
+                loading="lazy"
+                style="height: 48px; width: auto; display: block; margin-bottom: var(--space-sm); object-fit: contain;"
+              />
+              <p style="font-size: 0.85rem; color: var(--text-mid); margin-bottom: var(--space-sm);">
+                The City of Santa Monica offered a directory of department phone numbers for businesses to report operational or safety concerns.
+              </p>
+              <p style="font-size: 0.78rem; font-family: var(--font-body); letter-spacing: 0.04em; text-transform: uppercase; color: var(--ochre); margin-bottom: 0.4em;">Gap</p>
+              <p style="font-size: 0.85rem; color: var(--text-mid); margin: 0;">
+                No online platform existed. Reaching the right contact required navigating the website, finding the correct number, and waiting on hold.
+              </p>
+            </div>
+
+          </div>
+
+          <p>
+            The initial design direction was a two-way communication app
+            between visitors and safety ambassadors, but feedback during
+            research pushed us to reconsider. If any visitor could report any
+            other visitor, the app risked functioning as a surveillance tool,
+            empowering people to police who belongs in public space. We
+            pivoted. By routing reports through business employees rather than
+            the general public, we introduced a layer of accountability that
+            reduced the risk of discriminatory or retaliatory use.
+          </p>
+          <div style="margin-top: var(--space-md)">
+  <div class="media-frame">
+    <figure class="media-figure">
+      <img
+        src="/assets/images/safehere-fear-social-media-article.jpg"
+        alt="Article on fear-based social media platforms that informed our pivot decision"
+        loading="lazy"
+      />
+    </figure>
+  </div>
+  <figcaption class="case-caption">Secondary research: fear-based social media platforms informed our pivot</figcaption>
+</div>
+        </div>
+
+        <!-- UNDERSTANDING USERS -->
+        <div class="project-section reveal">
+          <h2>Understanding Users</h2>
+          <p>
+            To keep the work grounded, we built a persona around Stephanie
+            Griffin, a 20-year-old Starbucks employee on Main Street. Her core
+            tension was simple: she needed to focus on her job, but was being
+            put in the position of managing safety incidents she wasn't trained
+            or empowered to handle. The journey map we built around her
+            scenario traced four stages from awareness of an incident to
+            resolution, and it revealed where the friction lived: the moment
+            between recognizing a problem and knowing what to do about it.
+          </p>
+          <div class="media-grid media-grid--tall" data-cols="2" style="margin-top: var(--space-md)">
+  <div>
+    <div class="media-frame">
+      <figure class="media-figure">
+        <img
+          src="/assets/images/safehere-persona-stephanie.jpg"
+          alt="User persona: Stephanie Griffin, Starbucks employee on Main Street"
+          loading="lazy"
+          style="width: 100%; height: 360px !important; object-fit: contain;"
+        />
+      </figure>
+    </div>
+    <figcaption class="case-caption">User persona: Stephanie Griffin</figcaption>
+  </div>
+  <div>
+    <div class="media-frame">
+      <figure class="media-figure">
+        <img
+          src="/assets/images/safehere-journey-map.jpg"
+          alt="Journey map tracing Stephanie's experience from incident awareness to resolution"
+          loading="lazy"
+          style="width: 100%; height: 360px !important; object-fit: contain;"
+        />
+      </figure>
+    </div>
+    <figcaption class="case-caption">Journey map: incident awareness to resolution</figcaption>
+  </div>
+</div>
+<div style="margin-top: var(--space-md)">
+  <div style="width: 65%; margin-left: auto; margin-right: auto;">
+    <div class="media-frame">
+      <figure class="media-figure">
+        <img
+          src="/assets/images/safehere-safety-ambassador.jpg"
+          alt="A Santa Monica safety ambassador — the trained responders SafeHere connects businesses to"
+          loading="lazy"
+          style="width: 100%; height: auto !important; object-fit: contain;"
+        />
+      </figure>
+    </div>
+    <figcaption class="case-caption">A Santa Monica safety ambassador — the trained responders SafeHere connects businesses to</figcaption>
+  </div>
+</div>
+        </div>
+
+        <!-- DESIGN PROCESS -->
+        <div class="project-section reveal">
+          <h2>Design Process</h2>
+          <p>
+            We storyboarded the scenario in a comic format before touching any
+            screens, which helped the team align on the narrative before
+            arguing about layout. Prototyping spanned roughly five weeks and
+            moved through paper prototypes, medium-fidelity wireframes in
+            Marvel, and a high-fidelity build in Adobe XD. Each stage involved
+            feedback and iteration. The paper prototype helped us establish the
+            core flow. Medium-fidelity exposed information architecture
+            problems early, including a bottom navigation structure that we
+            eventually simplified. The high-fidelity prototype introduced the
+            swipe-to-report interaction on the home screen, a deliberate
+            friction point designed to prevent accidental submissions.
+          </p>
+          <div class="media-grid" data-cols="2" style="margin-top: var(--space-lg)">
+  <div>
+    <div class="media-frame" style="height: auto;">
+      <figure class="media-figure">
+        <img
+          src="/assets/images/safehere-storyboard-1.jpg"
+          alt="Comic-style storyboard panel 1"
+          loading="lazy"
+          style="width: 100%; height: auto !important; object-fit: contain;"
+        />
+      </figure>
+    </div>
+    <figcaption class="case-caption">Storyboard, panel 1</figcaption>
+  </div>
+  <div>
+    <div class="media-frame" style="height: auto;">
+      <figure class="media-figure">
+        <img
+          src="/assets/images/safehere-storyboard-2.jpg"
+          alt="Comic-style storyboard panel 2"
+          loading="lazy"
+          style="width: 100%; height: auto !important; object-fit: contain;"
+        />
+      </figure>
+    </div>
+    <figcaption class="case-caption">Storyboard, panel 2</figcaption>
+  </div>
+</div>
+<div class="media-grid media-grid--contain" data-cols="2" style="margin-top: var(--space-lg); align-items: start;">
+  <div>
+    <div class="media-frame">
+      <figure class="media-figure">
+        <img
+          src="/assets/images/safehere-paper-prototype.jpg"
+          alt="Paper prototype screens mapped across phone frames"
+          loading="lazy"
+          style="width: auto; max-width: 100%; height: 320px !important; object-fit: contain;"
+        />
+      </figure>
+    </div>
+    <figcaption class="case-caption">Paper prototype screens, built in Marvel</figcaption>
+  </div>
+  <div>
+    <div class="media-frame">
+      <figure class="media-figure">
+        <img
+          src="/assets/images/safehere-wireframes-medium-fidelity.jpg"
+          alt="Medium-fidelity wireframes: Welcome, Login, Sidebar, and Notifications screens"
+          loading="lazy"
+          style="width: auto; max-width: 100%; height: 320px !important; object-fit: contain;"
+        />
+      </figure>
+    </div>
+    <figcaption class="case-caption">Medium-fidelity wireframes: Welcome, Login, Sidebar, Notifications</figcaption>
+  </div>
+</div>
+<div class="media-grid media-grid--contain" data-cols="2" style="margin-top: var(--space-lg)">
+  <div>
+    <div class="media-frame" style="width: fit-content; max-width: 100%;">
+      <figure class="media-figure">
+        <img
+          src="/assets/images/safehere-ui-annotations-a.jpg"
+          alt="UI annotation diagram, home screen and report flow"
+          loading="lazy"
+          style="width: auto; max-width: 100%; height: auto !important; object-fit: contain;"
+        />
+      </figure>
+    </div>
+    <figcaption class="case-caption">UI annotations: home screen and report flow</figcaption>
+  </div>
+  <div>
+    <div class="media-frame" style="width: fit-content; max-width: 100%;">
+      <figure class="media-figure">
+        <img
+          src="/assets/images/safehere-ui-annotations-b.jpg"
+          alt="UI annotation diagram, report type and sub-category screens"
+          loading="lazy"
+          style="width: auto; max-width: 100%; height: auto !important; object-fit: contain;"
+        />
+      </figure>
+    </div>
+    <figcaption class="case-caption">UI annotations: report type and sub-category screens</figcaption>
+  </div>
+</div>
+<div class="media-grid" data-cols="3" style="margin-top: var(--space-lg); align-items: start;">
+  <div>
+    <div class="media-frame" style="height: auto;">
+      <figure class="media-figure">
+        <img
+          src="/assets/images/safehere-ui-report-type.png"
+          alt="SafeHere app: Type of Report screen showing incident categories including COVID-19, hate speech, assault, vandalism, and theft"
+          loading="lazy"
+          style="width: 100%; height: auto !important; object-fit: contain;"
+        />
+      </figure>
+    </div>
+    <figcaption class="case-caption">Report — business owners and employees create categorized incident reports</figcaption>
+  </div>
+  <div>
+    <div class="media-frame" style="height: auto;">
+      <figure class="media-figure">
+        <img
+          src="/assets/images/safehere-ui-map.png"
+          alt="SafeHere app: interactive map showing user location and nearby safety ambassador positions"
+          loading="lazy"
+          style="width: 100%; height: auto !important; object-fit: contain;"
+        />
+      </figure>
+    </div>
+    <figcaption class="case-caption">Interactive Map — real-time ambassador locations relative to the user</figcaption>
+  </div>
+  <div>
+    <div class="media-frame" style="height: auto;">
+      <figure class="media-figure">
+        <img
+          src="/assets/images/safehere-ui-call-authorities.png"
+          alt="SafeHere app: Call Local Authorities screen with normal and silent mode options"
+          loading="lazy"
+          style="width: 100%; height: auto !important; object-fit: contain;"
+        />
+      </figure>
+    </div>
+    <figcaption class="case-caption">Call Authorities — normal mode connects to dispatch; silent mode shares location without alerting nearby parties</figcaption>
+  </div>
+</div>
+        </div>
+
+        <!-- TESTING -->
+        <div class="project-section reveal">
+          <h2>Testing</h2>
+          <p>
+            We ran usability testing through UseBerry, which allowed
+            participants to move through the prototype independently and
+            remotely without a moderator present. The feedback was direct: the
+            home screen had too many elements, the iconography was unclear, and
+            users wanted to see the safety ambassador's location on a map after
+            submitting a report. We made adjustments to address each issue and
+            ran a second round of testing before finalizing the design.
+          </p>
+        </div>
+
+        <!-- OUTCOME -->
+        <div class="project-section reveal">
+          <h2>Outcome</h2>
+          <p>
+            The final prototype gave businesses a discreet, structured channel
+            to dispatch safety ambassadors for non-emergency incidents, with
+            real-time location tracking, categorized report types, and a
+            notification log.
+          </p>
+          <p>
+            Looking back, the research would have been stronger with direct
+            stakeholder input from the city, Main Street business owners, or
+            the ambassador program itself. The 23-survey sample was enough to
+            validate the problem, but not enough to stress-test the solution at
+            scale. That gap is something I carry into every project that
+            follows.
+          </p>
+          <div style="margin-top: var(--space-md); padding: 0 var(--space-xl)">
+  <div style="width: 520px; max-width: 100%; margin-left: auto; margin-right: auto;">
+    <div class="media-frame">
+      <figure class="media-figure">
+        <img
+          src="/assets/images/safehere-app-store-mockup.jpg"
+          alt="Simulated App Store listing for SafeHere"
+          loading="lazy"
+          style="width: 520px; max-width: 100%; height: auto !important; object-fit: contain;"
+        />
+      </figure>
+    </div>
+    <figcaption class="case-caption">Simulated App Store listing</figcaption>
+  </div>
+</div>
+          <div style="margin-top: var(--space-md)">
+            <a
+              href="https://xd.adobe.com/view/b6614e69-aa33-4b78-81a5-0972603a2c73-e332/"
+              class="btn btn-primary"
+              target="_blank"
+              rel="noopener"
+            >Interact with the Prototype &rarr;</a>
+          </div>
+        </div>
+
+
+      </div>
+    </section>    <!-- FOOTER -->
+    <div class="footer-wave" aria-hidden="true">
+  <svg
+    viewBox="0 0 2278 30"
+    preserveAspectRatio="none"
+    style="display: block; width: 100%; height: 20px; overflow: visible;"
+  >
+    <path
+      id="bouncy-path"
+      d="M0,4 Q1139,4 2278,4"
+      fill="none"
+      stroke="#1e3025"
+      stroke-width="2"
+      stroke-linecap="round"
+    />
+  </svg>
+</div>
+<footer class="footer">
+      <div class="container">
+        <div class="footer-brand">
+          <p class="footer-tagline" data-i18n="footer.tagline">
+            Illustration &middot; Design &middot; Motion
+          </p>
+          <p class="footer-location">
+            San Francisco, CA &nbsp;&middot;&nbsp;
+            <span id="footer-time"></span>
+          </p>
+        </div>
+        <ul class="footer-links">
+          <li>
+            <a
+              href="https://linkedin.com/in/pjrdesign"
+              target="_blank"
+              rel="noopener"
+              >LinkedIn</a
+            >
+          </li>
+          <li>
+            <a
+              href="/cdn-cgi/l/email-protection#a6cec3cacac9e6d6ccd4c9c2d4cfc1d3c3dc88c2c3d5cfc1c8"
+              >Email</a
+            >
+          </li>
+          <li>
+            <a
+              href="/assets/PJ-Rodriguez-Resume-2026.pdf"
+              target="_blank"
+              rel="noopener"
+              ><span data-i18n="footer.resume">Resume</span></a
+            >
+          </li>
+        </ul>
+        <p class="footer-copy" data-i18n="footer.copy">
+          &copy; 2026 Patrick Rodriguez
+        </p>
+        <p class="footer-colophon" data-i18n-html="footer.colophon" style="grid-column:1/-1;font-family:var(--font-body);font-size:0.68rem;color:var(--text-light);letter-spacing:0.02em;margin-top:0.5em;line-height:1.8;"></p>
+      </div>
+    </footer>
+
+    </main>
+    <script type="module" src="/src/js/main.js"></script>
+  </body>
+</html>
